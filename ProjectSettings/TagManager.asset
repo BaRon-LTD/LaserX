@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Score
   - bulb
+  - ballonCounter
   layers:
   - Default
   - TransparentFX
