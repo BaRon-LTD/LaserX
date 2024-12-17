@@ -5,7 +5,6 @@ public class Dragable : MonoBehaviour
 {
     [SerializeField] Camera mainCamera;
     Vector3 mousePositionOffset;
-    
     private Vector3 getMouseWorldPosition()
     {
         return mainCamera.ScreenToWorldPoint(Input.mousePosition);

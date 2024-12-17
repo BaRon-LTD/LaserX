@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class bulbHit : LaserInteractable 
+public class bulbHit:LaserInteractable 
 {
     [SerializeField] private string uniqueBehaviorMessage = "Specific behavior triggered!";
     [SerializeField] private Sprite hitSprite; // Optional: New sprite to display when hit
@@ -20,13 +20,11 @@ public class bulbHit : LaserInteractable
 
         // Log and perform specific behavior
         Debug.Log(uniqueBehaviorMessage);
-        
         // If a new sprite is assigned, change the object's sprite
-        if (hitSprite != null && spriteRenderer != null) 
+        if(hitSprite != null && spriteRenderer != null) 
         {
             spriteRenderer.sprite = hitSprite;
         }
-        
         // Stop the laser from deflecting further
         stopRay = true;
 
