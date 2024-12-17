@@ -11,12 +11,14 @@ public class CandyCounter : MonoBehaviour
     //     candies = GameObject.Find("candyCounter").GetComponent<Text>();
     // }
 
-    public void AddBallon(int amount){
+    public void AddBallon(int amount)
+    {
         score += amount;
         UpdateScoreUI();
     }
-    private void UpdateScoreUI(){
-        ballons.text = "      X " + score;
 
+    private void UpdateScoreUI()
+    {
+        ballons.text = "      X " + score;
     }
 }

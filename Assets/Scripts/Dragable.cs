@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Dragable : MonoBehaviour
 {
-    [SerializeField]Camera mainCamera;
+    [SerializeField] Camera mainCamera;
     Vector3 mousePositionOffset;
     
     private Vector3 getMouseWorldPosition()
@@ -11,11 +11,13 @@ public class Dragable : MonoBehaviour
         return mainCamera.ScreenToWorldPoint(Input.mousePosition);
     }
 
-    private void OnMouseDown() {
+    private void OnMouseDown() 
+    {
         mousePositionOffset = gameObject.transform.position - getMouseWorldPosition();
     }
 
-    private void OnMouseDrag() {
+    private void OnMouseDrag() 
+    {
         transform.position = getMouseWorldPosition() + mousePositionOffset;
     }
 }
