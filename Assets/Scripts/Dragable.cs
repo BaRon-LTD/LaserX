@@ -10,12 +10,12 @@ public class Dragable : MonoBehaviour
         return mainCamera.ScreenToWorldPoint(Input.mousePosition);
     }
 
-    private void OnMouseDown() 
+    private void OnMouseDown()
     {
         mousePositionOffset = gameObject.transform.position - getMouseWorldPosition();
     }
 
-    private void OnMouseDrag() 
+    private void OnMouseDrag()
     {
         transform.position = getMouseWorldPosition() + mousePositionOffset;
     }
