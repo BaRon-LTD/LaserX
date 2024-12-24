@@ -5,7 +5,7 @@ public class bulbHit : LaserInteractable
 {
     [SerializeField] private string uniqueBehaviorMessage = "Specific behavior triggered!";
     [SerializeField] private Sprite hitSprite; // Optional: New sprite to display when hit
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
     [SerializeField] [Tooltip("Name of scene to move to when triggering the given tag")] string sceneName;
 
     private void Awake()

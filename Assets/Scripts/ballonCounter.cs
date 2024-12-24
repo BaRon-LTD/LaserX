@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class CandyCounter : MonoBehaviour
+public class ballonCounter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI ballons;
     [SerializeField] private int score = 0;
@@ -15,6 +15,10 @@ public class CandyCounter : MonoBehaviour
     {
         score += amount;
         UpdateScoreUI();
+    }
+
+    public int getScore(){
+        return score;
     }
 
     private void UpdateScoreUI()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MouseLineMover : MonoBehaviour
+public class TutorialMouseMove : MonoBehaviour
 {
     [SerializeField] private GameObject mirror;  // The GameObject representing the start point
     [SerializeField] private Transform endPoint; // The target end point

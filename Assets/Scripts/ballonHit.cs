@@ -3,11 +3,11 @@ using UnityEngine;
 public class ballonHit : LaserInteractable
 {
     [SerializeField] private string uniqueBehaviorMessage = "Specific behavior triggered!";
-    private CandyCounter candyCounter;
+    private ballonCounter candyCounter;
 
     private void Start()
     {
-        candyCounter = Object.FindFirstObjectByType<CandyCounter>();
+        candyCounter = Object.FindFirstObjectByType<ballonCounter>();
     }
 
     // Override the OnLaserHit to add specific behavior and stop laser reflection
