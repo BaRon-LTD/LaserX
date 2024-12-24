@@ -3,20 +3,33 @@ using System.Collections;
 
 public class Dragable : MonoBehaviour
 {
-    [SerializeField] Camera mainCamera;
-    Vector3 mousePositionOffset;
-    private Vector3 getMouseWorldPosition()
-    {
-        return mainCamera.ScreenToWorldPoint(Input.mousePosition);
-    }
+    public delegate void DragEndedDelegate(Dragable draggableObject);
+
+    public DragEndedDelegate drangEndedCallback;
+
+    private bool isDragged = false;
+
+    private Vector3 mouseDragStartPosition;
+
+    private Vector3 spriteDragStartPosition;
+
+    [SerializeField]private Camera mainCamera;
 
     private void OnMouseDown()
     {
-        mousePositionOffset = gameObject.transform.position - getMouseWorldPosition();
+        isDragged = true;
+        mouseDragStartPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        spriteDragStartPosition = transform.position;
     }
 
     private void OnMouseDrag()
     {
-        transform.position = getMouseWorldPosition() + mousePositionOffset;
+        if(isDragged){
+            transform.position = spriteDragStartPosition + (mainCamera.ScreenToWorldPoint(Input.mousePosition) - mouseDragStartPosition);
+        }
+    }
+    private void OnMouseUp() {
+        isDragged = false;
+        drangEndedCallback(this);
     }
 }
