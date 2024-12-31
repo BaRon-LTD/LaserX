@@ -3,6 +3,7 @@ using UnityEngine;
 public class LaserInteractable : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
+    public static float duration = 0f;
 
     private void Start()
     {
@@ -13,8 +14,8 @@ public class LaserInteractable : MonoBehaviour
     {
         // Log hit for debugging
         Debug.Log($"{gameObject.name} was hit by the laser!");
-        // Schedule the additional behavior to run after 2 seconds
-        Invoke(nameof(PerformCustomBehavior), 2f);
+        // Schedule the additional behavior to run after 1 seconds
+        Invoke(nameof(PerformCustomBehavior), duration);
     }
 
     public virtual void PerformCustomBehavior()

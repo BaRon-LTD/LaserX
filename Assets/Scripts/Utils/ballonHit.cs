@@ -4,6 +4,11 @@ public class ballonHit : LaserInteractable
 {
     [SerializeField] private string uniqueBehaviorMessage = "Specific behavior triggered!";
 
+    [SerializeField] float durationHold = 0f;
+
+    private void Awake() {
+        LaserInteractable.duration = durationHold;
+    }
     public override void OnLaserHit(ref bool stopRay)
     {
         base.OnLaserHit(ref stopRay);

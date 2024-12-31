@@ -7,7 +7,9 @@ public class LaserController : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private LayerMask mirrorsLayerMask;
 
-    LaserInteractable objectHit;
+    private LaserInteractable objectHit;
+    private LaserInteractable lastHitObject;
+    private float hitTimer = 0f;
 
     private Ray ray;
     private RaycastHit2D hit;
@@ -19,26 +21,48 @@ public class LaserController : MonoBehaviour
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0, transform.position);
         float remainingLength = maxLength;
+
+        // Reset hit object tracking at start of frame
+        LaserInteractable currentHitObject = null;
+
         for (int i = 0; i < maxReflections; i++)
         {
             // Perform raycast
             hit = Physics2D.Raycast(ray.origin, ray.direction, remainingLength, mirrorsLayerMask);
-            bool stopRay = false; // Add stopRay flag to control reflection
-            // Add a new position to the line renderer
+            bool stopRay = false;
+            
             lineRenderer.positionCount += 1;
+            
             if (hit)
             {
                 // Draw the line to the hit point
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
-                // Notify the hit object (if it has a LaserInteractable component)
+                
+                // Get the hit object
                 objectHit = hit.collider.GetComponent<LaserInteractable>();
                 if (objectHit != null)
                 {
-                    objectHit.OnLaserHit(ref stopRay);
-                    // Stop reflection if the object requires it
-                    if (stopRay)
+                    currentHitObject = objectHit;
+                    
+                    // Handle continuous hit timing
+                    if (objectHit == lastHitObject)
                     {
-                        break; // Stop further reflections
+                        hitTimer += Time.deltaTime;
+                        if (hitTimer >= LaserInteractable.duration)
+                        {
+                            objectHit.OnLaserHit(ref stopRay);
+                            hitTimer = 0f; // Reset timer after triggering
+                        }
+
+                        // Stop the laser by setting remainingLength to 0
+                        remainingLength = 0f;
+                        // Set the laser's end position and exit the current reflection processing
+                        lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
+                        break; // Stop further line calculations while keeping the timer running
+                    }
+                    else
+                    {
+                        hitTimer = 0f; // Reset timer when hitting a new object
                     }
                 }
 
@@ -50,8 +74,18 @@ public class LaserController : MonoBehaviour
             {
                 // No hit, extend the laser to the remaining length
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, ray.origin + ray.direction * remainingLength);
-                break; // Stop the loop since no further reflections are possible
+                break;
             }
+        }
+
+        // Update last hit object
+        lastHitObject = currentHitObject;
+        
+        // Reset timer if we didn't hit anything this frame
+        if (currentHitObject == null)
+        {
+            hitTimer = 0f;
+            lastHitObject = null;
         }
     }
 }
