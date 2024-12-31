@@ -1,16 +1,21 @@
 using UnityEngine;
 
-public static class CollectibleItem
+public class CollectibleItem
 {
-    private static int score = 0;
+    private int score = 0;
 
-    public static void AddBalloon(int amount)
+    public void AddBalloon(int amount)
     {
         score += amount;
     }
 
-    public static int GetScore()
+    public int GetScore()
     {
         return score;
+    }
+
+    public void ResetScore()
+    {
+        score = 0;
     }
 }

@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    private int score = 0;
+    private CollectibleItem collectibleItem;
 
     private void Awake()
     {
@@ -17,23 +17,26 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject); // Persist across scenes
+
+        // Initialize the CollectibleItem instance
+        collectibleItem = new CollectibleItem();
     }
 
     public void AddScore(int amount)
     {
-        score += amount;
-        Debug.Log($"Score updated: {score}");
+        collectibleItem.AddBalloon(amount); // Use CollectibleItem to manage the score
+        Debug.Log($"Score updated: {collectibleItem.GetScore()}");
         UIManager.Instance?.UpdateScoreUI(); // Update the UI if UIManager exists
     }
 
     public int GetScore()
     {
-        return score;
+        return collectibleItem.GetScore(); // Retrieve score from CollectibleItem
     }
 
     public void LoadScene(string sceneName)
     {
-        score = 0; // Reset score when loading a new scene
+        collectibleItem.ResetScore(); // Reset score when loading a new scene
         Debug.Log($"Loading scene: {sceneName}");
         SceneManager.LoadScene(sceneName);
     }
