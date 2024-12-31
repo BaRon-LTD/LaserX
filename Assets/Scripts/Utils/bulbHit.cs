@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class bulbHit : LaserInteractable
@@ -6,18 +7,14 @@ public class bulbHit : LaserInteractable
     [SerializeField] private Sprite hitSprite;
     private SpriteRenderer spriteRenderer;
 
-    [SerializeField] float durationHold = 0.5f;
+    [SerializeField] private float durationHold = 1f;
 
     [SerializeField] [Tooltip("Name of scene to move to when triggering the given tag")] string sceneName;
 
     private void Awake()
     {
-        LaserInteractable.duration = durationHold;
         spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    private void Update() {
-        LaserInteractable.duration = durationHold;
+        duration = durationHold; // Set instance-specific duration
     }
 
     public override void OnLaserHit(ref bool stopRay)

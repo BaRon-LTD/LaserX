@@ -48,7 +48,7 @@ public class LaserController : MonoBehaviour
                     if (objectHit == lastHitObject)
                     {
                         hitTimer += Time.deltaTime;
-                        if (hitTimer >= LaserInteractable.duration)
+                        if (hitTimer >= objectHit.duration)
                         {
                             objectHit.OnLaserHit(ref stopRay);
                             hitTimer = 0f; // Reset timer after triggering
