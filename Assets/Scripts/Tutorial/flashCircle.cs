@@ -70,7 +70,7 @@ public class CircleToggle : MonoBehaviour
 
     private void UpdateMouseScriptsAndRenderers(int score)
     {
-        for (int i = 0; i <= mice.Count; i++)
+        for (int i = 0; i < mice.Count; i++)
         {
             // Get the TutorialMouseMove component and SpriteRenderer for each mouse
             TutorialMouseMove mouseScript = mice[i]?.GetComponent<TutorialMouseMove>();
