@@ -16,6 +16,10 @@ public class bulbHit : LaserInteractable
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    private void Update() {
+        LaserInteractable.duration = durationHold;
+    }
+
     public override void OnLaserHit(ref bool stopRay)
     {
         base.OnLaserHit(ref stopRay);
