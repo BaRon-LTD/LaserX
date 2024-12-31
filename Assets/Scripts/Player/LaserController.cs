@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 
-public class Laser : MonoBehaviour
+public class LaserController : MonoBehaviour
 {
     [SerializeField] private float maxLength = 8f;
     [SerializeField] private int maxReflections = 8;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private LayerMask mirrorsLayerMask;
+
+    LaserInteractable objectHit;
 
     private Ray ray;
     private RaycastHit2D hit;
@@ -29,10 +31,10 @@ public class Laser : MonoBehaviour
                 // Draw the line to the hit point
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
                 // Notify the hit object (if it has a LaserInteractable component)
-                LaserInteractable interactable = hit.collider.GetComponent<LaserInteractable>();
-                if (interactable != null)
+                objectHit = hit.collider.GetComponent<LaserInteractable>();
+                if (objectHit != null)
                 {
-                    interactable.OnLaserHit(ref stopRay);
+                    objectHit.OnLaserHit(ref stopRay);
                     // Stop reflection if the object requires it
                     if (stopRay)
                     {

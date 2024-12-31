@@ -7,7 +7,6 @@ public class CircleToggle : MonoBehaviour
     [SerializeField] private GameObject circle3; // Circle 3 GameObject
     [SerializeField] private GameObject mouse1;  // Mouse 1 GameObject containing TutorialMouseMove
     [SerializeField] private GameObject mouse2;  // Mouse 2 GameObject containing TutorialMouseMove
-    [SerializeField] private ballonCounter balloonCounter; // Reference to the ballonCounter
 
     private SpriteRenderer activeRenderer; // The currently active circle's SpriteRenderer
     private int lastScore = -1; // Tracks the last processed score
@@ -16,7 +15,7 @@ public class CircleToggle : MonoBehaviour
 
     private void Update()
     {
-        int currentScore = balloonCounter.getScore();
+        int currentScore = CollectibleItem.GetScore();
 
         // Check if the score has changed
         if (currentScore != lastScore)
