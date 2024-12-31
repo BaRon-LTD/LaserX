@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        score = 0; // Reset score when loading a new scene
         Debug.Log($"Loading scene: {sceneName}");
         SceneManager.LoadScene(sceneName);
     }
