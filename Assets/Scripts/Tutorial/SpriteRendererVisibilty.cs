@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ToggleSpriteRenderer : MonoBehaviour
+public class SpriteRenderVisibility : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     private bool isVisible = true;
