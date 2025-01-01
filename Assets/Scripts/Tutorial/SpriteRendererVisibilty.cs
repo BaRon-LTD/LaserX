@@ -5,6 +5,9 @@ public class SpriteRenderVisibility : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isVisible = true;
 
+    [SerializeField] private float durationRepeat = 2f;
+
+
     void Start()
     {
         // Get the SpriteRenderer component attached to the current GameObject
@@ -18,7 +21,7 @@ public class SpriteRenderVisibility : MonoBehaviour
         else
         {
             // Start the toggling coroutine
-            InvokeRepeating("ToggleVisibility", 0f, 2f);
+            InvokeRepeating("ToggleVisibility", 0f, durationRepeat);
         }
     }
 

@@ -6,6 +6,8 @@ public class TutorialMouseMover : MonoBehaviour
     [SerializeField] private Transform endPoint;
     [SerializeField] private float speed = 2f;
 
+    [SerializeField] private float distanceReturn = 0.01f;
+
     private Vector3 startPoint;
     private Vector3 parentChildOffset;
     private bool isMovingForward = true;
@@ -46,7 +48,7 @@ public class TutorialMouseMover : MonoBehaviour
         Vector3 target = isMovingForward ? endPoint.position : startPoint;
         transform.position = Vector3.MoveTowards(transform.position, target + parentChildOffset, speed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position - parentChildOffset, target) < 0.01f)
+        if (Vector3.Distance(transform.position - parentChildOffset, target) < distanceReturn)
         {
             isMovingForward = !isMovingForward;
         }

@@ -7,6 +7,8 @@ public class LaserController : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private LayerMask mirrorsLayerMask;
 
+    [SerializeField] private float returnMargin = 0.01f;
+
     private LaserInteractable objectHit;
     private LaserInteractable lastHitObject;
     private float hitTimer = 0f;
@@ -68,7 +70,7 @@ public class LaserController : MonoBehaviour
 
                 // Reflect the ray and reduce remaining length
                 remainingLength -= Vector2.Distance(ray.origin, hit.point);
-                ray = new Ray(hit.point + hit.normal * 0.01f, Vector2.Reflect(ray.direction, hit.normal));
+                ray = new Ray(hit.point + hit.normal * returnMargin, Vector2.Reflect(ray.direction, hit.normal));
             }
             else
             {

@@ -15,7 +15,7 @@ public class LaserInteractable : MonoBehaviour
         // Log hit for debugging
         Debug.Log($"{gameObject.name} was hit by the laser!");
         // Schedule the additional behavior to run after 1 seconds
-        Invoke(nameof(PerformCustomBehavior), 20);
+        PerformCustomBehavior();
     }
 
     public virtual void PerformCustomBehavior()
