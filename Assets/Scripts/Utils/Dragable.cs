@@ -13,7 +13,7 @@ public class Dragable : MonoBehaviour
 
     private Vector3 spriteDragStartPosition;
 
-    [SerializeField]private Camera mainCamera;
+    [SerializeField] private Camera mainCamera;
 
     private void OnMouseDown()
     {
@@ -24,11 +24,13 @@ public class Dragable : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if(isDragged){
+        if (isDragged)
+        {
             transform.position = spriteDragStartPosition + (mainCamera.ScreenToWorldPoint(Input.mousePosition) - mouseDragStartPosition);
         }
     }
-    private void OnMouseUp() {
+    private void OnMouseUp()
+    {
         isDragged = false;
         drangEndedCallback(this);
     }

@@ -30,20 +30,20 @@ public class LaserController : MonoBehaviour
             // Perform raycast
             hit = Physics2D.Raycast(ray.origin, ray.direction, remainingLength, mirrorsLayerMask);
             bool stopRay = false;
-            
+
             lineRenderer.positionCount += 1;
-            
+
             if (hit)
             {
                 // Draw the line to the hit point
                 lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
-                
+
                 // Get the hit object
                 objectHit = hit.collider.GetComponent<LaserInteractable>();
                 if (objectHit != null)
                 {
                     currentHitObject = objectHit;
-                    
+
                     // Handle continuous hit timing
                     if (objectHit == lastHitObject)
                     {
@@ -80,7 +80,7 @@ public class LaserController : MonoBehaviour
 
         // Update last hit object
         lastHitObject = currentHitObject;
-        
+
         // Reset timer if we didn't hit anything this frame
         if (currentHitObject == null)
         {
