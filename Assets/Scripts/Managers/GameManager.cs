@@ -7,36 +7,54 @@ public class GameManager : MonoBehaviour
 
     private CollectibleItem collectibleItem;
 
+    private int moveCount = 0; // Counter for the number of moves
+
     private void Awake()
     {
-        // Singleton pattern: Ensure only one instance of GameManager exists
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject); // Persist across scenes
+        DontDestroyOnLoad(gameObject);
 
-        // Initialize the CollectibleItem instance
         collectibleItem = new CollectibleItem();
     }
 
     public void AddScore(int amount)
     {
-        collectibleItem.AddBalloon(amount); // Use CollectibleItem to manage the score
+        collectibleItem.AddBalloon(amount);
         Debug.Log($"Score updated: {collectibleItem.GetScore()}");
-        UIManager.Instance?.UpdateScoreUI(); // Update the UI if UIManager exists
+        UIManager.Instance?.UpdateScoreUI();
     }
 
     public int GetScore()
     {
-        return collectibleItem.GetScore(); // Retrieve score from CollectibleItem
+        return collectibleItem.GetScore();
+    }
+
+    public void IncrementMoveCount()
+    {
+        moveCount++; // Increment the move count
+        Debug.Log($"Moves made: {moveCount}");
+        UIManager.Instance?.UpdateMovesUI(moveCount); // Update the moves display
+    }
+
+    public void ResetMoveCount()
+    {
+        moveCount = 0;
+    }
+
+    public int GetMoveCount()
+    {
+        return moveCount;
     }
 
     public void LoadScene(string sceneName)
     {
-        collectibleItem.ResetScore(); // Reset score when loading a new scene
+        collectibleItem.ResetScore();
+        ResetMoveCount(); // Reset moves when loading a new scene
         Debug.Log($"Loading scene: {sceneName}");
         SceneManager.LoadScene(sceneName);
     }

@@ -29,9 +29,11 @@ public class Dragable : MonoBehaviour
             transform.position = spriteDragStartPosition + (mainCamera.ScreenToWorldPoint(Input.mousePosition) - mouseDragStartPosition);
         }
     }
+
     private void OnMouseUp()
     {
         isDragged = false;
-        drangEndedCallback(this);
+        drangEndedCallback?.Invoke(this);
+        GameManager.Instance?.IncrementMoveCount(); // Increment move count on drag end
     }
 }
