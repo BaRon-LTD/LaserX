@@ -19,7 +19,7 @@ public class LaserController : MonoBehaviour
     private void Update()
     {
         // Initialize ray and line renderer
-        ray = new Ray(transform.position, transform.up);
+        ray = new Ray(transform.position, transform.right);
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0, transform.position);
         float remainingLength = maxLength;
