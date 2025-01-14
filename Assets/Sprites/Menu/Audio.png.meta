@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 478dcd75177cd854a870b8f45c992808
+guid: 499b674dabfb29f4384d9a0ef764e69f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3383222489093804690
-    second: laser_cannon-Photoroom_0
+      213: 4086895658025638556
+    second: Audio_0
+  - first:
+      213: -5679096538048898286
+    second: Audio_1
+  - first:
+      213: 2356825303544215458
+    second: Audio_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: laser_cannon-Photoroom_0
+      name: Audio_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 25
-        width: 157
-        height: 94
+        x: 0
+        y: 6
+        width: 124
+        height: 165
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +134,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2929c82cdee93fe20800000000000000
-      internalID: 3383222489093804690
+      spriteID: c9a54ba92f197b830800000000000000
+      internalID: 4086895658025638556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Audio_1
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 29
+        width: 58
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21bd17ca9cbcf21b0800000000000000
+      internalID: -5679096538048898286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Audio_2
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 0
+        width: 67
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a7b767602025b020800000000000000
+      internalID: 2356825303544215458
       vertices: []
       indices: 
       edges: []
@@ -147,8 +197,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      laser_cannon-Photoroom_0: 3383222489093804690
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

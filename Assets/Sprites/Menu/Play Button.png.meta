@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 478dcd75177cd854a870b8f45c992808
+guid: 834082a6fb3519e4ea367f6bd9c7bf44
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3383222489093804690
-    second: laser_cannon-Photoroom_0
+      213: 6055045571043105099
+    second: Play Button_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: laser_cannon-Photoroom_0
+      name: Play Button_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 25
-        width: 157
-        height: 94
+        x: 0
+        y: 0
+        width: 464
+        height: 255
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2929c82cdee93fe20800000000000000
-      internalID: 3383222489093804690
+      spriteID: b4993d8add7d70450800000000000000
+      internalID: 6055045571043105099
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      laser_cannon-Photoroom_0: 3383222489093804690
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
