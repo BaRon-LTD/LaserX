@@ -26,11 +26,19 @@ public class UIManager : MonoBehaviour
 
     public void UpdateScoreUI()
     {
-        ballons.text = "      X " + GameManager.Instance.GetScore();
+        if (ballons != null)
+        {
+            ballons.text = "      X " + GameManager.Instance.GetScore();
+        }
+        
     }
 
     public void UpdateMovesUI(int moveCount)
     {
-        moves.text = "Moves: " + moveCount;
+        if (moves != null)
+        {
+            moves.text = "Moves: " + moveCount;
+        }
+        
     }
 }

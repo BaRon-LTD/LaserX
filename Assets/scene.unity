@@ -418,7 +418,8 @@ MonoBehaviour:
   mirrorsLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  bulbHitSprite: {fileID: 1742080662743957823, guid: 763d5575330fc3848a3590e5d3c005b2, type: 3}
+  returnMargin: 0.01
+  startMargin: 0.65
 --- !u!1 &427640720
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,7 +968,7 @@ SpriteRenderer:
   m_Size: {x: 3.08, y: 4.01}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1497082924
@@ -1547,7 +1548,7 @@ SpriteRenderer:
   m_Size: {x: 3.08, y: 4.01}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2000928719

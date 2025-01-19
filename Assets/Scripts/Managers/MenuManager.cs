@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Scripting;
 
 public class MenuManager : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class MenuManager : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
+    [Preserve]
     public void PlayGame(){
-        gameManager.LoadScene("Tutorial_1");
+        gameManager.LoadScene("tutorial_1");
     }
 }
