@@ -8,7 +8,7 @@ public class LaserController : MonoBehaviour
     [SerializeField] private LayerMask mirrorsLayerMask;
 
     [SerializeField] private float returnMargin = 0.01f;
-
+    [SerializeField] private float startMargin = 0.65f;
     private LaserInteractable objectHit;
     private LaserInteractable lastHitObject;
     private float hitTimer = 0f;
@@ -21,7 +21,7 @@ public class LaserController : MonoBehaviour
         // Initialize ray and line renderer
         ray = new Ray(transform.position, transform.right);
         lineRenderer.positionCount = 1;
-        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(0, transform.position + new Vector3(startMargin,0,0));
         float remainingLength = maxLength;
 
         // Reset hit object tracking at start of frame

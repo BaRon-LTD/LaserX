@@ -2216,8 +2216,16 @@ PrefabInstance:
       value: Laser
       objectReference: {fileID: 0}
     - target: {fileID: 5186989409836874105, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186989409836874105, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186989409836874105, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.05
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 5186989409836874105, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2255,6 +2263,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6000200741005783526, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6255301218158629148, guid: 10942950f428ab046812682c3bd328df, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
