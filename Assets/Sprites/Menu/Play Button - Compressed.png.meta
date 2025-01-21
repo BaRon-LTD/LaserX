@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Play Button - Compressed_0: 3518203238701728969
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
