@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Panel Plant Deco_0: 386067485123328840
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
