@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
     {
         if (ballons != null)
         {
-            ballons.text = "      X " + GameManager.Instance.GetScore();
+            ballons.text = "        X " + GameManager.Instance.GetScore();
         }
         
     }
