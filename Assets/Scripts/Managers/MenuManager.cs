@@ -11,7 +11,8 @@ public class MenuManager : MonoBehaviour
     }
 
     [Preserve]
-    public void PlayGame(){
+    public void PlayGame()
+    {
         gameManager.LoadScene("tutorial_1");
     }
 }

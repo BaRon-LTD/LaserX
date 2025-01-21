@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
         {
             ballons.text = "      X " + GameManager.Instance.GetScore();
         }
-        
+
     }
 
     public void UpdateMovesUI(int moveCount)
@@ -39,6 +39,6 @@ public class UIManager : MonoBehaviour
         {
             moves.text = "Moves: " + moveCount;
         }
-        
+
     }
 }

@@ -21,7 +21,7 @@ public class LaserController : MonoBehaviour
         // Initialize ray and line renderer
         ray = new Ray(transform.position, transform.right);
         lineRenderer.positionCount = 1;
-        lineRenderer.SetPosition(0, transform.position + new Vector3(startMargin,0,0));
+        lineRenderer.SetPosition(0, transform.position + new Vector3(startMargin, 0, 0));
         float remainingLength = maxLength;
 
         // Reset hit object tracking at start of frame
