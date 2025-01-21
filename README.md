@@ -2,7 +2,13 @@
 ### משחקון : https://barmud.itch.io/laserx
 ##
 
-### טריילר : [![Video Title](https://img.youtube.com/vi/JZ891H_yU7k/0.jpg)](https://www.youtube.com/watch?v=JZ891H_yU7k)
+### טריילר : 
+[![Video Title](https://img.youtube.com/vi/JZ891H_yU7k/0.jpg)](https://www.youtube.com/watch?v=JZ891H_yU7k)
+
+
+
+
+
 
 ##
 
