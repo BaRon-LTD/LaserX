@@ -51,4 +51,10 @@
 
 
 
-
+## 🛠️ Thanks & Acknowledgments
+Laser Reflection: Special thanks to Laser Reflection Tutorial for guidance on implementing laser reflection mechanics in Unity.
+Main Menu: Grateful for the insights provided by Main Menu Tutorial, which helped in creating a functional and visually appealing main menu.
+Graphic Design: Many thanks to Jeesy Idov for creating the bulb design, bulb animations, and mirrors used in the project.
+Animaker: Appreciated for enabling smooth animations in the game trailer.
+Canva: Essential for organizing and creating transitions in the trailer.
+ChatGPT: For providing valuable suggestions to improve the thinking process and refine the code.
