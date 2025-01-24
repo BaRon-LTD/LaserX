@@ -496,8 +496,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Tutorial
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f0e06bfed95c5cc4c9d9c17505592f1e, type: 2}
+  m_sharedMaterial: {fileID: -9112601259906606352, guid: f0e06bfed95c5cc4c9d9c17505592f1e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -988,6 +988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballons: {fileID: 0}
+  moves: {fileID: 0}
 --- !u!4 &1397032878
 Transform:
   m_ObjectHideFlags: 0
