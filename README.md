@@ -2,6 +2,16 @@
 ### משחקון : https://barmud.itch.io/laserx
 ##
 
+### טריילר : 
+[![Video Title](https://img.youtube.com/vi/JZ891H_yU7k/0.jpg)](https://www.youtube.com/watch?v=JZ891H_yU7k)
+
+
+
+
+
+
+##
+
 
 **LaserX** הוא משחק פאזלים דו-ממדי שבו השחקנים צריכים לכוון קרן לייזר ולגרום לה להפעיל מנורה על ידי פתרון אתגרים יצירתיים. במהלך המשחק השחקנים יפגעו בבלונים כדי לאסוף נקודות ויתמודדו עם מכשולים שונים כדי לעבור שלבים.
 
@@ -41,4 +51,11 @@
 
 
 
+## 🛠️ Thanks & Acknowledgments
 
+- **Laser Reflection:** Special thanks to [Laser Reflection Tutorial](https://www.youtube.com/watch?v=pNE3rfMGEAw) for guidance on implementing laser reflection mechanics in Unity.  
+- **Main Menu:** Grateful for the insights provided by [Main Menu Tutorial](https://www.youtube.com/watch?v=lF26yGJbsQk), which helped in creating a functional and visually appealing main menu.  
+- **Graphic Design:**  Many thanks to **Jeesy Idov** for creating the **bulb design, bulb animations, and mirrors** used in the project
+- **Animaker:** Appreciated for enabling smooth animations in the game trailer.  
+- **Canva:** Essential for organizing and creating transitions in the trailer.  
+- **ChatGPT** : For providing valuable suggestions to improve the thinking process and refine the code.
