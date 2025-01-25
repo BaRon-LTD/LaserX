@@ -1,193 +1,3 @@
-// using UnityEngine;
-
-// public class ballonHit : LaserInteractable
-// {
-//     [SerializeField] private string uniqueBehaviorMessage = "Specific behavior triggered!";
-//     [SerializeField] private Animator bubbleAnimator; // Reference to the Animator component
-//     [SerializeField] private GameObject coin; // Reference to the coin inside the bubble
-//     [SerializeField] private float destroyDelay = 1f; // Delay before destroying the bubble (adjust as needed)
-//     [SerializeField] private float coinDestroyDelay = 3f; // Fixed delay of 3 seconds for coin destruction
-
-//     private bool isPopped = false; // Ensure the bubble reacts only once
-
-
-//     public override void OnLaserHit(ref bool stopRay)
-//     {
-//         // Ensure the bubble only reacts once to the laser
-//         if (isPopped) return;
-//         isPopped = true;
-
-
-//         // Log the message
-//         Debug.Log(uniqueBehaviorMessage);
-
-//         // Trigger the burst animation using SetBool
-//         if (bubbleAnimator != null)
-//         {
-//             bubbleAnimator.SetTrigger("Explode"); 
-//         }
-
-//         // Update the score through the GameManager
-//         GameManager.Instance.AddScore(1);
-
-//         // Schedule the destruction of the bubble and handle the coin after animation finishes
-//         StartCoroutine(DestroyBubbleAfterAnimation());
-
-//         // Allow the laser to continue its path
-//         stopRay = false;
-//     }
-
-//     private System.Collections.IEnumerator DestroyBubbleAfterAnimation()
-//     {
-//         // Wait for the animation to finish
-//         if (bubbleAnimator != null)
-//         {
-//             // Get the duration of the "Burst" animation clip
-//             float animationLength = bubbleAnimator.GetCurrentAnimatorStateInfo(0).length;
-
-//             // Wait for the animation to finish
-//             yield return new WaitForSeconds(animationLength);
-//         }
-
-//         // After the animation has finished, enable the coin's Rigidbody2D and make it fall
-//         if (coin != null)
-//         {
-
-//             if (coin.TryGetComponent<Rigidbody2D>(out var coinRb))
-//             {
-//                 coinRb.bodyType = RigidbodyType2D.Dynamic; // Set bodyType to Dynamic to enable physics
-//             }
-//         }
-
-//         // Destroy the bubble
-//         Destroy(gameObject);
-//     }
-// }
-
-//-------------------------------------------------------------------------------------
-
-
-// using UnityEngine;
-
-// public class ballonHit : LaserInteractable
-// {
-//     [SerializeField] private string uniqueBehaviorMessage = "Specific behavior triggered!";
-//     [SerializeField] private Animator bubbleAnimator; // Reference to the Animator component
-//     [SerializeField] private GameObject coin; // Reference to the coin inside the bubble
-//     [SerializeField] private float destroyDelay = 1f; // Delay before destroying the bubble (adjust as needed)
-//     [SerializeField] private RectTransform uiCoinCounter; // Reference to the UI coin counter RectTransform
-//     [SerializeField] private Canvas canvas; // Reference to the Canvas containing the UI
-
-//     private bool isPopped = false; // Ensure the bubble reacts only once
-
-//     public override void OnLaserHit(ref bool stopRay)
-//     {
-//         // Ensure the bubble only reacts once to the laser
-//         if (isPopped) return;
-//         isPopped = true;
-
-//         // Log the message
-//         Debug.Log(uniqueBehaviorMessage);
-
-//         // Trigger the burst animation using SetBool
-//         if (bubbleAnimator != null)
-//         {
-//             bubbleAnimator.SetTrigger("Explode"); 
-//         }
-
-//         // Update the score through the GameManager
-//         GameManager.Instance.AddScore(1);
-
-//         // Schedule the destruction of the bubble and handle the coin after animation finishes
-//         StartCoroutine(DestroyBubbleAfterAnimation());
-
-//         // Allow the laser to continue its path
-//         stopRay = false;
-//     }
-
-//     private System.Collections.IEnumerator DestroyBubbleAfterAnimation()
-//     {
-//         // Wait for the animation to finish
-//         if (bubbleAnimator != null)
-//         {
-//             float animationLength = bubbleAnimator.GetCurrentAnimatorStateInfo(0).length;
-//             yield return new WaitForSeconds(animationLength);
-//         }
-
-//         // After the animation, make the coin fall
-//         if (coin != null)
-//         {
-//             if (coin.TryGetComponent<Rigidbody2D>(out var coinRb))
-//             {
-//                 coinRb.bodyType = RigidbodyType2D.Dynamic; // Enable physics for falling
-//             }
-
-//             // Wait for 1 second before moving the coin to UI
-//             yield return new WaitForSeconds(1f);
-
-//             // Disable physics and start moving the coin to the UI
-//             if (coin.TryGetComponent<Rigidbody2D>(out coinRb))
-//             {
-//                 coinRb.bodyType = RigidbodyType2D.Kinematic;
-//                 coinRb.linearVelocity = Vector2.zero; // Stop any residual movement
-//             }
-
-//             StartCoroutine(MoveCoinToUI());
-//         }
-
-//         // Destroy the bubble
-//         Destroy(gameObject);
-//     }
-
-//     private System.Collections.IEnumerator MoveCoinToUI()
-//     {
-//         if (coin == null || uiCoinCounter == null || canvas == null)
-//             yield break;
-
-//         // Convert the coin's world position to screen position
-//         Vector2 startScreenPosition = RectTransformUtility.WorldToScreenPoint(Camera.main, coin.transform.position);
-
-//         // Get the UI coin counter position
-//         Vector2 endScreenPosition = uiCoinCounter.position;
-
-//         // Debug Log Positions
-//         Debug.Log($"Start Screen Position: {startScreenPosition}");
-//         Debug.Log($"End Screen Position: {endScreenPosition}");
-
-//         // Animate the coin moving from start to end
-//         float duration = 0.5f; // Time for the animation
-//         float elapsedTime = 0f;
-
-//         while (elapsedTime < duration)
-//         {
-//             elapsedTime += Time.deltaTime;
-
-//             // Lerp between the positions
-//             Vector2 currentScreenPosition = Vector2.Lerp(startScreenPosition, endScreenPosition, elapsedTime / duration);
-
-//             // Convert the screen position back to world position
-//             RectTransformUtility.ScreenPointToWorldPointInRectangle(
-//                 canvas.GetComponent<RectTransform>(),
-//                 currentScreenPosition,
-//                 Camera.main,
-//                 out Vector3 worldPosition
-//             );
-
-//             // Update the coin's position
-//             coin.transform.position = worldPosition;
-
-//             yield return null;
-//         }
-
-//         // Snap the coin to the final position and destroy it
-//         coin.transform.position = uiCoinCounter.position;
-//         Destroy(coin);
-//     }
-// }
-
-
-//-------------------------------------------------------------------------------------
-
 using System.Collections;
 using UnityEngine;
 
@@ -197,7 +7,8 @@ public class ballonHit : LaserInteractable
     [SerializeField] private Animator bubbleAnimator; // Reference to the Animator component
     [SerializeField] private GameObject coin; // Reference to the coin inside the bubble
     [SerializeField] private float destroyDelay = 1f; // Delay before destroying the bubble (adjust as needed)
-    [SerializeField] private Transform uiCoinCounter; // Reference to the UI coin counter Transform
+    [SerializeField] private RectTransform uiCounterPosition; // Reference to the UI counter position (for top-left corner)
+    [SerializeField] private float moveSpeed = 5f; // Speed at which the coin moves towards the UI counter
 
     private bool isPopped = false; // Ensure the bubble reacts only once
 
@@ -216,9 +27,6 @@ public class ballonHit : LaserInteractable
             bubbleAnimator.SetTrigger("Explode"); 
         }
 
-        // Update the score through the GameManager
-        GameManager.Instance.AddScore(1);
-
         // Schedule the destruction of the bubble and handle the coin after animation finishes
         StartCoroutine(DestroyBubbleAfterAnimation());
 
@@ -226,7 +34,7 @@ public class ballonHit : LaserInteractable
         stopRay = false;
     }
 
-    private System.Collections.IEnumerator DestroyBubbleAfterAnimation()
+    private IEnumerator DestroyBubbleAfterAnimation()
     {
         // Wait for the animation to finish
         if (bubbleAnimator != null)
@@ -243,77 +51,51 @@ public class ballonHit : LaserInteractable
                 coinRb.bodyType = RigidbodyType2D.Dynamic; // Enable physics for falling
             }
 
-            // Wait for 1 second before moving the coin to the UI
+            // Wait for 1 second before starting to move the coin
             yield return new WaitForSeconds(1f);
 
-            // Disable physics and start moving the coin to the UI
-            if (coin.TryGetComponent<Rigidbody2D>(out coinRb))
+            // Disable physics and detach the coin from the bubble
+            if (coin.TryGetComponent<Rigidbody2D>(out var _))
             {
                 coinRb.bodyType = RigidbodyType2D.Kinematic;
                 coinRb.linearVelocity = Vector2.zero; // Stop any residual movement
-
             }
 
-            StartCoroutine(MoveCoinToUI());
+            // Detach the coin from the bubble to prevent it from being destroyed with the bubble
+            coin.transform.SetParent(null); // Remove the coin from the bubble's hierarchy
+
+            // Move the coin towards the top-left UI position
+            yield return StartCoroutine(MoveCoinToUI());
         }
 
-        // Destroy the bubble
+        // Destroy the bubble after the coin has finished moving
         Destroy(gameObject);
+
+        // Update the score through the GameManager
+        GameManager.Instance.AddScore(1);
     }
 
     private IEnumerator MoveCoinToUI()
-{
-    if (coin == null || uiCoinCounter == null)
     {
-        Debug.LogError("Coin or UI Coin Counter reference is missing!");
-        yield break;
+        // Convert the UI position to world space
+        Vector3 targetWorldPosition = uiCounterPosition.position;
+
+        // Convert the target world position from screen space to world space
+        Vector3 worldTargetPosition = Camera.main.ScreenToWorldPoint(targetWorldPosition);
+        worldTargetPosition.z = 0; // Ensure the coin stays on the 2D plane (in case there’s a z offset)
+
+        // While the coin hasn't reached the target, move it
+        while (Vector3.Distance(coin.transform.position, worldTargetPosition) > 0.1f)
+        {
+            coin.transform.position = Vector3.MoveTowards(coin.transform.position, worldTargetPosition, moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        // Once the coin reaches the target position, you can stop or add other actions (e.g., update the UI)
+        coin.transform.position = worldTargetPosition; // Ensure the coin exactly reaches the target
+
+        // Destroy the coin
+        Destroy(coin);
     }
 
-    // Get the start position in world space
-    Vector3 startPosition = coin.transform.position;
-
-    // Convert UI position to world space
-    RectTransform rectTransform = uiCoinCounter as RectTransform;
-    Vector3 endPosition;
-    if (RectTransformUtility.ScreenPointToWorldPointInRectangle(rectTransform, rectTransform.position, Camera.main, out endPosition))
-    {
-        endPosition.z = 0; // Ensure the z-coordinate matches your 2D game plane.
-    }
-    else
-    {
-        Debug.LogError("Failed to convert UI Coin Counter position to world space!");
-        yield break;
-    }
-
-    // Log debug information
-    Debug.Log($"Moving coin from {startPosition} to {endPosition}");
-
-    // Disable the coin's Rigidbody to avoid physics interference
-    if (coin.TryGetComponent<Rigidbody2D>(out var coinRb))
-    {
-        coinRb.bodyType = RigidbodyType2D.Kinematic;
-        coinRb.linearVelocity = Vector2.zero; // Stop any residual movement
-    }
-
-    // Smoothly animate the coin moving to the target position
-    float duration = 0.5f; // Duration of the animation
-    float elapsedTime = 0f;
-
-    while (elapsedTime < duration)
-    {
-        elapsedTime += Time.deltaTime;
-
-        // Interpolate the coin's position
-        float t = Mathf.SmoothStep(0f, 1f, elapsedTime / duration);
-        coin.transform.position = Vector3.Lerp(startPosition, endPosition, t);
-
-        yield return null;
-    }
-
-    // Snap the coin to the final position and destroy it
-    coin.transform.position = endPosition;
-    Destroy(coin);
-
-    Debug.Log("Coin successfully moved and destroyed.");
-}
 }
