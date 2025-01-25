@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8ac97a5a17d79c6418a121d8f28922bd
+guid: 94459cd28d8258a43be93a3e19893eed
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 458865668557355946
-    second: background-stars_0
+      213: 6697569169719872834
+    second: LaserX_Logo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,9 +40,9 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: background-stars_0
+      name: LaserX_Logo_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 3000
-        height: 2000
+        y: 40
+        width: 1472
+        height: 792
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aabbbf5f4e73e5600800000000000000
-      internalID: 458865668557355946
+      spriteID: 24dc2c3bcab82fc50800000000000000
+      internalID: 6697569169719872834
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      background-stars_0: 458865668557355946
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
