@@ -6,7 +6,6 @@ public class LaserController : MonoBehaviour
     [SerializeField] private int maxReflections = 8;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private LayerMask mirrorsLayerMask;
-
     [SerializeField] private float returnMargin = 0.01f;
     [SerializeField] private float startMargin = 0.65f;
     private LaserInteractable objectHit;
@@ -91,3 +90,5 @@ public class LaserController : MonoBehaviour
         }
     }
 }
+
+

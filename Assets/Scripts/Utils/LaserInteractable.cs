@@ -26,3 +26,4 @@ public class LaserInteractable : MonoBehaviour
         // For example: trigger animations, change score, etc.
     }
 }
+
