@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class MainMenu : Panel
 {
-
     [SerializeField] public TextMeshProUGUI nameText = null;
     [SerializeField] private Button logoutButton = null;
 

@@ -3,23 +3,23 @@ guid: 5e874292a45b3c044b32b660d5895f92
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6226733548642056986
-    second: mouse_click-removebg-preview_0
+      213: -5805051573516262796
+    second: mouse_click_0
   - first:
-      213: -7579458627035927228
-    second: mouse_click-removebg-preview_1
+      213: 2858280485627320601
+    second: mouse_click_1
   - first:
-      213: -4697680112191062301
-    second: mouse_click-removebg-preview_2
+      213: 1814390833751808843
+    second: mouse_click_2
   - first:
-      213: -4706652903593520923
-    second: mouse_click-removebg-preview_3
+      213: -4230524216701582843
+    second: mouse_click_3
   - first:
-      213: -7968740320397313190
-    second: mouse_click-removebg-preview_4
+      213: -4202033262675651553
+    second: mouse_click_4
   - first:
-      213: -7548854470556755680
-    second: mouse_click-removebg-preview_5
+      213: 5993421894514148949
+    second: mouse_click_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mouse_click-removebg-preview_3
+      name: mouse_click_4
       rect:
         serializedVersion: 2
-        x: 107
-        y: 49
-        width: 340
-        height: 363
+        x: 56
+        y: 87
+        width: 346
+        height: 326
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5e05f300f1c9eaeb0800000000000000
-      internalID: -4706652903593520923
+      spriteID: f1497dbc2016fa5c0800000000000000
+      internalID: -4202033262675651553
       vertices: []
       indices: 
       edges: []
@@ -153,7 +153,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8539051306d7e814e9ea9f0122f7bbab
+    spriteID: 5dd0773f01efd15488b6d922a1e6599b
     internalID: 0
     vertices: []
     indices: 
@@ -163,12 +163,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mouse_click-removebg-preview_0: -6226733548642056986
-      mouse_click-removebg-preview_1: -7579458627035927228
-      mouse_click-removebg-preview_2: -4697680112191062301
-      mouse_click-removebg-preview_3: -4706652903593520923
-      mouse_click-removebg-preview_4: -7968740320397313190
-      mouse_click-removebg-preview_5: -7548854470556755680
+      mouse_click_4: -4202033262675651553
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
