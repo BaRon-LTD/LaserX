@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LaserX_Logo_0: 6697569169719872834
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

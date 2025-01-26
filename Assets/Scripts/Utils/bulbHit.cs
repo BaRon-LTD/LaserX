@@ -5,11 +5,16 @@ public class bulbHit : LaserInteractable
 {
     [SerializeField] private string uniqueBehaviorMessage = "Specific behavior triggered!";
     [SerializeField] private Sprite hitSprite;
+    [SerializeField] private Animator bulbAnimator; // Reference to the Animator component
+
     private SpriteRenderer spriteRenderer;
 
     [SerializeField] private float durationHold = 1f;
 
     [SerializeField] [Tooltip("Name of scene to move to when triggering the given tag")] string sceneName;
+
+    private bool isGlow = false; // Ensure the bulb reacts only once
+
 
     private void Awake()
     {
@@ -19,9 +24,17 @@ public class bulbHit : LaserInteractable
 
     public override void OnLaserHit(ref bool stopRay)
     {
-        base.OnLaserHit(ref stopRay);
+        if (isGlow) return;
+        isGlow = true;
+
+        if (bulbAnimator != null)
+        {
+            bulbAnimator.SetTrigger("Glow");
+        }
+
+        // base.OnLaserHit(ref stopRay);
         stopRay = true;
-        PerformCustomBehavior();
+        Invoke("PerformCustomBehavior", 2f);
     }
 
     public override void PerformCustomBehavior()

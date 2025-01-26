@@ -1715,6 +1715,7 @@ MonoBehaviour:
   duration: 0
   uniqueBehaviorMessage: Specific behavior triggered!
   hitSprite: {fileID: 1742080662743957823, guid: 763d5575330fc3848a3590e5d3c005b2, type: 3}
+  bulbAnimator: {fileID: 0}
   durationHold: 1
   sceneName: Winning
 --- !u!1001 &1786908300
@@ -1725,6 +1726,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 427640721}
     m_Modifications:
+    - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: snapPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: 'snapPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 94691951}
+    - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: 'snapPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1910529254}
+    - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: draggableObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: 'draggableObjects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 528343663}
+    - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: 'draggableObjects.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1270808252}
     - target: {fileID: 2937898148810878788, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
       propertyPath: m_Name
       value: Bar

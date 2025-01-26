@@ -1,10 +1,34 @@
 fileFormatVersion: 2
-guid: 861a181bb5c82c54b8b1c8a3fc0df557
+guid: 8dda41322b295a74b9c70daafe40b824
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9117498471347480300
-    second: bed_1-removebg-preview_0
+      213: -1014813488424748180
+    second: BULB (2)_0
+  - first:
+      213: -4604193194621652265
+    second: BULB (2)_1
+  - first:
+      213: -2484535761891697675
+    second: BULB (2)_2
+  - first:
+      213: 5765506874538281991
+    second: BULB (2)_3
+  - first:
+      213: 280150350279930724
+    second: BULB (2)_4
+  - first:
+      213: -4031987090222393159
+    second: BULB (2)_5
+  - first:
+      213: 6198368472860223784
+    second: BULB (2)_6
+  - first:
+      213: -4159550590253537022
+    second: BULB (2)_7
+  - first:
+      213: -6304703871135285957
+    second: BULB (2)_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +137,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bed_1-removebg-preview_0
+      name: BULB (2)_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 18
-        width: 631
-        height: 262
+        x: 107
+        y: 1191
+        width: 496
+        height: 777
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ce665d89d8cd78e70800000000000000
-      internalID: 9117498471347480300
+      spriteID: c6bfa2d4288aae1f0800000000000000
+      internalID: -1014813488424748180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BULB (2)_1
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 1151
+        width: 496
+        height: 777
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d23e4dfeae9a10c0800000000000000
+      internalID: -4604193194621652265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BULB (2)_3
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 1162
+        width: 496
+        height: 777
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70c4de694f1330050800000000000000
+      internalID: 5765506874538281991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BULB (2)_7
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 259
+        width: 498
+        height: 777
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 209eba2c6ce4646c0800000000000000
+      internalID: -4159550590253537022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BULB (2)_8
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 164
+        width: 737
+        height: 916
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3d73f2ab313188a0800000000000000
+      internalID: -6304703871135285957
       vertices: []
       indices: 
       edges: []
@@ -138,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 55d3f97b7b94ae24d92a8b829161667a
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +260,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bed_1-removebg-preview_0: 9117498471347480300
+      BULB (2)_0: -1014813488424748180
+      BULB (2)_1: -4604193194621652265
+      BULB (2)_3: 5765506874538281991
+      BULB (2)_7: -4159550590253537022
+      BULB (2)_8: -6304703871135285957
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
