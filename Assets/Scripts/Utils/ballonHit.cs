@@ -51,6 +51,8 @@ public class ballonHit : LaserInteractable
                 coinRb.bodyType = RigidbodyType2D.Dynamic; // Enable physics for falling
             }
 
+            gameObject.GetComponent<Collider2D>().enabled = false; // Disable the collider to prevent further interactions
+            
             // Wait for 1 second before starting to move the coin
             yield return new WaitForSeconds(1f);
 
