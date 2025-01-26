@@ -4,7 +4,7 @@ public class CollectibleItem
 {
     private int score = 0;
 
-    public void AddBalloon(int amount)
+    public void AddCoin(int amount)
     {
         score += amount;
     }
