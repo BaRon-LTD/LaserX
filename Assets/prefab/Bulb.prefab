@@ -724,4 +724,4 @@ MonoBehaviour:
   hitSprite: {fileID: -1014813488424748180, guid: 8dda41322b295a74b9c70daafe40b824, type: 3}
   bulbAnimator: {fileID: 2577978108646327584}
   durationHold: 1
-  sceneName: level2
+  sceneName: 
