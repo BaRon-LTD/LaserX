@@ -73,8 +73,6 @@ public class ballonHit : LaserInteractable
         // Destroy the bubble after the coin has finished moving
         Destroy(gameObject);
 
-        // Update the score through the GameManager
-        GameManager.Instance.AddScore(1);
     }
 
     private IEnumerator MoveCoinToUI()
@@ -96,8 +94,16 @@ public class ballonHit : LaserInteractable
         // Once the coin reaches the target position, you can stop or add other actions (e.g., update the UI)
         coin.transform.position = worldTargetPosition; // Ensure the coin exactly reaches the target
 
-        // Destroy the coin
-        Destroy(coin);
+        // Call the CollectCoin method from the Coin script
+        if (coin.TryGetComponent<Coin>(out var coinScript))
+        {
+            coinScript.CollectCoin(); // Notify the GameManager and destroy the coin
+        }
+        else
+        {
+            Debug.LogWarning("Coin script not found on the coin object!");
+            Destroy(coin); // Fallback: destroy the coin
+        }
     }
 
 }
