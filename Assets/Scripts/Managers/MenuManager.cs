@@ -5,6 +5,7 @@ using UnityEngine;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine.Scripting;
+using System.Threading.Tasks;  // Add this for Task support
 
 public class MenuManager : MonoBehaviour
 {
@@ -87,6 +88,23 @@ public class MenuManager : MonoBehaviour
         {
             ShowError(ErrorMenu.Action.StartService, "Failed to connect to the network.", "Retry");
         }
+
+        // Force reinitialization
+        await ReinitializeServices();
+    }
+
+    private async Task ReinitializeServices()
+    {
+        try
+        {
+            var options = new InitializationOptions();
+            options.SetProfile($"profile_{System.Guid.NewGuid()}"); // Create new profile
+            await UnityServices.InitializeAsync(options);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to reinitialize services: {e.Message}");
+        }
     }
 
     public async void SignInAnonymouslyAsync()
@@ -94,7 +112,17 @@ public class MenuManager : MonoBehaviour
         PanelManager.Open("loading");
         try
         {
+            // Ensure we have a clean state before anonymous sign-in
+            if (AuthenticationService.Instance.SessionTokenExists)
+            {
+                AuthenticationService.Instance.SignOut();
+                AuthenticationService.Instance.ClearSessionToken();
+                await ReinitializeServices();
+            }
+            
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            PlayerPrefs.SetInt("IsAnonymousUser", 1);
+            PlayerPrefs.Save();
         }
         catch (AuthenticationException exception)
         {
@@ -111,7 +139,17 @@ public class MenuManager : MonoBehaviour
         PanelManager.Open("loading");
         try
         {
+            // Ensure we have a clean state before username/password sign-in
+            if (AuthenticationService.Instance.SessionTokenExists)
+            {
+                AuthenticationService.Instance.SignOut();
+                AuthenticationService.Instance.ClearSessionToken();
+                await ReinitializeServices();
+            }
+            
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
+            PlayerPrefs.SetInt("IsAnonymousUser", 0);
+            PlayerPrefs.Save();
         }
         catch (AuthenticationException exception)
         {
@@ -143,8 +181,15 @@ public class MenuManager : MonoBehaviour
     public void SignOut()
     {
         AuthenticationService.Instance.SignOut();
+        // Explicitly clear the session token
+        AuthenticationService.Instance.ClearSessionToken();
+        PlayerPrefs.DeleteKey("IsAnonymousUser");
+        PlayerPrefs.Save();
+
+
         PanelManager.CloseAll();
         PanelManager.Open("auth");
+        
     }
     
     private void SetupEvents()
