@@ -183,6 +183,13 @@ public class GameManager : MonoBehaviour
 
     public void AddScore(int amount, string coinID)
     {
+        if(coinID == "tutorial") //tutorial scence coin
+        {
+            // Update the total score
+            collectibleItem.AddCoin(amount);
+            UIManager.Instance?.UpdateScoreUI();
+            return;
+        }
         string currentSceneName = SceneManager.GetActiveScene().name;
 
         // Ensure the current scene has an entry in the dictionary
@@ -199,6 +206,7 @@ public class GameManager : MonoBehaviour
             Debug.Log($"Coin with ID {coinID} has already been collected in scene {currentSceneName}.");
             return; // Exit if the coin has already been collected
         }
+
 
         // Add the coin ID to the list and update the coin count
         sceneData.CollectedCoinIDs.Add(coinID);

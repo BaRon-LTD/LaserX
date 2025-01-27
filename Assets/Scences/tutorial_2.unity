@@ -498,7 +498,6 @@ MonoBehaviour:
   circles:
   - {fileID: 1328469442}
   - {fileID: 1329449186}
-  - {fileID: 1775320859}
   mice:
   - {fileID: 2029532377}
   - {fileID: 353715581}
@@ -1376,7 +1375,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4881175240447981256, guid: 989aa88c1df559549b9893f92d587749, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1076435880}
   m_SourcePrefab: {fileID: 100100000, guid: 989aa88c1df559549b9893f92d587749, type: 3}
 --- !u!1 &843289439 stripped
 GameObject:
@@ -1640,6 +1642,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8847634931571016419, guid: 989aa88c1df559549b9893f92d587749, type: 3}
   m_PrefabInstance: {fileID: 843289438}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1076435880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843289439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745860cb113762e42b6a6a9b635de4e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinID: tutorial
 --- !u!1 &1242942753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,7 +2249,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4881175240447981256, guid: 989aa88c1df559549b9893f92d587749, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1568385614}
   m_SourcePrefab: {fileID: 100100000, guid: 989aa88c1df559549b9893f92d587749, type: 3}
 --- !u!4 &1568385608 stripped
 Transform:
@@ -2246,6 +2264,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4881175240447981256, guid: 989aa88c1df559549b9893f92d587749, type: 3}
   m_PrefabInstance: {fileID: 1568385607}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1568385614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568385609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745860cb113762e42b6a6a9b635de4e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinID: tutorial
 --- !u!1 &1601877164
 GameObject:
   m_ObjectHideFlags: 0
