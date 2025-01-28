@@ -2,12 +2,12 @@
 
 public class LaserController : MonoBehaviour
 {
+    [SerializeField] private Transform laserStartPoint; // Reference to the child transform
     [SerializeField] private float maxLength = 8f;
     [SerializeField] private int maxReflections = 8;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private LayerMask mirrorsLayerMask;
     [SerializeField] private float returnMargin = 0.01f;
-    [SerializeField] private float startMargin = 0.65f;
     private LaserInteractable objectHit;
     private LaserInteractable lastHitObject;
     private float hitTimer = 0f;
@@ -17,10 +17,17 @@ public class LaserController : MonoBehaviour
 
     private void Update()
     {
+        if (laserStartPoint == null)
+        {
+            Debug.LogError("Laser start point is not assigned. Please assign a child GameObject as the laser start point.");
+            return;
+        }
+
         // Initialize ray and line renderer
-        ray = new Ray(transform.position, transform.right);
+        Vector3 startPoint = laserStartPoint.position; // Use the child transform position
+        ray = new Ray(startPoint, laserStartPoint.right); // Use the child transform's direction
         lineRenderer.positionCount = 1;
-        lineRenderer.SetPosition(0, transform.position + new Vector3(startMargin, 0, 0));
+        lineRenderer.SetPosition(0, startPoint);
         float remainingLength = maxLength;
 
         // Reset hit object tracking at start of frame
@@ -57,8 +64,6 @@ public class LaserController : MonoBehaviour
 
                         // Stop the laser by setting remainingLength to 0
                         remainingLength = 0f;
-                        // Set the laser's end position and exit the current reflection processing
-                        lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
                         break; // Stop further line calculations while keeping the timer running
                     }
                     else
@@ -90,5 +95,3 @@ public class LaserController : MonoBehaviour
         }
     }
 }
-
-

@@ -2717,6 +2717,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser
       objectReference: {fileID: 0}
+    - target: {fileID: 4785737966840783545, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
+      propertyPath: laserStartPoint
+      value: 
+      objectReference: {fileID: 1731970530}
     - target: {fileID: 5186989409836874105, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.77
@@ -2762,6 +2766,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
+--- !u!4 &1731970530 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 478946897957467923, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
+  m_PrefabInstance: {fileID: 1731970529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1832207065
 GameObject:
   m_ObjectHideFlags: 0
