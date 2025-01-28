@@ -95,6 +95,7 @@ public class MenuManager : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            OnAuthenticated(); // Call reinitialization after successful sign-in
         }
         catch (AuthenticationException exception)
         {
@@ -112,6 +113,7 @@ public class MenuManager : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
+            OnAuthenticated(); // Call reinitialization after successful sign-in
         }
         catch (AuthenticationException exception)
         {
@@ -165,6 +167,27 @@ public class MenuManager : MonoBehaviour
         {
             SignInAnonymouslyAsync();
         };
+    }
+    
+    private async void OnAuthenticated()
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(AuthenticationService.Instance.PlayerName))
+            {
+                await AuthenticationService.Instance.UpdatePlayerNameAsync("Player");
+            }
+
+            // Call GameManager's initialization after sign-in
+            GameManager.Instance.InitializeAfterAuthentication();
+
+            PanelManager.CloseAll();
+            PanelManager.Open("main");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to complete post-authentication steps: {e.Message}");
+        }
     }
     
     private void ShowError(ErrorMenu.Action action = ErrorMenu.Action.None, string error = "", string button = "")

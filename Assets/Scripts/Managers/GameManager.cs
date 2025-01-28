@@ -36,6 +36,13 @@ public class GameManager : MonoBehaviour
         InitializeAsync();
     }
 
+    // Call this after authentication is complete
+    public void InitializeAfterAuthentication()
+    {
+        Debug.Log("Reinitializing GameManager after authentication...");
+        InitializeAsync(); // Call the async initialization logic
+    }
+
     // Separate async initialization method
     private async void InitializeAsync()
     {
