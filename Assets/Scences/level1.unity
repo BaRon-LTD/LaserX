@@ -281,6 +281,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 831050941}
   m_SourcePrefab: {fileID: 100100000, guid: 989aa88c1df559549b9893f92d587749, type: 3}
+--- !u!82 &46595774 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7499762422593081143, guid: 989aa88c1df559549b9893f92d587749, type: 3}
+  m_PrefabInstance: {fileID: 46595773}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &49116232
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +631,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2022843692}
     - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+      propertyPath: coinAudioSource
+      value: 
+      objectReference: {fileID: 46595774}
+    - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+      propertyPath: bubbleAudioSource
+      value: 
+      objectReference: {fileID: 181341608}
+    - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: uiCounterPosition
       value: 
       objectReference: {fileID: 1527552687}
@@ -693,6 +706,11 @@ PrefabInstance:
       addedObject: {fileID: 831050940}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+--- !u!82 &181341608 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7805828774658750941, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+  m_PrefabInstance: {fileID: 181341607}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &219659496
 GameObject:
   m_ObjectHideFlags: 0
@@ -6395,6 +6413,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8847634931571016419, guid: 989aa88c1df559549b9893f92d587749, type: 3}
   m_PrefabInstance: {fileID: 2104739452}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &2104739454 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7499762422593081143, guid: 989aa88c1df559549b9893f92d587749, type: 3}
+  m_PrefabInstance: {fileID: 2104739452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!50 &2104739459
 Rigidbody2D:
   serializedVersion: 5
@@ -6731,6 +6754,10 @@ PrefabInstance:
       propertyPath: sceneName
       value: level2
       objectReference: {fileID: 0}
+    - target: {fileID: 6739725392936762909, guid: cf7b94fc5c0d5d7438af1aee5ec84de3, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 4744701079538272766}
     - target: {fileID: 8518745671893962838, guid: cf7b94fc5c0d5d7438af1aee5ec84de3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.92
@@ -6776,6 +6803,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf7b94fc5c0d5d7438af1aee5ec84de3, type: 3}
+--- !u!82 &4744701079538272766 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4896209654514133762, guid: cf7b94fc5c0d5d7438af1aee5ec84de3, type: 3}
+  m_PrefabInstance: {fileID: 4744701079538272765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5991943241624579335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6804,6 +6836,18 @@ PrefabInstance:
       propertyPath: bubbleAnimator
       value: 
       objectReference: {fileID: 261476732}
+    - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+      propertyPath: bubblePopSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f9635bf1ec6e204f8fc99dc343ba904, type: 3}
+    - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+      propertyPath: coinAudioSource
+      value: 
+      objectReference: {fileID: 2104739454}
+    - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+      propertyPath: bubbleAudioSource
+      value: 
+      objectReference: {fileID: 5991943241624579336}
     - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: uiCounterPosition
       value: 
@@ -6875,6 +6919,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 261476730}
   m_SourcePrefab: {fileID: 100100000, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+--- !u!82 &5991943241624579336 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7805828774658750941, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+  m_PrefabInstance: {fileID: 5991943241624579335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8952134984876349291
 PrefabInstance:
   m_ObjectHideFlags: 0

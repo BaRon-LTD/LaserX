@@ -644,6 +644,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 391699609}
     - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+      propertyPath: bubblePopSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f9635bf1ec6e204f8fc99dc343ba904, type: 3}
+    - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+      propertyPath: coinAudioSource
+      value: 
+      objectReference: {fileID: 1568385615}
+    - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+      propertyPath: coinCollectSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ee3310bd9d14cbb4a9b0d32dc4707a80, type: 3}
+    - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+      propertyPath: bubbleAudioSource
+      value: 
+      objectReference: {fileID: 2090426959}
+    - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: uiCounterPosition
       value: 
       objectReference: {fileID: 539234718}
@@ -1139,6 +1155,10 @@ PrefabInstance:
       propertyPath: sceneName
       value: level1
       objectReference: {fileID: 0}
+    - target: {fileID: 6739725392936762909, guid: cf7b94fc5c0d5d7438af1aee5ec84de3, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 591063802}
     - target: {fileID: 8518745671893962838, guid: cf7b94fc5c0d5d7438af1aee5ec84de3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.35
@@ -1192,6 +1212,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8518745671893962838, guid: cf7b94fc5c0d5d7438af1aee5ec84de3, type: 3}
   m_PrefabInstance: {fileID: 591063800}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &591063802 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4896209654514133762, guid: cf7b94fc5c0d5d7438af1aee5ec84de3, type: 3}
+  m_PrefabInstance: {fileID: 591063800}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &743080399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1212,6 +1237,22 @@ PrefabInstance:
       propertyPath: bubbleAnimator
       value: 
       objectReference: {fileID: 743080401}
+    - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+      propertyPath: bubblePopSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f9635bf1ec6e204f8fc99dc343ba904, type: 3}
+    - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+      propertyPath: coinAudioSource
+      value: 
+      objectReference: {fileID: 1076435881}
+    - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+      propertyPath: coinCollectSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ee3310bd9d14cbb4a9b0d32dc4707a80, type: 3}
+    - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+      propertyPath: bubbleAudioSource
+      value: 
+      objectReference: {fileID: 825126123}
     - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: uiCounterPosition
       value: 
@@ -1312,6 +1353,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 427640721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &825126123 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7805828774658750941, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+  m_PrefabInstance: {fileID: 743080399}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &843289438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1655,6 +1701,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinID: tutorial
+--- !u!82 &1076435881 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7499762422593081143, guid: 989aa88c1df559549b9893f92d587749, type: 3}
+  m_PrefabInstance: {fileID: 843289438}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1242942753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2277,6 +2328,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinID: tutorial
+--- !u!82 &1568385615 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7499762422593081143, guid: 989aa88c1df559549b9893f92d587749, type: 3}
+  m_PrefabInstance: {fileID: 1568385607}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1601877164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2913,6 +2969,11 @@ MonoBehaviour:
   endPoint: {fileID: 1677474832}
   speed: 2
   distanceReturn: 0.01
+--- !u!82 &2090426959 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7805828774658750941, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
+  m_PrefabInstance: {fileID: 391699607}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
