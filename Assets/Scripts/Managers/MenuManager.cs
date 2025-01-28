@@ -94,6 +94,8 @@ public class MenuManager : MonoBehaviour
         PanelManager.Open("loading");
         try
         {
+            AuthenticationService.Instance.ClearSessionToken();
+            
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
             OnAuthenticated(); // Call reinitialization after successful sign-in
         }
@@ -189,7 +191,7 @@ public class MenuManager : MonoBehaviour
             Debug.LogError($"Failed to complete post-authentication steps: {e.Message}");
         }
     }
-    
+
     private void ShowError(ErrorMenu.Action action = ErrorMenu.Action.None, string error = "", string button = "")
     {
         PanelManager.Close("loading");
