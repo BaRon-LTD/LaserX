@@ -283,6 +283,21 @@ public class GameManager : MonoBehaviour
         LoadScene(currentScene);
     }
 
+    // Check if the coin with a given ID has already been collected in the current scene
+    public bool IsCoinAlreadyCollected(string coinID)
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        // Check if we have data for this scene
+        if (coinsCollectedData.ContainsKey(currentSceneName))
+        {
+            var sceneData = coinsCollectedData[currentSceneName];
+            return sceneData.CollectedCoinIDs.Contains(coinID); // Return true if the coin has been collected
+        }
+
+        return false; // Return false if no data exists for this scene
+    }
+
     // Helper classes for serialization
     [Serializable]
     public class SerializableSceneCoinData

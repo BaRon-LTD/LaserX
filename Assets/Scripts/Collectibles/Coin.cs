@@ -14,6 +14,21 @@ public class Coin : MonoBehaviour
         {
             coinID = System.Guid.NewGuid().ToString();
         }
+
+        // During initialization, check if the coin has already been collected
+        if (GameManager.Instance.IsCoinAlreadyCollected(coinID))
+        {
+            // Destroy the parent GameObject if the coin has already been collected
+            if (transform.parent != null)
+            {
+                Destroy(transform.parent.gameObject); // Destroy the parent object
+            }
+            else
+            {
+                // If no parent exists, just deactivate the coin itself
+                gameObject.SetActive(false);
+            }
+        }
     }
     
     public void CollectCoin()

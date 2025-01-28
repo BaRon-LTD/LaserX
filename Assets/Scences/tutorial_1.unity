@@ -1607,6 +1607,7 @@ MonoBehaviour:
   endPoint: {fileID: 1677474832}
   speed: 2
   distanceReturn: 0.01
+  radius: 1
 --- !u!1001 &2135996522420535796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1615,6 +1616,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 427640721}
     m_Modifications:
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.data[0].x
+      value: -3.2466686
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.data[0].y
+      value: 0.6250782
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: 3.0999985
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.data[1].y
+      value: 0.8975486
+      objectReference: {fileID: 0}
     - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
       propertyPath: 'snapPoints.Array.data[0]'
       value: 

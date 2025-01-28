@@ -5726,6 +5726,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 427640721}
     m_Modifications:
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.data[0].x
+      value: -3.2161124
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.data[0].y
+      value: 0.6571336
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: 3.112221
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.data[1].y
+      value: 0.81741047
+      objectReference: {fileID: 0}
     - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
       propertyPath: snapPoints.Array.size
       value: 2

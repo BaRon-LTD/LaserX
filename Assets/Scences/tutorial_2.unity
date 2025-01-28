@@ -388,6 +388,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 427640721}
     m_Modifications:
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.data[0].x
+      value: -3.2161124
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.data[0].y
+      value: 0.68918896
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: 0.004033461
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.data[1].y
+      value: 0.7584287
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.data[2].x
+      value: 3.2161124
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353757348362654411, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: m_Points.Array.data[2].y
+      value: 0.7693273
+      objectReference: {fileID: 0}
     - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
       propertyPath: snapPoints.Array.size
       value: 2
@@ -454,6 +482,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4834549570114202511, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -552,6 +584,7 @@ MonoBehaviour:
   endPoint: {fileID: 815974914}
   speed: 2
   distanceReturn: 0.01
+  radius: 1
 --- !u!212 &353715583
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2977,6 +3010,7 @@ MonoBehaviour:
   endPoint: {fileID: 1677474832}
   speed: 2
   distanceReturn: 0.01
+  radius: 1
 --- !u!82 &2090426959 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 7805828774658750941, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
