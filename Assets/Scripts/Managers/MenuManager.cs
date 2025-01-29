@@ -93,7 +93,7 @@ public class MenuManager : MonoBehaviour
                 PanelManager.Open("auth");
             }
         }
-        catch (Exception exception)
+        catch (Exception)
         {
             ShowError(ErrorMenu.Action.StartService, "Failed to connect to the network.", "Retry");
         }
@@ -108,6 +108,10 @@ public class MenuManager : MonoBehaviour
             AuthenticationService.Instance.ClearSessionToken();
             
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
+
+            // Set guest name explicitly
+            await AuthenticationService.Instance.UpdatePlayerNameAsync("Guest");
+
             OnAuthenticated(); // Call reinitialization after successful sign-in
         }
         catch (AuthenticationException)
@@ -116,7 +120,7 @@ public class MenuManager : MonoBehaviour
             PanelManager.CloseAll();
             PanelManager.Open("loading");
         }
-        catch (RequestFailedException exception)
+        catch (RequestFailedException)
         {
             ShowError(ErrorMenu.Action.SignIn, "Failed to connect to the network.", "Retry");
         }
@@ -129,13 +133,15 @@ public class MenuManager : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
+            // Update Player Name
+            await AuthenticationService.Instance.UpdatePlayerNameAsync(username);
             OnAuthenticated(); // Call reinitialization after successful sign-in
         }
-        catch (AuthenticationException exception)
+        catch (AuthenticationException)
         {
             ShowError(ErrorMenu.Action.OpenAuthMenu, "Username or password is wrong.", "OK");
         }
-        catch (RequestFailedException exception)
+        catch (RequestFailedException)
         {
             ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to connect to the network.", "OK");
         }
@@ -148,11 +154,11 @@ public class MenuManager : MonoBehaviour
         {
             await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(username, password);
         }
-        catch (AuthenticationException exception)
+        catch (AuthenticationException)
         {
             ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to sign you up.", "OK");
         }
-        catch (RequestFailedException exception)
+        catch (RequestFailedException)
         {
             ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to connect to the network.", "OK");
         }

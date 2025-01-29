@@ -33,7 +33,26 @@ public class MainMenu : Panel
     
     private void UpdatePlayerNameUI()
     {
-        nameText.text = AuthenticationService.Instance.PlayerName;
+        if (AuthenticationService.Instance.IsSignedIn)
+        {
+            string playerName = AuthenticationService.Instance.PlayerName;
+            
+            // Remove #1234 part if it exists
+            int hashIndex = playerName.IndexOf("#");
+            if (hashIndex != -1)
+            {
+                playerName = playerName.Substring(0, hashIndex);
+            }
+
+            nameText.text = string.IsNullOrEmpty(playerName) ? "Guest" : playerName;
+        }
+        else
+        {
+            nameText.text = "Guest";
+        }
     }
+
+
+
     
 }
