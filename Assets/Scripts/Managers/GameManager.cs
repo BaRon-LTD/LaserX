@@ -15,11 +15,13 @@ public class GameManager : MonoBehaviour
     private CollectibleItem collectibleItem;
 
     private int moveCount = 0; // Counter for the number of moves
+    
+    private int totalCoins = 0; // per player
 
     // Dictionary to track coin data per scene
     private Dictionary<string, SceneCoinData> coinsCollectedData;
     private const string SAVE_KEY = "player_coins_data";
-    private void Awake()
+    private async void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -33,22 +35,21 @@ public class GameManager : MonoBehaviour
         coinsCollectedData = new Dictionary<string, SceneCoinData>(); // Initialize the dictionary
 
         // Initialize data loading
-        InitializeAsync();
+        await InitializeAsync();
     }
 
     // Call this after authentication is complete
-    public void InitializeAfterAuthentication()
+    public async Task InitializeAfterAuthentication()
     {
         Debug.Log("Reinitializing GameManager after authentication...");
-        InitializeAsync(); // Call the async initialization logic
+        await InitializeAsync(); // Call the async initialization logic
     }
 
     // Separate async initialization method
-    private async void InitializeAsync()
+    private async Task InitializeAsync()
     {
         try
         {
-            // Initialize Unity Services
             await UnityServices.InitializeAsync();
 
             // Sign in anonymously if not already authenticated
@@ -104,6 +105,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
+                    totalCoins = 0;
                     Debug.Log("No saved data found in cloud - starting fresh");
                 }
             }
@@ -118,6 +120,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError($"Failed to load game data: {e.Message}");
             Debug.Log("Starting with fresh game data due to load error");
+            throw; // Rethrow to handle in calling code
         }
     }
 
@@ -251,6 +254,30 @@ public class GameManager : MonoBehaviour
         }
         return 0;
     }
+
+    public async Task<int> GetTotalCoinsCollectedAsync()
+    {
+        totalCoins = 0; // Reset the total coins count
+        // List of all level scene names
+        List<string> levelScenes = new List<string>
+        {
+            "level1",
+            "level2",
+            // Add all your level scene names here
+        };
+
+        // Iterate through each scene name and sum up the coins
+        foreach (string sceneName in levelScenes)
+        {
+            // Simulate an async operation if needed (e.g., loading data from cloud)
+            totalCoins += await Task.Run(() => GetCoinsCollectedInScene(sceneName));
+        }
+
+        Debug.Log($"Total coins collected across all scenes: {totalCoins}");
+        return totalCoins;
+    }
+
+
 
     public void IncrementMoveCount()
     {

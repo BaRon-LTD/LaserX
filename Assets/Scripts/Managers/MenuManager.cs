@@ -5,6 +5,7 @@ using UnityEngine;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine.Scripting;
+using System.Threading.Tasks;
 
 public class MenuManager : MonoBehaviour
 {
@@ -56,12 +57,19 @@ public class MenuManager : MonoBehaviour
         gameManager.LoadScene("tutorial_1");
     }
 
+    public void PlayGame_Advance()
+    {
+        gameManager.LoadScene("level1");
+    }
+
     public async void StartClientService()
     {
         PanelManager.CloseAll();
         PanelManager.Open("loading");
+
         try
         {
+
             if (UnityServices.State != ServicesInitializationState.Initialized)
             {
                 var options = new InitializationOptions();
@@ -76,10 +84,12 @@ public class MenuManager : MonoBehaviour
 
             if (AuthenticationService.Instance.SessionTokenExists)
             {
+                Debug.Log("Session token exists: " + AuthenticationService.Instance.SessionTokenExists);
                 SignInAnonymouslyAsync();
             }
             else
             {
+                Debug.Log("Session token dosen't exists: " + AuthenticationService.Instance.SessionTokenExists);
                 PanelManager.Open("auth");
             }
         }
@@ -181,10 +191,19 @@ public class MenuManager : MonoBehaviour
             }
 
             // Call GameManager's initialization after sign-in
-            GameManager.Instance.InitializeAfterAuthentication();
+            await GameManager.Instance.InitializeAfterAuthentication();
 
             PanelManager.CloseAll();
-            PanelManager.Open("main");
+
+            int totalCoins = await GameManager.Instance.GetTotalCoinsCollectedAsync();
+            if(totalCoins > 0)
+            {
+                PanelManager.Open("main_register");
+            }
+            else
+            {
+                PanelManager.Open("main");
+            }
         }
         catch (Exception e)
         {
@@ -207,8 +226,21 @@ public class MenuManager : MonoBehaviour
             {
                 await AuthenticationService.Instance.UpdatePlayerNameAsync("Player");
             }
+
+            // Wait for GameManager's initialization to complete
+            await GameManager.Instance.InitializeAfterAuthentication();
+
             PanelManager.CloseAll();
-            PanelManager.Open("main");
+
+            int totalCoins = await GameManager.Instance.GetTotalCoinsCollectedAsync();
+            if(totalCoins > 0)
+            {
+                PanelManager.Open("main_register");
+            }
+            else
+            {
+                PanelManager.Open("main");
+            }
         }
         catch
         {
