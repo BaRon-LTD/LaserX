@@ -156,6 +156,8 @@ public class MenuManager : MonoBehaviour
     
     public void SignOut()
     {
+        // Clear local game state before signing out
+        GameManager.Instance.ClearLocalGameState();
         AuthenticationService.Instance.SignOut();
         PanelManager.CloseAll();
         PanelManager.Open("auth");
@@ -164,6 +166,8 @@ public class MenuManager : MonoBehaviour
     private void SetupEvents()
     {
         eventsInitialized = true;
+        // Clear any existing state before processing new sign in
+        GameManager.Instance.ClearLocalGameState();
         AuthenticationService.Instance.SignedIn += () =>
         {
             SignInConfirmAsync();
@@ -171,12 +175,16 @@ public class MenuManager : MonoBehaviour
 
         AuthenticationService.Instance.SignedOut += () =>
         {
+            // Clear local state on sign out
+            GameManager.Instance.ClearLocalGameState();
             PanelManager.CloseAll();
             PanelManager.Open("auth");
         };
         
         AuthenticationService.Instance.Expired += () =>
         {
+            // Clear local state before re-authenticating
+            GameManager.Instance.ClearLocalGameState();
             SignInAnonymouslyAsync();
         };
     }
@@ -185,6 +193,9 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            // Clear any existing state before initializing
+            GameManager.Instance.ClearLocalGameState();
+
             if (string.IsNullOrEmpty(AuthenticationService.Instance.PlayerName))
             {
                 await AuthenticationService.Instance.UpdatePlayerNameAsync("Player");
@@ -210,7 +221,6 @@ public class MenuManager : MonoBehaviour
             Debug.LogError($"Failed to complete post-authentication steps: {e.Message}");
         }
     }
-
     private void ShowError(ErrorMenu.Action action = ErrorMenu.Action.None, string error = "", string button = "")
     {
         PanelManager.Close("loading");

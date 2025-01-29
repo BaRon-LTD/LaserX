@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
     {
         try
         {
+            // Clear any existing state before initialization
+            ClearLocalGameState();
+
             await UnityServices.InitializeAsync();
 
             // Sign in anonymously if not already authenticated
@@ -93,6 +96,9 @@ public class GameManager : MonoBehaviour
     {
         try
         {
+            // Clear existing data before loading from cloud
+            ClearLocalGameState();
+
             var data = await CloudSaveService.Instance.Data.Player.LoadAsync(new HashSet<string> { SAVE_KEY });
 
             if (data != null && data.TryGetValue(SAVE_KEY, out var savedItem))
@@ -120,6 +126,9 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError($"Failed to load game data: {e.Message}");
             Debug.Log("Starting with fresh game data due to load error");
+
+            // Clear existing data before loading from cloud
+            ClearLocalGameState();
             throw; // Rethrow to handle in calling code
         }
     }
@@ -253,6 +262,39 @@ public class GameManager : MonoBehaviour
             return coinsCollectedData[sceneName].CoinsCollected;
         }
         return 0;
+    }
+
+     public void ClearLocalGameState()
+    {
+        // Clear all game state
+        totalCoins = 0;
+        moveCount = 0;
+        
+        // Clear the collectible item data
+        if (collectibleItem != null)
+        {
+            collectibleItem.ResetScore();
+        }
+        else 
+        {
+            collectibleItem = new CollectibleItem();
+        }
+        
+        // Clear the coins collected dictionary
+        if (coinsCollectedData != null)
+        {
+            coinsCollectedData.Clear();
+        }
+        else 
+        {
+            coinsCollectedData = new Dictionary<string, SceneCoinData>();
+        }
+        
+        // Update UI if available
+        UIManager.Instance?.UpdateScoreUI();
+        UIManager.Instance?.UpdateMovesUI(moveCount);
+        
+        Debug.Log("Local game state cleared");
     }
 
     public async Task<int> GetTotalCoinsCollectedAsync()
