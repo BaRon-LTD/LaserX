@@ -101,6 +101,7 @@ public class MenuManager : MonoBehaviour
 
     public async void SignInAnonymouslyAsync()
     {
+        PanelManager.CloseAll();
         PanelManager.Open("loading");
         try
         {
@@ -109,9 +110,11 @@ public class MenuManager : MonoBehaviour
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
             OnAuthenticated(); // Call reinitialization after successful sign-in
         }
-        catch (AuthenticationException exception)
+        catch (AuthenticationException)
         {
-            ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to sign in.", "OK");
+            // ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to sign in.", "OK");
+            PanelManager.CloseAll();
+            PanelManager.Open("loading");
         }
         catch (RequestFailedException exception)
         {
@@ -121,6 +124,7 @@ public class MenuManager : MonoBehaviour
     
     public async void SignInWithUsernameAndPasswordAsync(string username, string password)
     {
+        PanelManager.CloseAll();
         PanelManager.Open("loading");
         try
         {
