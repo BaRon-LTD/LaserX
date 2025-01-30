@@ -148,6 +148,7 @@ public class MenuManager : MonoBehaviour
     
     public async void SignUpWithUsernameAndPasswordAsync(string username, string password)
     {
+        PanelManager.CloseAll();
         PanelManager.Open("loading");
         try
         {
