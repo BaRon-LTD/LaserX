@@ -44,11 +44,9 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = GameManager.Instance;
         Application.runInBackground = true;
         StartClientService();
-    }
-    private void Start() {
-        gameManager = GameManager.Instance;
     }
 
     [Preserve]
@@ -90,6 +88,7 @@ public class MenuManager : MonoBehaviour
             else
             {
                 Debug.Log("Session token dosen't exists: " + AuthenticationService.Instance.SessionTokenExists);
+                PanelManager.CloseAll();
                 PanelManager.Open("auth");
             }
         }
@@ -116,7 +115,7 @@ public class MenuManager : MonoBehaviour
         }
         catch (AuthenticationException)
         {
-            // ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to sign in.", "OK");
+            ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to sign in.", "OK");
             PanelManager.CloseAll();
             PanelManager.Open("loading");
         }
@@ -250,7 +249,7 @@ public class MenuManager : MonoBehaviour
             // Wait for GameManager's initialization to complete
             await GameManager.Instance.InitializeAfterAuthentication();
 
-            PanelManager.CloseAll();
+            // PanelManager.CloseAll();
 
             int totalCoins = await GameManager.Instance.GetTotalCoinsCollectedAsync();
             if(totalCoins > 0)
