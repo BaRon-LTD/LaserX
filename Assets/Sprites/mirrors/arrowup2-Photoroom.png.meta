@@ -422,7 +422,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      arrowup2-Photoroom_0: -4396504307246625195
+      arrowup2-Photoroom_1: -6625015032651202772
+      arrowup2-Photoroom_10: -6618186896481850643
+      arrowup2-Photoroom_11: -4971120263662050848
+      arrowup2-Photoroom_2: 290552320503654966
+      arrowup2-Photoroom_3: -2289939097769604539
+      arrowup2-Photoroom_4: 7554597715028353624
+      arrowup2-Photoroom_5: 3283330576959059078
+      arrowup2-Photoroom_6: -2634757051575661870
+      arrowup2-Photoroom_7: 6927595883278850920
+      arrowup2-Photoroom_8: 1474491826261389173
+      arrowup2-Photoroom_9: -8185735140841691935
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
