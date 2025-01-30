@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MirrorMenu : Panel
+public class MirrorMenu_Close : Panel
 {
     public override void PostInitialize()
     {
