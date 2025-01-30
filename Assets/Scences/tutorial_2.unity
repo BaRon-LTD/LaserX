@@ -391,7 +391,7 @@ PrefabInstance:
     - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
       propertyPath: 'snapPoints.Array.data[0]'
       value: 
-      objectReference: {fileID: 94691951}
+      objectReference: {fileID: 528343662}
     - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
       propertyPath: 'snapPoints.Array.data[1]'
       value: 

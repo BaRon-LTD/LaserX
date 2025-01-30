@@ -21,6 +21,11 @@ public class Panel : MonoBehaviour
     {
         if (initialized) { return; }
         initialized = true;
+        PostInitialize();
+    }
+
+    public virtual void PostInitialize()
+    {
         Close();
     }
 

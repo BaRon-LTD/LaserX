@@ -12,7 +12,6 @@ public class SnapController : MonoBehaviour
 
     private void Start()
     {
-
         foreach (Dragable dragable in draggableObjects)
         {
             dragable.drangEndedCallback = OnDragEnded;
