@@ -42,11 +42,11 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private async void Awake()
     {
         gameManager = GameManager.Instance;
         Application.runInBackground = true;
-        StartClientService();
+        await StartClientService();
     }
 
     [Preserve]
@@ -60,7 +60,7 @@ public class MenuManager : MonoBehaviour
         gameManager.LoadScene("level1");
     }
 
-    public async void StartClientService()
+    public async Task StartClientService()
     {
         PanelManager.CloseAll();
         PanelManager.Open("loading");
@@ -83,7 +83,6 @@ public class MenuManager : MonoBehaviour
             if (AuthenticationService.Instance.SessionTokenExists)
             {
                 Debug.Log("Session token exists: " + AuthenticationService.Instance.SessionTokenExists);
-                SignInAnonymouslyAsync();
             }
             else
             {
@@ -98,7 +97,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public async void SignInAnonymouslyAsync()
+    public async Task SignInAnonymouslyAsync()
     {
         PanelManager.CloseAll();
         PanelManager.Open("loading");
@@ -191,11 +190,11 @@ public class MenuManager : MonoBehaviour
             PanelManager.Open("auth");
         };
         
-        AuthenticationService.Instance.Expired += () =>
+        AuthenticationService.Instance.Expired += async() =>
         {
             // Clear local state before re-authenticating
             GameManager.Instance.ClearLocalGameState();
-            SignInAnonymouslyAsync();
+            await SignInAnonymouslyAsync();
         };
     }
     
@@ -208,7 +207,7 @@ public class MenuManager : MonoBehaviour
 
             if (string.IsNullOrEmpty(AuthenticationService.Instance.PlayerName))
             {
-                await AuthenticationService.Instance.UpdatePlayerNameAsync("Player");
+                await AuthenticationService.Instance.UpdatePlayerNameAsync("Guest");
             }
 
             // Call GameManager's initialization after sign-in

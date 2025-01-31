@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0aa8b3762f844e74291e4e19a4e3925c
+guid: 36a3e9f16cda9c34f8978d4899f3124a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6610386360591504056
-    second: laser_background2_0
+      213: 5036695148987591129
+    second: pngimg.com - laser_beam_PNG11_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: laser_background2_0
+      name: pngimg.com - laser_beam_PNG11_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 3840
-        height: 2160
+        x: 72
+        y: 56
+        width: 65
+        height: 87
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 3, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b2d4232f5fccbb50800000000000000
-      internalID: 6610386360591504056
+      spriteID: 9d9a65d6d8fe5e540800000000000000
+      internalID: 5036695148987591129
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b6e32a6908c10e04794fb53d3443a600
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      laser_background2_0: 6610386360591504056
+      pngimg.com - laser_beam_PNG11_0: 5036695148987591129
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -6,10 +6,10 @@ public class Panel : MonoBehaviour
 {
 
     [SerializeField] private string id = ""; public string ID { get { return id; } }
-    [SerializeField] private RectTransform container = null;
+    [SerializeField] protected RectTransform container = null;
 
-    private bool initialized = false; public bool IsInitialized { get { return initialized; } }
-    private bool isOpen = false; public bool IsOpen { get { return isOpen; } }
+    protected bool initialized = false; public bool IsInitialized { get { return initialized; } }
+    protected bool isOpen = false; public bool IsOpen { get { return isOpen; } }
     private Canvas canvas = null; public Canvas Canvas { get { return canvas; } set { canvas = value; } }
     
     public virtual void Awake()
