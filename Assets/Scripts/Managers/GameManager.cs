@@ -299,24 +299,28 @@ public class GameManager : MonoBehaviour
 
     public async Task<int> GetTotalCoinsCollectedAsync()
     {
-        totalCoins = 0; // Reset the total coins count
-        // List of all level scene names
-        List<string> levelScenes = new List<string>
+        try 
         {
-            "level1",
-            "level2",
-            // Add all your level scene names here
-        };
-
-        // Iterate through each scene name and sum up the coins
-        foreach (string sceneName in levelScenes)
-        {
-            // Simulate an async operation if needed (e.g., loading data from cloud)
-            totalCoins += await Task.Run(() => GetCoinsCollectedInScene(sceneName));
+            // First ensure we have the latest data from the cloud
+            await LoadCloudData();
+            
+            // Calculate total coins by summing up coins from all scenes in our dictionary
+            int total = coinsCollectedData.Values.Sum(sceneData => sceneData.CoinsCollected);
+            
+            Debug.Log($"Total coins collected across all scenes: {total}");
+            return total;
         }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error calculating total coins: {e.Message}");
+            return 0;
+        }
+    }
 
-        Debug.Log($"Total coins collected across all scenes: {totalCoins}");
-        return totalCoins;
+    // Optional: Add a synchronous version if you need immediate access to the current total
+    public int GetTotalCoinsCollected()
+    {
+        return coinsCollectedData.Values.Sum(sceneData => sceneData.CoinsCollected);
     }
 
 
