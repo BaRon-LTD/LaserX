@@ -48,16 +48,16 @@ public class ErrorMenu : Panel
         }
     }
     
-    private void ButtonAction()
+    private async void ButtonAction()
     {
         Close();
         switch (action)
         {
             case Action.StartService:
-                MenuManager.Singleton.StartClientService();
+                await MenuManager.Singleton.StartClientService();
                 break;
             case Action.SignIn:
-                MenuManager.Singleton.SignInAnonymouslyAsync();
+                await MenuManager.Singleton.SignInAnonymouslyAsync();
                 break;
             case Action.OpenAuthMenu:
                 PanelManager.CloseAll();

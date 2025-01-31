@@ -103,7 +103,15 @@ public class MenuManager : MonoBehaviour
         PanelManager.Open("loading");
         try
         {
-            AuthenticationService.Instance.ClearSessionToken();
+
+            if (AuthenticationService.Instance.IsSignedIn)
+            {
+                Debug.Log("Already signed in, skipping sign-in process.");
+                OnAuthenticated(); // Proceed with the authentication flow
+                return;
+            }
+
+            // AuthenticationService.Instance.ClearSessionToken();
             
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
@@ -112,15 +120,22 @@ public class MenuManager : MonoBehaviour
 
             OnAuthenticated(); // Call reinitialization after successful sign-in
         }
-        catch (AuthenticationException)
+        catch (AuthenticationException e)
         {
+            Debug.LogError($"Authentication Exception: {e.Message}");
             ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to sign in.", "OK");
             PanelManager.CloseAll();
             PanelManager.Open("loading");
         }
-        catch (RequestFailedException)
+        catch (RequestFailedException e)
         {
+            Debug.LogError($"Request Failed Exception: {e.Message}");
             ShowError(ErrorMenu.Action.SignIn, "Failed to connect to the network.", "Retry");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Unexpected Exception: {e.Message}");
+            ShowError(ErrorMenu.Action.SignIn, "An unexpected error occurred.", "Retry");
         }
     }
     

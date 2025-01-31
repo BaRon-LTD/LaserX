@@ -32,9 +32,9 @@ public class AuthenticationMenu : Panel
         base.Open();
     }
 
-    private void AnonymousSignIn()
+    private async void AnonymousSignIn()
     {
-        MenuManager.Singleton.SignInAnonymouslyAsync();
+        await MenuManager.Singleton.SignInAnonymouslyAsync();
     }
 
     private void SignIn()

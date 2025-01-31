@@ -4,7 +4,6 @@ public class MirrorMenu_Open : Panel
 {
     [SerializeField] private GameObject[] mirrors = null;
     [SerializeField] private RectTransform barRectTransform = null;
-    [SerializeField] private RectTransform container = null;
 
     // 🎵 Add AudioSource and AudioClip references
     [SerializeField] private AudioSource audioSource = null;

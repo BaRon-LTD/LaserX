@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class LaserInteractable : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    // private SpriteRenderer spriteRenderer;
     public float duration = 0f;
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        // spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public virtual void OnLaserHit(ref bool stopRay)
