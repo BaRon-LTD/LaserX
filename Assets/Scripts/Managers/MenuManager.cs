@@ -80,9 +80,16 @@ public class MenuManager : MonoBehaviour
                 SetupEvents();
             }
 
-            // Always show auth panel for first-time players
-            PanelManager.CloseAll();
-            PanelManager.Open("auth");
+            if (AuthenticationService.Instance.SessionTokenExists)
+            {
+                Debug.Log("Session token exists: " + AuthenticationService.Instance.SessionTokenExists);
+            }
+            else
+            {
+                Debug.Log("Session token dosen't exists: " + AuthenticationService.Instance.SessionTokenExists);
+                PanelManager.CloseAll();
+                PanelManager.Open("auth");
+            }
         }
         catch (Exception)
         {
@@ -221,9 +228,9 @@ public class MenuManager : MonoBehaviour
             // Call GameManager's initialization after sign-in
             await GameManager.Instance.InitializeAfterAuthentication();
 
-            PanelManager.CloseAll();
-
             int totalCoins = await GameManager.Instance.GetTotalCoinsCollectedAsync();
+
+            PanelManager.CloseAll();
             if(totalCoins > 0)
             {
                 PanelManager.Open("main_register");
@@ -251,20 +258,17 @@ public class MenuManager : MonoBehaviour
         {
             if (string.IsNullOrEmpty(AuthenticationService.Instance.PlayerName))
             {
-                await AuthenticationService.Instance.UpdatePlayerNameAsync("Player");
+                await AuthenticationService.Instance.UpdatePlayerNameAsync("Guest");
             }
 
             // Wait for GameManager's initialization to complete
             await GameManager.Instance.InitializeAfterAuthentication();
 
-            // Add loading panel while we wait for data
-            PanelManager.CloseAll();
-            PanelManager.Open("loading");
-
             int totalCoins = await GameManager.Instance.GetTotalCoinsCollectedAsync();
 
             Debug.Log($"Total coins loaded: {totalCoins}"); // Debug log to verify
 
+            PanelManager.CloseAll();
             if(totalCoins > 0)
             {
                 PanelManager.Open("main_register");
