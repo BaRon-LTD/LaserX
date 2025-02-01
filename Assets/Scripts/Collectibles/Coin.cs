@@ -16,7 +16,7 @@ public class Coin : MonoBehaviour
         }
 
         // During initialization, check if the coin has already been collected
-        if (GameManager.Instance.IsCoinAlreadyCollected(coinID))
+        if (GameManager.Instance.SaveManager.IsCoinAlreadyCollected(coinID))
         {
             // Destroy the parent GameObject if the coin has already been collected
             if (transform.parent != null)

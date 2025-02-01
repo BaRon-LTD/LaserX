@@ -64,3 +64,4 @@ public class LaserShopMenu : Panel
         isOpen = false;
     }
 }
+

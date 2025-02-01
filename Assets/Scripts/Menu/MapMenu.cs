@@ -1,10 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MapMenu : Panel
 {
-    [SerializeField] private Transform levelsContainer;  // Reference to the container holding all the levels
+    [SerializeField] private Transform levelsContainer;
+    private GameManager gameManager;
+
+    public override void Awake()
+    {
+        base.Awake();
+        gameManager = GameManager.Instance;
+    }
 
     // Override the Open method if additional logic is needed for enabling the levels and coins
     public override void Open()
@@ -26,7 +31,7 @@ public class MapMenu : Panel
                 Transform rightCoin = level.Find("rightcoin");
 
                 // Get the number of coins collected for the current scene (level)
-                int coinsCollected = GameManager.Instance.GetCoinsCollectedInScene(levelName);
+                int coinsCollected = gameManager.GetCoinsCollectedInScene(levelName);
 
                 // Update visibility based on coins collected for the level
                 UpdateCoinVisibility(leftCoin, 1, coinsCollected);

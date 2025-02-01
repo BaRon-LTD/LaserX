@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 public class MenuManager : MonoBehaviour
 {
-    GameManager gameManager;
+    private GameManager gameManager;
+    private SaveManager saveManager;
     private bool initialized = false;
     private bool eventsInitialized = false;
     
@@ -44,7 +45,10 @@ public class MenuManager : MonoBehaviour
 
     private async void Awake()
     {
+        // Get GameManager instance and its SaveManager component
         gameManager = GameManager.Instance;
+        saveManager = gameManager.SaveManager;
+        
         Application.runInBackground = true;
         await StartClientService();
     }
@@ -64,10 +68,9 @@ public class MenuManager : MonoBehaviour
     {
         PanelManager.CloseAll();
         PanelManager.Open("loading");
-
+        Debug.Log("1");
         try
         {
-
             if (UnityServices.State != ServicesInitializationState.Initialized)
             {
                 var options = new InitializationOptions();
@@ -86,14 +89,15 @@ public class MenuManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Session token dosen't exists: " + AuthenticationService.Instance.SessionTokenExists);
+                Debug.Log("Session token doesn't exist: " + AuthenticationService.Instance.SessionTokenExists);
                 PanelManager.CloseAll();
                 PanelManager.Open("auth");
             }
         }
         catch (Exception)
         {
-            ShowError(ErrorMenu.Action.StartService, "Failed to connect to the network.", "Retry");
+            Debug.Log("error connect to the network1");
+            ShowError(ErrorMenu.Action.StartService, "Failed to connect to the network. - 1", "Retry");
         }
     }
 
@@ -101,23 +105,23 @@ public class MenuManager : MonoBehaviour
     {
         PanelManager.CloseAll();
         PanelManager.Open("loading");
+        Debug.Log("2");
         try
         {
-
             if (AuthenticationService.Instance.IsSignedIn)
             {
                 Debug.Log("Already signed in, skipping sign-in process.");
-                OnAuthenticated(); // Proceed with the authentication flow
+                OnAuthenticated();
                 return;
             }
 
             AuthenticationService.Instance.ClearSessionToken();
-            GameManager.Instance.ClearLocalGameState();
+            gameManager.ClearLocalGameState();
             
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
             await AuthenticationService.Instance.UpdatePlayerNameAsync("Guest");
 
-            OnAuthenticated(); // Call reinitialization after successful sign-in
+            OnAuthenticated();
         }
         catch (AuthenticationException e)
         {
@@ -125,11 +129,12 @@ public class MenuManager : MonoBehaviour
             ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to sign in.", "OK");
             PanelManager.CloseAll();
             PanelManager.Open("loading");
+            Debug.Log("3");
         }
         catch (RequestFailedException e)
         {
             Debug.LogError($"Request Failed Exception: {e.Message}");
-            ShowError(ErrorMenu.Action.SignIn, "Failed to connect to the network.", "Retry");
+            ShowError(ErrorMenu.Action.SignIn, "Failed to connect to the network. - 2", "Retry");
         }
         catch (Exception e)
         {
@@ -142,12 +147,12 @@ public class MenuManager : MonoBehaviour
     {
         PanelManager.CloseAll();
         PanelManager.Open("loading");
+        Debug.Log("4");
         try
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
-            // Update Player Name
             await AuthenticationService.Instance.UpdatePlayerNameAsync(username);
-            OnAuthenticated(); // Call reinitialization after successful sign-in
+            OnAuthenticated();
         }
         catch (AuthenticationException)
         {
@@ -155,7 +160,7 @@ public class MenuManager : MonoBehaviour
         }
         catch (RequestFailedException)
         {
-            ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to connect to the network.", "OK");
+            ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to connect to the network. - 3", "OK");
         }
     }
     
@@ -163,6 +168,7 @@ public class MenuManager : MonoBehaviour
     {
         PanelManager.CloseAll();
         PanelManager.Open("loading");
+        Debug.Log("5");
         try
         {
             await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(username, password);
@@ -173,14 +179,13 @@ public class MenuManager : MonoBehaviour
         }
         catch (RequestFailedException)
         {
-            ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to connect to the network.", "OK");
+            ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to connect to the network. - 4", "OK");
         }
     }
     
     public void SignOut()
     {
-        // Clear local game state before signing out
-        GameManager.Instance.ClearLocalGameState();
+        gameManager.ClearLocalGameState();
         AuthenticationService.Instance.SignOut();
         PanelManager.CloseAll();
         PanelManager.Open("auth");
@@ -189,8 +194,7 @@ public class MenuManager : MonoBehaviour
     private void SetupEvents()
     {
         eventsInitialized = true;
-        // Clear any existing state before processing new sign in
-        GameManager.Instance.ClearLocalGameState();
+        gameManager.ClearLocalGameState();
 
         AuthenticationService.Instance.SignedIn += async () =>
         {
@@ -199,16 +203,14 @@ public class MenuManager : MonoBehaviour
 
         AuthenticationService.Instance.SignedOut += () =>
         {
-            // Clear local state on sign out
-            GameManager.Instance.ClearLocalGameState();
+            gameManager.ClearLocalGameState();
             PanelManager.CloseAll();
             PanelManager.Open("auth");
         };
         
         AuthenticationService.Instance.Expired += async() =>
         {
-            // Clear local state before re-authenticating
-            GameManager.Instance.ClearLocalGameState();
+            gameManager.ClearLocalGameState();
             await SignInAnonymouslyAsync();
         };
     }
@@ -217,18 +219,16 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
-            // Clear any existing state before initializing
-            GameManager.Instance.ClearLocalGameState();
+            gameManager.ClearLocalGameState();
 
             if (string.IsNullOrEmpty(AuthenticationService.Instance.PlayerName))
             {
                 await AuthenticationService.Instance.UpdatePlayerNameAsync("Guest");
             }
 
-            // Call GameManager's initialization after sign-in
-            await GameManager.Instance.InitializeAfterAuthentication();
+            await gameManager.InitializeAfterAuthentication();
 
-            int totalCoins = await GameManager.Instance.GetTotalCoinsCollectedAsync();
+            int totalCoins = await gameManager.GetTotalCoinsCollectedAsync();
 
             PanelManager.CloseAll();
             if(totalCoins > 0)
@@ -245,9 +245,11 @@ public class MenuManager : MonoBehaviour
             Debug.LogError($"Failed to complete post-authentication steps: {e.Message}");
         }
     }
+    
     private void ShowError(ErrorMenu.Action action = ErrorMenu.Action.None, string error = "", string button = "")
     {
         PanelManager.Close("loading");
+        Debug.Log("6");
         ErrorMenu panel = (ErrorMenu)PanelManager.GetSingleton("error");
         panel.Open(action, error, button);
     }
@@ -261,12 +263,11 @@ public class MenuManager : MonoBehaviour
                 await AuthenticationService.Instance.UpdatePlayerNameAsync("Guest");
             }
 
-            // Wait for GameManager's initialization to complete
-            await GameManager.Instance.InitializeAfterAuthentication();
+            await gameManager.InitializeAfterAuthentication();
 
-            int totalCoins = await GameManager.Instance.GetTotalCoinsCollectedAsync();
+            int totalCoins = await gameManager.GetTotalCoinsCollectedAsync();
 
-            Debug.Log($"Total coins loaded: {totalCoins}"); // Debug log to verify
+            Debug.Log($"Total coins loaded: {totalCoins}");
 
             PanelManager.CloseAll();
             if(totalCoins > 0)
@@ -278,11 +279,9 @@ public class MenuManager : MonoBehaviour
                 PanelManager.Open("main");
             }
         }
-        catch
+        catch (Exception e)
         {
-            
+            Debug.LogError($"Failed to complete sign-in confirmation: {e.Message}");
         }
     }
-    
-    
 }

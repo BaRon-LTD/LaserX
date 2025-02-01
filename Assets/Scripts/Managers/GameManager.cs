@@ -1,253 +1,66 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Unity.Services.CloudSave;
-using Unity.Services.Core;
-using Unity.Services.Authentication;
 using System.Threading.Tasks;
-using System.Linq;
-using System;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
     private CollectibleItem collectibleItem;
+    private int moveCount = 0;
 
-    private int moveCount = 0; // Counter for the number of moves
-    
-    private int totalCoins = 0; // per player
+    public SaveManager SaveManager { get; private set; }
 
-    // Dictionary to track coin data per scene
-    private Dictionary<string, SceneCoinData> coinsCollectedData;
-    private const string SAVE_KEY = "player_coins_data";
     private async void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            // Destroy(gameObject);
             return;
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
         collectibleItem = new CollectibleItem();
-        coinsCollectedData = new Dictionary<string, SceneCoinData>(); // Initialize the dictionary
-
-        // Initialize data loading
-        await InitializeAsync();
+        SaveManager = gameObject.AddComponent<SaveManager>();
+        
+        await SaveManager.InitializeAsync();
     }
 
-    // Call this after authentication is complete
     public async Task InitializeAfterAuthentication()
     {
         Debug.Log("Reinitializing GameManager after authentication...");
-        await InitializeAsync(); // Call the async initialization logic
-    }
-
-    // Separate async initialization method
-    private async Task InitializeAsync()
-    {
-        try
+        // Only initialize if not already initialized
+        if (!SaveManager.isInitialized)
         {
-            // Clear any existing state before initialization
-            ClearLocalGameState();
-
-            await UnityServices.InitializeAsync();
-
-            // Sign in anonymously if not already authenticated
-            if (!AuthenticationService.Instance.IsSignedIn)
-            {
-                await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            }
-
-            // Load cloud data after authentication
-            await LoadCloudData();
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Failed to initialize Unity Services: {e.Message}");
-        }
-    }
-
-     // Save data to Cloud Save
-    public async Task SaveToCloud()
-    {
-        try
-        {
-            string serializedData = SerializeCoinsData();
-            Debug.Log($"Attempting to save data: {serializedData}"); // For debugging
-
-            var data = new Dictionary<string, object>
-            {
-                { SAVE_KEY, serializedData }
-            };
-
-            await CloudSaveService.Instance.Data.Player.SaveAsync(data);
-            Debug.Log("Game data saved to cloud successfully");
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Failed to save game data: {e.Message}");
-        }
-    }
-
-    public async Task LoadCloudData()
-    {
-        try
-        {
-            // Clear existing data before loading from cloud
-            ClearLocalGameState();
-
-            var data = await CloudSaveService.Instance.Data.Player.LoadAsync(new HashSet<string> { SAVE_KEY });
-
-            if (data != null && data.TryGetValue(SAVE_KEY, out var savedItem))
-            {
-                var savedData = savedItem.Value.GetAsString();
-                if (!string.IsNullOrEmpty(savedData))
-                {
-                    Debug.Log($"Loaded raw data from cloud: {savedData}"); // For debugging
-                    DeserializeCoinsData(savedData);
-                }
-                else
-                {
-                    totalCoins = 0;
-                    Debug.Log("No saved data found in cloud - starting fresh");
-                }
-            }
-            else
-            {
-                Debug.Log("No saved data found in cloud - starting fresh");
-            }
-            
-            UIManager.Instance?.UpdateScoreUI();
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Failed to load game data: {e.Message}");
-            Debug.Log("Starting with fresh game data due to load error");
-
-            // Clear existing data before loading from cloud
-            ClearLocalGameState();
-            throw; // Rethrow to handle in calling code
-        }
-    }
-
-    private string SerializeCoinsData()
-    {
-        try
-        {
-            var wrapper = new SceneCoinDataWrapper();
-            wrapper.Entries = coinsCollectedData.Select(kvp => new SceneDataEntry
-            {
-                SceneName = kvp.Key,
-                Data = new SerializableSceneCoinData
-                {
-                    CoinsCollected = kvp.Value.CoinsCollected,
-                    CollectedCoinIDs = kvp.Value.CollectedCoinIDs ?? new List<string>()
-                }
-            }).ToList();
-
-            string json = JsonUtility.ToJson(wrapper);
-            Debug.Log($"Serialized data: {json}"); // For debugging
-            return json;
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Error serializing save data: {e.Message}");
-            return "";
-        }
-    }
-
-    private void DeserializeCoinsData(string jsonData)
-    {
-        try
-        {
-            Debug.Log($"Attempting to deserialize: {jsonData}"); // For debugging
-
-            if (string.IsNullOrEmpty(jsonData))
-            {
-                Debug.Log("Empty save data received");
-                return;
-            }
-
-            var wrapper = JsonUtility.FromJson<SceneCoinDataWrapper>(jsonData);
-            if (wrapper != null && wrapper.Entries != null)
-            {
-                coinsCollectedData.Clear();
-                foreach (var entry in wrapper.Entries)
-                {
-                    if (entry.Data != null)
-                    {
-                        coinsCollectedData[entry.SceneName] = new SceneCoinData
-                        {
-                            CoinsCollected = entry.Data.CoinsCollected,
-                            CollectedCoinIDs = entry.Data.CollectedCoinIDs ?? new List<string>()
-                        };
-                    }
-                }
-                Debug.Log($"Successfully deserialized {wrapper.Entries.Count} scenes");
-            }
-            else
-            {
-                Debug.Log("Could not deserialize save data - starting fresh");
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Error deserializing save data: {e.Message}");
-            coinsCollectedData.Clear();
+            await SaveManager.InitializeAsync();
         }
     }
 
     public void AddScore(int amount, string coinID)
     {
-        if(coinID == "tutorial") //tutorial scence coin
+        if (coinID == "tutorial")
         {
-            // Update the total score
             collectibleItem.AddCoin(amount);
             UIManager.Instance?.UpdateScoreUI();
             return;
         }
+
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        // Ensure the current scene has an entry in the dictionary
-        if (!coinsCollectedData.ContainsKey(currentSceneName))
-        {
-            coinsCollectedData[currentSceneName] = new SceneCoinData();
-        }
-
-        SceneCoinData sceneData = coinsCollectedData[currentSceneName];
-
-        // Check if the coin ID has already been collected
-        if (sceneData.CollectedCoinIDs.Contains(coinID))
+        // Check if coin was already collected
+        if (SaveManager.IsCoinAlreadyCollected(coinID))
         {
             Debug.Log($"Coin with ID {coinID} has already been collected in scene {currentSceneName}.");
-            return; // Exit if the coin has already been collected
+            return;
         }
 
-
-        // Add the coin ID to the list and update the coin count
-        sceneData.CollectedCoinIDs.Add(coinID);
-        sceneData.CoinsCollected += amount;
-
-        // Update the total score
+        // Update local score
         collectibleItem.AddCoin(amount);
+        
+        // Update saved data
+        SaveManager.AddCoinToScene(currentSceneName, amount, coinID);
 
         Debug.Log($"Score updated: {collectibleItem.GetScore()}");
-        Debug.Log($"Coins collected in {currentSceneName}: {sceneData.CoinsCollected}");
-        Debug.Log($"Collected Coin IDs in {currentSceneName}: {string.Join(", ", sceneData.CollectedCoinIDs)}");
-
         UIManager.Instance?.UpdateScoreUI();
-
-        // Save to cloud after collecting coins
-        SaveAsync();
-    }
-
-    // Helper method to handle async save operation
-    private async void SaveAsync()
-    {
-        await SaveToCloud();
     }
 
     public int GetScore()
@@ -255,81 +68,11 @@ public class GameManager : MonoBehaviour
         return collectibleItem.GetScore();
     }
 
-    public int GetCoinsCollectedInScene(string sceneName)
-    {
-        if (coinsCollectedData.ContainsKey(sceneName))
-        {
-            return coinsCollectedData[sceneName].CoinsCollected;
-        }
-        return 0;
-    }
-
-     public void ClearLocalGameState()
-    {
-        // Clear all game state
-        totalCoins = 0;
-        moveCount = 0;
-        
-        // Clear the collectible item data
-        if (collectibleItem != null)
-        {
-            collectibleItem.ResetScore();
-        }
-        else 
-        {
-            collectibleItem = new CollectibleItem();
-        }
-        
-        // Clear the coins collected dictionary
-        if (coinsCollectedData != null)
-        {
-            coinsCollectedData.Clear();
-        }
-        else 
-        {
-            coinsCollectedData = new Dictionary<string, SceneCoinData>();
-        }
-        
-        // Update UI if available
-        UIManager.Instance?.UpdateScoreUI();
-        UIManager.Instance?.UpdateMovesUI(moveCount);
-        
-        Debug.Log("Local game state cleared");
-    }
-
-    public async Task<int> GetTotalCoinsCollectedAsync()
-    {
-        try 
-        {
-            // First ensure we have the latest data from the cloud
-            await LoadCloudData();
-            
-            // Calculate total coins by summing up coins from all scenes in our dictionary
-            int total = coinsCollectedData.Values.Sum(sceneData => sceneData.CoinsCollected);
-            
-            Debug.Log($"Total coins collected across all scenes: {total}");
-            return total;
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Error calculating total coins: {e.Message}");
-            return 0;
-        }
-    }
-
-    // Optional: Add a synchronous version if you need immediate access to the current total
-    public int GetTotalCoinsCollected()
-    {
-        return coinsCollectedData.Values.Sum(sceneData => sceneData.CoinsCollected);
-    }
-
-
-
     public void IncrementMoveCount()
     {
-        moveCount++; // Increment the move count
+        moveCount++;
         Debug.Log($"Moves made: {moveCount}");
-        UIManager.Instance?.UpdateMovesUI(moveCount); // Update the moves display
+        UIManager.Instance?.UpdateMovesUI(moveCount);
     }
 
     public void ResetMoveCount()
@@ -345,7 +88,7 @@ public class GameManager : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         collectibleItem.ResetScore();
-        ResetMoveCount(); // Reset moves when loading a new scene
+        ResetMoveCount();
         Debug.Log($"Loading scene: {sceneName}");
         SceneManager.LoadScene(sceneName);
     }
@@ -356,39 +99,39 @@ public class GameManager : MonoBehaviour
         LoadScene(currentScene);
     }
 
-    // Check if the coin with a given ID has already been collected in the current scene
-    public bool IsCoinAlreadyCollected(string coinID)
+    public void ClearLocalGameState()
     {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-
-        // Check if we have data for this scene
-        if (coinsCollectedData.ContainsKey(currentSceneName))
+        moveCount = 0;
+        
+        if (collectibleItem != null)
         {
-            var sceneData = coinsCollectedData[currentSceneName];
-            return sceneData.CollectedCoinIDs.Contains(coinID); // Return true if the coin has been collected
+            collectibleItem.ResetScore();
         }
-
-        return false; // Return false if no data exists for this scene
+        else 
+        {
+            collectibleItem = new CollectibleItem();
+        }
+        
+        SaveManager.ClearSavedData();
+        
+        UIManager.Instance?.UpdateScoreUI();
+        UIManager.Instance?.UpdateMovesUI(moveCount);
+        
+        Debug.Log("Local game state cleared");
     }
 
-    // Helper classes for serialization
-    [Serializable]
-    public class SerializableSceneCoinData
+    public async Task<int> GetTotalCoinsCollectedAsync()
     {
-        public int CoinsCollected;
-        public List<string> CollectedCoinIDs;
+        return await SaveManager.GetTotalCoinsCollectedAsync();
     }
 
-    [Serializable]
-    public class SceneDataEntry
+    public int GetTotalCoinsCollected()
     {
-        public string SceneName;
-        public SerializableSceneCoinData Data;
+        return SaveManager.GetTotalCoinsCollected();
     }
 
-    [Serializable]
-    public class SceneCoinDataWrapper
+    public int GetCoinsCollectedInScene(string sceneName)
     {
-        public List<SceneDataEntry> Entries = new List<SceneDataEntry>();
+        return SaveManager.GetCoinsCollectedInScene(sceneName);
     }
 }
