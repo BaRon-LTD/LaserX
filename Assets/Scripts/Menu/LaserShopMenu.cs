@@ -110,6 +110,7 @@ public class LaserShopMenu : Panel
         GameManager.Instance.AddLaserColor(currentContainerIndex);
         BuyButton.gameObject.SetActive(false);
         UseButton.gameObject.SetActive(true);
+        ButtonsSetting();
 
     }
 

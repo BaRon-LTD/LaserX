@@ -6605,7 +6605,7 @@ PrefabInstance:
     - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: uiCounterPosition
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 353420053}
     - target: {fileID: 826091862418470800, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.27

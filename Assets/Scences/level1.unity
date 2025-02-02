@@ -1012,7 +1012,7 @@ PrefabInstance:
     - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: uiCounterPosition
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1714104895}
     - target: {fileID: 826091862418470800, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.27
@@ -4470,7 +4470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ecba6d4ef91bc47abf8c15bfc1f7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 840521259}
+  volumeSlider: {fileID: 0}
 --- !u!114 &840521259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11422,7 +11422,7 @@ PrefabInstance:
     - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: uiCounterPosition
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1714104895}
     - target: {fileID: 826091862418470800, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.27

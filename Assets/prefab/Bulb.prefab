@@ -768,7 +768,7 @@ MonoBehaviour:
   uniqueBehaviorMessage: Specific behavior triggered!
   hitSprite: {fileID: -1014813488424748180, guid: 8dda41322b295a74b9c70daafe40b824, type: 3}
   bulbAnimator: {fileID: 2577978108646327584}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 4896209654514133762}
   hitSound: {fileID: 8300000, guid: f0a894544916d944aba6997c6f189878, type: 3}
   delaySound: 0.5
   durationHold: 1

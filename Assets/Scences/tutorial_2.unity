@@ -1244,7 +1244,7 @@ PrefabInstance:
     - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: uiCounterPosition
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 905065499}
     - target: {fileID: 826091862418470800, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.08
@@ -2875,6 +2875,8 @@ MonoBehaviour:
   container: {fileID: 446289421}
   container2: {fileID: 62192896}
   container3: {fileID: 309766498}
+  BuyButton: {fileID: 0}
+  UseButton: {fileID: 0}
 --- !u!114 &701124969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3104,7 +3106,7 @@ PrefabInstance:
     - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: uiCounterPosition
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 905065499}
     - target: {fileID: 826091862418470800, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.44
