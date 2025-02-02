@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 
 public class LaserShopMenu : Panel
 {
@@ -12,20 +13,20 @@ public class LaserShopMenu : Panel
 
     private List<RectTransform> containers = new List<RectTransform>();
     private int currentContainerIndex = 0;
+    private int currentLaserColorIndex = 0;
 
     public override void Awake() {
+        Initialize();
+
+        currentLaserColorIndex = GameManager.Instance.GetCurrentLaserColorIndex();
         if(GameManager.Instance.IsLaserColorUnlocked(currentContainerIndex))
         {
             BuyButton.gameObject.SetActive(false);
             UseButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            BuyButton.gameObject.SetActive(true);
-            UseButton.gameObject.SetActive(false);
+            ButtonsSetting();
         }
     }
-    
+
     public override void Initialize()
     {
         base.Initialize();
@@ -66,6 +67,7 @@ public class LaserShopMenu : Panel
         {
             BuyButton.gameObject.SetActive(false);
             UseButton.gameObject.SetActive(true);
+            ButtonsSetting();
         }
         else
         {
@@ -92,6 +94,7 @@ public class LaserShopMenu : Panel
         {
             BuyButton.gameObject.SetActive(false);
             UseButton.gameObject.SetActive(true);
+            ButtonsSetting();
         }
         else
         {
@@ -114,9 +117,44 @@ public class LaserShopMenu : Panel
     {
         if (!IsInitialized) { Initialize(); }
         GameManager.Instance.SetCurrentLaserColorIndex(currentContainerIndex);
-        // UseButton.interactable = false;
+        currentLaserColorIndex = currentContainerIndex;
+        ButtonsSetting();
+    }
+
+    public void ButtonsSetting(){
+    TMP_Text buttonText = UseButton.GetComponentInChildren<TMP_Text>();
+    RectTransform textRect = buttonText.GetComponent<RectTransform>();
+
+    if (currentContainerIndex == currentLaserColorIndex)
+    {
+        UseButton.interactable = false;
+        buttonText.text = "In Use!";
+
+        // Move text position (X = 7)
+        textRect.anchoredPosition = new Vector2(7f, textRect.anchoredPosition.y);
+
+        // Make button transparent
+        Image buttonImage = UseButton.GetComponent<Image>();
+        Color tempColor = buttonImage.color;
+        tempColor.a = 0f;
+        buttonImage.color = tempColor;
+    }
+    else
+    {
+        UseButton.interactable = true;
+        buttonText.text = "Use";
+
+        // Restore text position (X = 15.5)
+        textRect.anchoredPosition = new Vector2(15.5f, textRect.anchoredPosition.y);
+
+        // Restore button visibility
+        Image buttonImage = UseButton.GetComponent<Image>();
+        Color tempColor = buttonImage.color;
+        tempColor.a = 1f;
+        buttonImage.color = tempColor;
     }
 
 
+    }
 }
 
