@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7083102130863356326}
   - component: {fileID: 7436395044121992930}
   - component: {fileID: 1570776805977997112}
-  - component: {fileID: 4142707107276241193}
   m_Layer: 0
   m_Name: CrystalBlue
   m_TagString: Untagged
@@ -173,16 +172,3 @@ PolygonCollider2D:
       - {x: 0.62482816, y: -1.5536547}
       - {x: 0.6915383, y: -1.5002866}
   m_UseDelaunayMesh: 0
---- !u!114 &4142707107276241193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8229369167929232588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 740c244121fe35341856a268b2a8e114, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
