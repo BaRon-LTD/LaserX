@@ -15,6 +15,8 @@ public class LaserController : MonoBehaviour
     private Ray ray;
     private RaycastHit2D hit;
 
+    private LaserColorType currentLaserColor = LaserColorType.Red;
+
     private void Update()
     {
         if (laserStartPoint == null)
@@ -23,13 +25,19 @@ public class LaserController : MonoBehaviour
             return;
         }
 
+        
         // Initialize ray and line renderer
         Vector3 startPoint = laserStartPoint.position; // Use the child transform position
         ray = new Ray(startPoint, laserStartPoint.right); // Use the child transform's direction
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0, startPoint);
         float remainingLength = maxLength;
-
+        
+        // Get current color from GameManager and convert to enum
+        currentLaserColor = LaserColorUtility.GetLaserColorType(GameManager.Instance.GetCurrentLaserColorIndex());
+        lineRenderer.startColor = LaserColorUtility.GetColor(currentLaserColor);
+        lineRenderer.endColor = LaserColorUtility.GetColor(currentLaserColor);
+        
         // Reset hit object tracking at start of frame
         LaserInteractable currentHitObject = null;
 
@@ -94,4 +102,42 @@ public class LaserController : MonoBehaviour
             lastHitObject = null;
         }
     }
+}
+
+// // LaserColorUtility.cs
+// using UnityEngine;
+
+public static class LaserColorUtility
+{
+    public static Color GetColor(LaserColorType colorType)
+    {
+        return colorType switch
+        {
+            LaserColorType.Red => Color.red,
+            LaserColorType.Blue => Color.blue,
+            LaserColorType.Green => Color.green,
+            LaserColorType.Yellow => Color.yellow,
+            LaserColorType.Purple => new Color(0.5f, 0f, 0.5f, 1f), // Purple
+            _ => Color.red // Default to red
+        };
+    }
+
+    public static LaserColorType GetLaserColorType(int index)
+    {
+        if (System.Enum.IsDefined(typeof(LaserColorType), index))
+        {
+            return (LaserColorType)index;
+        }
+        return LaserColorType.Red; // Default to red if invalid index
+    }
+}
+
+// LaserColorType.cs
+public enum LaserColorType
+{
+    Red = 0,
+    Blue = 1,
+    Green = 2,
+    Yellow = 3,
+    Purple = 4
 }

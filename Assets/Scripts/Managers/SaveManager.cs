@@ -10,6 +10,7 @@ using System;
 public class SaveManager : MonoBehaviour
 {
     private Dictionary<string, GameSceneCoinData> coinsCollectedData;
+    private GameLaserColorData laserColorData;
     private const string SAVE_KEY = "player_coins_data";
     public bool isInitialized = false;
     public bool isDataLoaded = false;
@@ -17,6 +18,7 @@ public class SaveManager : MonoBehaviour
     private void Awake()
     {
         coinsCollectedData = new Dictionary<string, GameSceneCoinData>();
+        laserColorData = new GameLaserColorData();
     }
 
     public async Task InitializeAsync()
@@ -115,12 +117,15 @@ public class SaveManager : MonoBehaviour
             wrapper.Entries = coinsCollectedData.Select(kvp => new GameSceneDataEntry
             {
                 SceneName = kvp.Key,
-                Data = new GameSerializableCoinData
+                Data = new GameSceneCoinData
                 {
                     CoinsCollected = kvp.Value.CoinsCollected,
                     CollectedCoinIDs = kvp.Value.CollectedCoinIDs ?? new List<string>()
                 }
             }).ToList();
+
+            // Add laser color data to wrapper
+            wrapper.LaserColorData = laserColorData;
 
             string json = JsonUtility.ToJson(wrapper);
             Debug.Log($"Serialized data: {json}");
@@ -146,21 +151,34 @@ public class SaveManager : MonoBehaviour
             }
 
             var wrapper = JsonUtility.FromJson<GameSaveDataWrapper>(jsonData);
-            if (wrapper != null && wrapper.Entries != null)
+            if (wrapper != null)
             {
-                coinsCollectedData.Clear();
-                foreach (var entry in wrapper.Entries)
+                // Deserialize coins data
+                if(wrapper.Entries != null)
                 {
-                    if (entry.Data != null)
+                    coinsCollectedData.Clear();
+                    foreach (var entry in wrapper.Entries)
                     {
-                        coinsCollectedData[entry.SceneName] = new GameSceneCoinData
+                        if (entry.Data != null)
                         {
-                            CoinsCollected = entry.Data.CoinsCollected,
-                            CollectedCoinIDs = entry.Data.CollectedCoinIDs ?? new List<string>()
-                        };
+                            coinsCollectedData[entry.SceneName] = new GameSceneCoinData
+                            {
+                                CoinsCollected = entry.Data.CoinsCollected,
+                                CollectedCoinIDs = entry.Data.CollectedCoinIDs ?? new List<string>()
+                            };
+                        }
                     }
+                    Debug.Log($"Successfully deserialized {wrapper.Entries.Count} scenes");
                 }
-                Debug.Log($"Successfully deserialized {wrapper.Entries.Count} scenes");
+                // Deserialize laser color data
+                if (wrapper.LaserColorData != null)
+                {
+                    laserColorData = wrapper.LaserColorData;
+                }
+                else
+                {
+                    laserColorData = new GameLaserColorData();
+                }
             }
             else
             {
@@ -171,6 +189,7 @@ public class SaveManager : MonoBehaviour
         {
             Debug.LogError($"Error deserializing save data: {e.Message}");
             coinsCollectedData.Clear();
+            laserColorData = new GameLaserColorData();
         }
     }
 
@@ -219,6 +238,8 @@ public class SaveManager : MonoBehaviour
         {
             coinsCollectedData = new Dictionary<string, GameSceneCoinData>();
         }
+
+        laserColorData = new GameLaserColorData();
         isDataLoaded = false;
     }
 
@@ -262,4 +283,44 @@ public class SaveManager : MonoBehaviour
         }
         return false;
     }
+
+    
+    // New methods for laser color management
+    public void AddLaserColor(int colorIndex)
+    {
+        if (!laserColorData.ColorList.Contains(colorIndex))
+        {
+            laserColorData.ColorList.Add(colorIndex);
+            SaveAsync();
+        }
+    }
+
+    public void SetCurrentLaserColorIndex(int index)
+    {
+        if (laserColorData.ColorList.Contains(index))
+        {
+            laserColorData.ColorIndex = index;
+            SaveAsync();
+        }
+        else
+        {
+            Debug.LogWarning($"Attempted to set laser color index {index} which is not unlocked");
+        }
+    }
+
+    public int GetCurrentLaserColorIndex()
+    {
+        return laserColorData.ColorIndex;
+    }
+
+    public List<int> GetUnlockedLaserColors()
+    {
+        return new List<int>(laserColorData.ColorList);
+    }
+
+    public bool IsLaserColorUnlocked(int colorIndex)
+    {
+        return laserColorData.ColorList.Contains(colorIndex);
+    }
+
 }

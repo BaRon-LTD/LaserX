@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -134,4 +135,30 @@ public class GameManager : MonoBehaviour
     {
         return SaveManager.GetCoinsCollectedInScene(sceneName);
     }
+
+    public void AddLaserColor(int colorIndex)
+    {
+        SaveManager.AddLaserColor(colorIndex);
+    }
+
+    public void SetCurrentLaserColorIndex(int index)
+    {
+        SaveManager.SetCurrentLaserColorIndex(index);
+    }
+
+    public int GetCurrentLaserColorIndex()
+    {
+        return SaveManager.GetCurrentLaserColorIndex();
+    }
+
+    public List<int> GetUnlockedLaserColors()
+    {
+        return SaveManager.GetUnlockedLaserColors();
+    }
+
+        public bool IsLaserColorUnlocked(int colorIndex)
+    {
+        return SaveManager.IsLaserColorUnlocked(colorIndex);
+    }
+
 }

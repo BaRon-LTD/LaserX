@@ -1,14 +1,31 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class LaserShopMenu : Panel
 {
     [SerializeField] private RectTransform container2 = null;
     [SerializeField] private RectTransform container3 = null;
 
+    [SerializeField] private Button BuyButton = null;
+    [SerializeField] private Button UseButton = null;
+
     private List<RectTransform> containers = new List<RectTransform>();
     private int currentContainerIndex = 0;
 
+    public override void Awake() {
+        if(GameManager.Instance.IsLaserColorUnlocked(currentContainerIndex))
+        {
+            BuyButton.gameObject.SetActive(false);
+            UseButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            BuyButton.gameObject.SetActive(true);
+            UseButton.gameObject.SetActive(false);
+        }
+    }
+    
     public override void Initialize()
     {
         base.Initialize();
@@ -45,6 +62,16 @@ public class LaserShopMenu : Panel
         
         // Open the new container
         containers[currentContainerIndex].gameObject.SetActive(true);
+        if(GameManager.Instance.IsLaserColorUnlocked(currentContainerIndex))
+        {
+            BuyButton.gameObject.SetActive(false);
+            UseButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            BuyButton.gameObject.SetActive(true);
+            UseButton.gameObject.SetActive(false);
+        }
         isOpen = true;
     }
 
@@ -61,7 +88,35 @@ public class LaserShopMenu : Panel
         
         // Open the previous container
         containers[currentContainerIndex].gameObject.SetActive(true);
+        if(GameManager.Instance.IsLaserColorUnlocked(currentContainerIndex))
+        {
+            BuyButton.gameObject.SetActive(false);
+            UseButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            BuyButton.gameObject.SetActive(true);
+            UseButton.gameObject.SetActive(false);
+        }
         isOpen = false;
     }
+
+    public void BuyLaserColor()
+    {
+        if (!IsInitialized) { Initialize(); }
+        GameManager.Instance.AddLaserColor(currentContainerIndex);
+        BuyButton.gameObject.SetActive(false);
+        UseButton.gameObject.SetActive(true);
+
+    }
+
+    public void UseLaserColor()
+    {
+        if (!IsInitialized) { Initialize(); }
+        GameManager.Instance.SetCurrentLaserColorIndex(currentContainerIndex);
+        // UseButton.interactable = false;
+    }
+
+
 }
 
