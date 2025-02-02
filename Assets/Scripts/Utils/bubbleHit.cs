@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ballonHit : LaserInteractable
+public class bubbleHit : LaserInteractable
 {
     [SerializeField] private string uniqueBehaviorMessage = "Specific behavior triggered!";
     [SerializeField] private Animator bubbleAnimator; // Reference to the Animator component

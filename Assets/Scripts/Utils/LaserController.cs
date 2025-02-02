@@ -140,10 +140,10 @@ public static class LaserColorUtility
         return colorType switch
         {
             LaserColorType.Red => 0.05f,
-            LaserColorType.Blue => 0.4f,
-            LaserColorType.Green => 0.4f,
-            LaserColorType.Yellow => 0.4f,
-            LaserColorType.Purple => 0.4f,
+            LaserColorType.Blue => 0.2f,
+            LaserColorType.Green => 0.2f,
+            LaserColorType.Yellow => 0.2f,
+            LaserColorType.Purple => 0.2f,
             _ => 0.1f // Default width
         };
     }
