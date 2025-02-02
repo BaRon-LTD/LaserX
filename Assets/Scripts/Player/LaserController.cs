@@ -37,7 +37,11 @@ public class LaserController : MonoBehaviour
         currentLaserColor = LaserColorUtility.GetLaserColorType(GameManager.Instance.GetCurrentLaserColorIndex());
         lineRenderer.startColor = LaserColorUtility.GetColor(currentLaserColor);
         lineRenderer.endColor = LaserColorUtility.GetColor(currentLaserColor);
-        
+
+        // Set line width based on color
+        float lineWidth = LaserColorUtility.GetLineWidth(currentLaserColor);
+        lineRenderer.startWidth = lineWidth;
+        lineRenderer.endWidth = lineWidth;
         // Reset hit object tracking at start of frame
         LaserInteractable currentHitObject = null;
 
@@ -129,6 +133,19 @@ public static class LaserColorUtility
             return (LaserColorType)index;
         }
         return LaserColorType.Red; // Default to red if invalid index
+    }
+
+    public static float GetLineWidth(LaserColorType colorType)
+    {
+        return colorType switch
+        {
+            LaserColorType.Red => 0.05f,
+            LaserColorType.Blue => 0.4f,
+            LaserColorType.Green => 0.4f,
+            LaserColorType.Yellow => 0.4f,
+            LaserColorType.Purple => 0.4f,
+            _ => 0.1f // Default width
+        };
     }
 }
 
