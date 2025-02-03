@@ -7464,7 +7464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8a194f3cba9a6e48bd7124452713fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballons: {fileID: 0}
+  ballons: {fileID: 1714104896}
   moves: {fileID: 1890002100}
 --- !u!4 &1336205420
 Transform:
