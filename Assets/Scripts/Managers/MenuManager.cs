@@ -68,78 +68,99 @@ public class MenuManager : MonoBehaviour
     {
         PanelManager.CloseAll();
         PanelManager.Open("loading");
-        Debug.Log("1");
+        Debug.Log("Starting Client Service");
+        
         try
         {
+            // Initialize Unity Services if needed
             if (UnityServices.State != ServicesInitializationState.Initialized)
             {
+                Debug.Log("Initializing Unity Services...");
                 var options = new InitializationOptions();
                 options.SetProfile("default_profile");
                 await UnityServices.InitializeAsync();
+                Debug.Log("Unity Services Initialized - ClientSerivce");
             }
             
+            // Setup events if not already done
             if (!eventsInitialized)
             {
+                Debug.Log("Setting up events for the first time");
                 SetupEvents();
             }
 
-            if (AuthenticationService.Instance.SessionTokenExists)
+            bool isSignedIn = AuthenticationService.Instance.IsSignedIn;
+            bool hasToken = AuthenticationService.Instance.SessionTokenExists;
+            
+            Debug.Log($"Is Signed In: {isSignedIn}");
+            Debug.Log($"Session Token Exists: {hasToken}");
+            Debug.Log($"Player ID: {AuthenticationService.Instance.PlayerId}");
+
+            // Check if we have a session and are not signed in
+            if (hasToken && !isSignedIn)
             {
-                Debug.Log("Session token exists: " + AuthenticationService.Instance.SessionTokenExists);
+                try
+                {
+                    // Try to automatically sign in with existing session
+                    await AuthenticationService.Instance.SignInAnonymouslyAsync();
+                    if (AuthenticationService.Instance.IsSignedIn)
+                    {
+                        await SignInConfirmAsync();
+                        return;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Failed to restore session: {e.Message}");
+                    // Clear the token if it's invalid
+                    AuthenticationService.Instance.ClearSessionToken();
+                }
             }
-            else
+
+            // If no valid session exists, show auth menu
+            if (!AuthenticationService.Instance.IsSignedIn)
             {
-                Debug.Log("Session token doesn't exist: " + AuthenticationService.Instance.SessionTokenExists);
+                Debug.Log("No valid session found, showing auth menu");
                 PanelManager.CloseAll();
                 PanelManager.Open("auth");
             }
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            Debug.Log("error connect to the network1");
+            Debug.LogError($"StartClientService error: {e.Message}");
             ShowError(ErrorMenu.Action.StartService, "Failed to connect to the network. - 1", "Retry");
         }
     }
 
     public async Task SignInAnonymouslyAsync()
     {
+        Debug.Log("Starting Anonymous Sign In Process");
         PanelManager.CloseAll();
         PanelManager.Open("loading");
-        Debug.Log("2");
+        
         try
         {
             if (AuthenticationService.Instance.IsSignedIn)
             {
-                Debug.Log("Already signed in, skipping sign-in process.");
+                Debug.Log("Already signed in, skipping anonymous sign-in process");
                 OnAuthenticated();
                 return;
             }
 
+            Debug.Log("Proceeding with anonymous sign in");
             AuthenticationService.Instance.ClearSessionToken();
             gameManager.ClearLocalGameState();
             
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
             await AuthenticationService.Instance.UpdatePlayerNameAsync("Guest");
+            Debug.Log("Anonymous sign in completed successfully");
 
             OnAuthenticated();
         }
-        catch (AuthenticationException e)
-        {
-            Debug.LogError($"Authentication Exception: {e.Message}");
-            ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to sign in.", "OK");
-            PanelManager.CloseAll();
-            PanelManager.Open("loading");
-            Debug.Log("3");
-        }
-        catch (RequestFailedException e)
-        {
-            Debug.LogError($"Request Failed Exception: {e.Message}");
-            ShowError(ErrorMenu.Action.SignIn, "Failed to connect to the network. - 2", "Retry");
-        }
         catch (Exception e)
         {
-            Debug.LogError($"Unexpected Exception: {e.Message}");
-            ShowError(ErrorMenu.Action.SignIn, "An unexpected error occurred.", "Retry");
+            Debug.LogError($"Error in SignInAnonymouslyAsync: {e.Message}");
+            ShowError(ErrorMenu.Action.SignIn, "Failed to sign in anonymously.", "Retry");
         }
     }
     
@@ -193,25 +214,36 @@ public class MenuManager : MonoBehaviour
     
     private void SetupEvents()
     {
+        Debug.Log("Setting up Authentication Events");
         eventsInitialized = true;
         gameManager.ClearLocalGameState();
 
         AuthenticationService.Instance.SignedIn += async () =>
         {
-            await SignInConfirmAsync();
+            Debug.Log("SignedIn Event Triggered");
+            Debug.Log($"Player Name after sign in: {AuthenticationService.Instance.PlayerName}");
+            
+            // Only proceed if this was triggered by an explicit sign-in action
+            if (!string.IsNullOrEmpty(AuthenticationService.Instance.PlayerName))
+            {
+                await SignInConfirmAsync();
+            }
         };
 
         AuthenticationService.Instance.SignedOut += () =>
         {
+            Debug.Log("SignedOut Event Triggered");
             gameManager.ClearLocalGameState();
             PanelManager.CloseAll();
             PanelManager.Open("auth");
         };
         
-        AuthenticationService.Instance.Expired += async() =>
+        AuthenticationService.Instance.Expired += () =>
         {
+            Debug.Log("Session Expired Event Triggered");
             gameManager.ClearLocalGameState();
-            await SignInAnonymouslyAsync();
+            PanelManager.CloseAll();
+            PanelManager.Open("auth");
         };
     }
 
@@ -258,15 +290,16 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
-            if (string.IsNullOrEmpty(AuthenticationService.Instance.PlayerName))
+            if (!AuthenticationService.Instance.IsSignedIn)
             {
-                await AuthenticationService.Instance.UpdatePlayerNameAsync("Guest");
+                Debug.Log("Not signed in during confirmation, showing auth menu");
+                PanelManager.CloseAll();
+                PanelManager.Open("auth");
+                return;
             }
 
             await gameManager.InitializeAfterAuthentication();
-
             int totalCoins = await gameManager.GetTotalCoinsCollectedAsync();
-
             Debug.Log($"Total coins loaded: {totalCoins}");
 
             PanelManager.CloseAll();
@@ -281,7 +314,8 @@ public class MenuManager : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogError($"Failed to complete sign-in confirmation: {e.Message}");
+            Debug.LogError($"SignInConfirmAsync error: {e.Message}");
+            ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to complete sign-in.", "OK");
         }
     }
 }
