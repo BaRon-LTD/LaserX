@@ -136,6 +136,11 @@ public class GameManager : MonoBehaviour
         return SaveManager.GetCoinsCollectedInScene(sceneName);
     }
 
+    public void ReduceTotalCoinsCollected(int amount)
+    {
+        SaveManager.ReduceTotalCoins(amount);
+    }
+
     public void AddLaserColor(int colorIndex)
     {
         SaveManager.AddLaserColor(colorIndex);

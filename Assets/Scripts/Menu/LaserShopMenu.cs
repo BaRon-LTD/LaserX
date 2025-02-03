@@ -110,12 +110,25 @@ public class LaserShopMenu : Panel
     public void BuyLaserColor()
     {
         if (!IsInitialized) { Initialize(); }
-        if (GameManager.Instance.GetTotalCoinsCollected() < 100) return;
-        GameManager.Instance.AddLaserColor(currentContainerIndex);
-        BuyButton.gameObject.SetActive(false);
-        UseButton.gameObject.SetActive(true);
-        ButtonsSetting();
 
+        // Find the text component in the current container
+        TextMeshProUGUI costText = containers[currentContainerIndex].GetComponentInChildren<TextMeshProUGUI>();
+ 
+        if (costText != null && int.TryParse(costText.text, out int laserCost))
+        {
+            if (GameManager.Instance.GetTotalCoinsCollected() < laserCost) 
+            {
+                Debug.LogWarning("Not enough money to buy this laser color!");
+                return;
+            }
+            coinsCounter.text = "     X " + (GameManager.Instance.GetTotalCoinsCollected() - laserCost);
+            GameManager.Instance.ReduceTotalCoinsCollected(laserCost);
+
+            GameManager.Instance.AddLaserColor(currentContainerIndex);
+            BuyButton.gameObject.SetActive(false);
+            UseButton.gameObject.SetActive(true);
+            ButtonsSetting();
+        }
     }
 
     public void UseLaserColor()

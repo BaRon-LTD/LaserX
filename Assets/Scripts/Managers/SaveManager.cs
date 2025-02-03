@@ -273,6 +273,33 @@ public class SaveManager : MonoBehaviour
         }
         return 0;
     }
+
+    public void ReduceTotalCoins(int amount)
+    {
+        int totalCoins = GetTotalCoinsCollected();
+        if (amount > totalCoins)
+        {
+            Debug.LogWarning($"Attempting to reduce more coins than available. Total coins: {totalCoins}, Reduction amount: {amount}");
+            return;
+        }
+
+        // Distribute coin reduction across scenes proportionally
+        int remainingReduction = amount;
+        foreach (var sceneName in coinsCollectedData.Keys.ToList())
+        {
+            var sceneData = coinsCollectedData[sceneName];
+            if (sceneData.CoinsCollected > 0)
+            {
+                int sceneReduction = Math.Min(sceneData.CoinsCollected, remainingReduction);
+                sceneData.CoinsCollected -= sceneReduction;
+                remainingReduction -= sceneReduction;
+
+                if (remainingReduction <= 0) break;
+            }
+        }
+
+        SaveAsync();
+    }
     
     public bool IsCoinAlreadyCollectedInScene(string sceneName, string coinID)
     {
