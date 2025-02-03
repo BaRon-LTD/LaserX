@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8626920950357526334}
   - component: {fileID: 6578732258525936692}
   - component: {fileID: 2128167127046022721}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,6 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+  targetRectTransform: {fileID: 0}
+  newLayerName: UIIgnoreLaser
+  defaultLayerName: Default
 --- !u!68 &3399489122948884527
 EdgeCollider2D:
   m_ObjectHideFlags: 0

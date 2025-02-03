@@ -2796,6 +2796,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1832207069}
+    - target: {fileID: 2609232569613623032, guid: 8184391e5ad21ae4e9aa154676a84e0f, type: 3}
+      propertyPath: targetRectTransform
+      value: 
+      objectReference: {fileID: 462502168}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5290,6 +5294,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square
       objectReference: {fileID: 0}
+    - target: {fileID: 3121955055464335501, guid: f0c57483bfcd1254f84f6acc381a2b02, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4136069631780921183, guid: f0c57483bfcd1254f84f6acc381a2b02, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.20000002
@@ -7357,7 +7365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8a194f3cba9a6e48bd7124452713fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballons: {fileID: 0}
+  ballons: {fileID: 353420054}
   moves: {fileID: 0}
 --- !u!4 &1336205420
 Transform:
@@ -9943,6 +9951,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1832207069}
+    - target: {fileID: 5158007076812250352, guid: dc6c09791b24c3c45906f0566814dd3f, type: 3}
+      propertyPath: targetRectTransform
+      value: 
+      objectReference: {fileID: 462502168}
     - target: {fileID: 6784313741281954064, guid: dc6c09791b24c3c45906f0566814dd3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -961.36
@@ -11294,7 +11306,7 @@ GameObject:
   - component: {fileID: 2070204534}
   - component: {fileID: 2070204533}
   - component: {fileID: 2070204532}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: handle_bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -45,10 +45,13 @@ public class LaserController : MonoBehaviour
         // Reset hit object tracking at start of frame
         LaserInteractable currentHitObject = null;
 
+        // Exclude the UIIgnoreLaser layer from the raycast by adjusting the LayerMask
+        LayerMask layerMaskWithoutUI = mirrorsLayerMask & ~(1 << LayerMask.NameToLayer("UIIgnoreLaser"));
+
         for (int i = 0; i < maxReflections; i++)
         {
             // Perform raycast
-            hit = Physics2D.Raycast(ray.origin, ray.direction, remainingLength, mirrorsLayerMask);
+            hit = Physics2D.Raycast(ray.origin, ray.direction, remainingLength, layerMaskWithoutUI);
             bool stopRay = false;
 
             lineRenderer.positionCount += 1;
@@ -95,7 +98,7 @@ public class LaserController : MonoBehaviour
                 break;
             }
         }
-
+        
         // Update last hit object
         lastHitObject = currentHitObject;
 

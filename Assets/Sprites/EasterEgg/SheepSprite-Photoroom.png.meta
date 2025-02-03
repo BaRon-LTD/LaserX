@@ -322,7 +322,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SheepSprite-Photoroom_0: 3803537435875863271
+      SheepSprite-Photoroom_1: 4219902746561105490
+      SheepSprite-Photoroom_2: 2244616732000836147
+      SheepSprite-Photoroom_3: 4056625763485145107
+      SheepSprite-Photoroom_4: -1714151214327289923
+      SheepSprite-Photoroom_5: -4318276616939683035
+      SheepSprite-Photoroom_6: 1947594186153556045
+      SheepSprite-Photoroom_7: -3274567496121600614
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

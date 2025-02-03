@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2358429462886517795}
   - component: {fileID: 5795234668135275916}
   - component: {fileID: 2193105173166667251}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,6 +102,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+  targetRectTransform: {fileID: 0}
+  newLayerName: UIIgnoreLaser
+  defaultLayerName: Default
 --- !u!61 &2193105173166667251
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -2072,6 +2072,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1832207069}
+    - target: {fileID: 2609232569613623032, guid: 8184391e5ad21ae4e9aa154676a84e0f, type: 3}
+      propertyPath: targetRectTransform
+      value: 
+      objectReference: {fileID: 975650453}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2356,7 +2360,7 @@ GameObject:
   - component: {fileID: 782108003}
   - component: {fileID: 782108002}
   - component: {fileID: 782108001}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: handle_bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4083,6 +4087,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1832207069}
+    - target: {fileID: 5158007076812250352, guid: dc6c09791b24c3c45906f0566814dd3f, type: 3}
+      propertyPath: targetRectTransform
+      value: 
+      objectReference: {fileID: 975650453}
     - target: {fileID: 6784313741281954064, guid: dc6c09791b24c3c45906f0566814dd3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -962.32996
@@ -4458,6 +4466,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1832207069}
+    - target: {fileID: 5795234668135275916, guid: f0c57483bfcd1254f84f6acc381a2b02, type: 3}
+      propertyPath: targetRectTransform
+      value: 
+      objectReference: {fileID: 975650453}
     m_RemovedComponents:
     - {fileID: 2193105173166667251, guid: f0c57483bfcd1254f84f6acc381a2b02, type: 3}
     m_RemovedGameObjects: []

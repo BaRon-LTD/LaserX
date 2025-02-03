@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 473558370010493777}
   - component: {fileID: 7294005450455549873}
   - component: {fileID: 5619246222381484479}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2937898148810878788}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 689447a19996f174e9724afeb1eddc2e, type: 3}
   m_Name: 

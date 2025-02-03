@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3941640692523145678}
   - component: {fileID: 4298490804499669307}
   - component: {fileID: 7660620194232288916}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: hexatragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,6 +108,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+  targetRectTransform: {fileID: 0}
+  newLayerName: UIIgnoreLaser
+  defaultLayerName: Default
 --- !u!68 &6347327648778801816
 EdgeCollider2D:
   m_ObjectHideFlags: 0

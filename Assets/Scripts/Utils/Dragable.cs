@@ -14,6 +14,9 @@ public class Dragable : MonoBehaviour
     private Vector3 spriteDragStartPosition;
 
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private RectTransform targetRectTransform; // The RectTransform to check against
+    [SerializeField] private string newLayerName = "UIIgnoreLaser"; // The new layer to switch to when inside bounds
+    [SerializeField] private string defaultLayerName = "Default"; // Layer to switch back to when outside bounds
 
     private void OnMouseDown()
     {
@@ -31,6 +34,18 @@ public class Dragable : MonoBehaviour
 
             // Clamp the position within the screen bounds
             transform.position = ClampToScreenBounds(newPosition);
+
+            // Check if the dragged object is inside the target RectTransform bounds
+            if (IsInsideRectBounds(transform.position))
+            {
+                // Change the layer to the new layer if inside bounds
+                gameObject.layer = LayerMask.NameToLayer(newLayerName);
+            }
+            else
+            {
+                // Change the layer back to default if outside bounds
+                gameObject.layer = LayerMask.NameToLayer(defaultLayerName);
+            }
         }
     }
 
@@ -52,5 +67,15 @@ public class Dragable : MonoBehaviour
         position.y = Mathf.Clamp(position.y, minBounds.y, maxBounds.y);
 
         return position;
+    }
+
+    // Check if the object is inside the RectTransform bounds
+    private bool IsInsideRectBounds(Vector3 position)
+    {
+        // Convert the position to the target RectTransform's local space
+        Vector3 localPosition = targetRectTransform.InverseTransformPoint(position);
+
+        // Check if the position is inside the RectTransform bounds
+        return targetRectTransform.rect.Contains(new Vector2(localPosition.x, localPosition.y));
     }
 }
