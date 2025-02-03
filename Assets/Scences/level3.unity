@@ -7157,7 +7157,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: f0a894544916d944aba6997c6f189878, type: 3}
     - target: {fileID: 6739725392936762909, guid: cf7b94fc5c0d5d7438af1aee5ec84de3, type: 3}
       propertyPath: sceneName
-      value: Winning
+      value: level4
       objectReference: {fileID: 0}
     - target: {fileID: 6739725392936762909, guid: cf7b94fc5c0d5d7438af1aee5ec84de3, type: 3}
       propertyPath: delaySound

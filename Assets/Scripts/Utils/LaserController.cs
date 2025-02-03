@@ -109,6 +109,11 @@ public class LaserController : MonoBehaviour
             lastHitObject = null;
         }
     }
+        // Method to get the current hit object
+    public LaserInteractable GetCurrentHitObject()
+    {
+        return lastHitObject;
+    }
 }
 
 // // LaserColorUtility.cs
