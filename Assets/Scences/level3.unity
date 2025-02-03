@@ -2691,11 +2691,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 590208753}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df1ba2dfe7b216b4490eb315fb1e54c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a7dfb6754a64444fb0992ab7a3e2146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: shop
   container: {fileID: 484301424}
+  coinsCounter: {fileID: 1193455758}
 --- !u!1 &600092881
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,8 +8,9 @@ public class ShopMenu : Panel
 {
     [SerializeField] private TextMeshProUGUI coinsCounter;
     // Update coins counter when opening the panel
-    public override void Awake() {
+    public override void Open()
+    {
         coinsCounter.text = "     X " + GameManager.Instance.GetTotalCoinsCollected();
-        base.Awake();
+        base.Open();
     }
 }      
