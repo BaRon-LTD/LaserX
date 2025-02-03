@@ -17,7 +17,6 @@ public class LaserShopMenu : Panel
     [SerializeField] private TextMeshProUGUI coinsCounter;
 
     public override void Awake() {
-        coinsCounter.text = "     X " + GameManager.Instance.GetTotalCoinsCollected();
 
         Initialize();
 
@@ -63,9 +62,10 @@ public class LaserShopMenu : Panel
         
         // Move to the next container cyclically
         currentContainerIndex = (currentContainerIndex + 1) % containers.Count;
-        
+
         // Open the new container
         containers[currentContainerIndex].gameObject.SetActive(true);
+
         if(GameManager.Instance.IsLaserColorUnlocked(currentContainerIndex))
         {
             BuyButton.gameObject.SetActive(false);
