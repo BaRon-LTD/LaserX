@@ -128,5 +128,5 @@ MonoBehaviour:
   jumpDuration: 1
   jumpStartDistance: 1
   jumpEndDistance: 1
-  defaultSortingOrder: 2
-  behindFenceSortingOrder: 0
+  defaultSortingOrder: 3
+  behindFenceSortingOrder: 1
