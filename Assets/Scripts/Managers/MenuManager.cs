@@ -64,7 +64,7 @@ public class MenuManager : MonoBehaviour
         gameManager.LoadScene("level1");
     }
 
-    public async Task StartClientService()
+public async Task StartClientService()
     {
         PanelManager.CloseAll();
         PanelManager.Open("loading");
@@ -89,38 +89,11 @@ public class MenuManager : MonoBehaviour
                 SetupEvents();
             }
 
-            bool isSignedIn = AuthenticationService.Instance.IsSignedIn;
-            bool hasToken = AuthenticationService.Instance.SessionTokenExists;
-            
-            Debug.Log($"Is Signed In: {isSignedIn}");
-            Debug.Log($"Session Token Exists: {hasToken}");
-            Debug.Log($"Player ID: {AuthenticationService.Instance.PlayerId}");
-
-            // Check if we have a session and are not signed in
-            if (hasToken && !isSignedIn)
-            {
-                try
-                {
-                    // Try to automatically sign in with existing session
-                    await AuthenticationService.Instance.SignInAnonymouslyAsync();
-                    if (AuthenticationService.Instance.IsSignedIn)
-                    {
-                        await SignInConfirmAsync();
-                        return;
-                    }
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError($"Failed to restore session: {e.Message}");
-                    // Clear the token if it's invalid
-                    AuthenticationService.Instance.ClearSessionToken();
-                }
-            }
-
-            // If no valid session exists, show auth menu
+            // Remove the automatic session restore attempt
+            // Show auth menu directly for fresh start
             if (!AuthenticationService.Instance.IsSignedIn)
             {
-                Debug.Log("No valid session found, showing auth menu");
+                Debug.Log("Not signed in, showing auth menu");
                 PanelManager.CloseAll();
                 PanelManager.Open("auth");
             }
@@ -168,20 +141,42 @@ public class MenuManager : MonoBehaviour
     {
         PanelManager.CloseAll();
         PanelManager.Open("loading");
-        Debug.Log("4");
+        
         try
         {
+            // First try clearing everything
+            AuthenticationService.Instance.SignOut();
+            AuthenticationService.Instance.ClearSessionToken();
+            gameManager.ClearLocalGameState();
+            
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
+            Debug.Log("SignIn successful");
+            
             await AuthenticationService.Instance.UpdatePlayerNameAsync(username);
+            Debug.Log("Player name updated successfully");
+            
+            Debug.Log($"Final Auth State - IsSignedIn: {AuthenticationService.Instance.IsSignedIn}");
+            Debug.Log($"Final Auth State - PlayerID: {AuthenticationService.Instance.PlayerId}");
+            
             OnAuthenticated();
         }
-        catch (AuthenticationException)
+        catch (AuthenticationException e)
         {
+            Debug.LogError($"Authentication Exception: {e.Message}");
+            Debug.LogError($"Stack trace: {e.StackTrace}");
             ShowError(ErrorMenu.Action.OpenAuthMenu, "Username or password is wrong.", "OK");
         }
-        catch (RequestFailedException)
+        catch (RequestFailedException e)
         {
+            Debug.LogError($"Request Failed Exception: {e.Message}");
+            Debug.LogError($"Stack trace: {e.StackTrace}");
             ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to connect to the network. - 3", "OK");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Unexpected error: {e.Message}");
+            Debug.LogError($"Stack trace: {e.StackTrace}");
+            ShowError(ErrorMenu.Action.OpenAuthMenu, "An unexpected error occurred.", "OK");
         }
     }
     
