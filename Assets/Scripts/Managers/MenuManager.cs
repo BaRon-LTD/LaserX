@@ -228,6 +228,7 @@ public async Task StartClientService()
         AuthenticationService.Instance.SignedOut += () =>
         {
             Debug.Log("SignedOut Event Triggered");
+            AuthenticationService.Instance.ClearSessionToken();
             gameManager.ClearLocalGameState();
             if (!AuthenticationService.Instance.IsSignedIn && !PanelManager.IsOpen("loading"))
             {
