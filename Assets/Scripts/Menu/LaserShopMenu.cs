@@ -14,8 +14,11 @@ public class LaserShopMenu : Panel
     private List<RectTransform> containers = new List<RectTransform>();
     private int currentContainerIndex = 0;
     private int currentLaserColorIndex = 0;
+    [SerializeField] private TextMeshProUGUI coinsCounter;
 
     public override void Awake() {
+        coinsCounter.text = "     X " + GameManager.Instance.GetTotalCoinsCollected();
+
         Initialize();
 
         currentLaserColorIndex = GameManager.Instance.GetCurrentLaserColorIndex();
@@ -107,6 +110,7 @@ public class LaserShopMenu : Panel
     public void BuyLaserColor()
     {
         if (!IsInitialized) { Initialize(); }
+        if (GameManager.Instance.GetTotalCoinsCollected() < 100) return;
         GameManager.Instance.AddLaserColor(currentContainerIndex);
         BuyButton.gameObject.SetActive(false);
         UseButton.gameObject.SetActive(true);
