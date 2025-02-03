@@ -4672,7 +4672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 745860cb113762e42b6a6a9b635de4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinID: 2
+  coinID: 3
 --- !u!82 &1041066368
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6184,7 +6184,7 @@ PrefabInstance:
     - target: {fileID: -6545564534982420019, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: uiCounterPosition
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 849176468}
     - target: {fileID: 826091862418470800, guid: 0a451d36dac366043b851d0cb3c0c7ea, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.27

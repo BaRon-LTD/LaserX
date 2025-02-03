@@ -66,8 +66,11 @@ public class MenuManager : MonoBehaviour
 
 public async Task StartClientService()
     {
-        PanelManager.CloseAll();
-        PanelManager.Open("loading");
+        if(!PanelManager.IsOpen("loading"))
+        {
+            PanelManager.CloseAll();
+            PanelManager.Open("loading");
+        }
         Debug.Log("Starting Client Service");
         
         try
@@ -108,8 +111,11 @@ public async Task StartClientService()
     public async Task SignInAnonymouslyAsync()
     {
         Debug.Log("Starting Anonymous Sign In Process");
-        PanelManager.CloseAll();
-        PanelManager.Open("loading");
+        if(!PanelManager.IsOpen("loading"))
+        {
+            PanelManager.CloseAll();
+            PanelManager.Open("loading");
+        }
         
         try
         {
@@ -137,67 +143,112 @@ public async Task StartClientService()
         }
     }
     
-    public async void SignInWithUsernameAndPasswordAsync(string username, string password)
+    public async Task SignInWithUsernameAndPasswordAsync(string username, string password)
+    {
+        if(!PanelManager.IsOpen("loading"))
+        {
+            PanelManager.CloseAll();
+            PanelManager.Open("loading");
+        }
+    
+    try
+    {
+        // Comprehensive authentication state reset
+        if (AuthenticationService.Instance.IsSignedIn)
+        {
+            AuthenticationService.Instance.SignOut();
+        }
+        
+        await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
+        
+        await AuthenticationService.Instance.UpdatePlayerNameAsync(username);
+        
+        Debug.Log("SignIn successful");
+        Debug.Log($"Final Auth State - IsSignedIn: {AuthenticationService.Instance.IsSignedIn}");
+        Debug.Log($"Final Auth State - PlayerID: {AuthenticationService.Instance.PlayerId}");
+        
+        OnAuthenticated();
+    }
+    catch (AuthenticationException e)
+    {
+        Debug.LogError($"Authentication Exception: {e.Message}");
+        ShowError(ErrorMenu.Action.OpenAuthMenu, "Username or password is wrong.", "OK");
+        throw; // Re-throw to allow caller to handle
+    }
+    catch (RequestFailedException e)
+    {
+        Debug.LogError($"Request Failed Exception: {e.Message}");
+        ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to connect to the network.", "OK");
+        throw; // Re-throw to allow caller to handle
+    }
+    catch (Exception e)
+    {
+        Debug.LogError($"Unexpected error: {e.Message}");
+        ShowError(ErrorMenu.Action.OpenAuthMenu, "An unexpected error occurred.", "OK");
+        throw; // Re-throw to allow caller to handle
+    }
+}
+    
+public async void SignUpWithUsernameAndPasswordAsync(string username, string password)
+{
+    if(!PanelManager.IsOpen("loading"))
     {
         PanelManager.CloseAll();
         PanelManager.Open("loading");
-        
-        try
-        {
-            // First try clearing everything
-            AuthenticationService.Instance.SignOut();
-            AuthenticationService.Instance.ClearSessionToken();
-            gameManager.ClearLocalGameState();
-            
-            await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
-            Debug.Log("SignIn successful");
-            
-            await AuthenticationService.Instance.UpdatePlayerNameAsync(username);
-            Debug.Log("Player name updated successfully");
-            
-            Debug.Log($"Final Auth State - IsSignedIn: {AuthenticationService.Instance.IsSignedIn}");
-            Debug.Log($"Final Auth State - PlayerID: {AuthenticationService.Instance.PlayerId}");
-            
-            OnAuthenticated();
-        }
-        catch (AuthenticationException e)
-        {
-            Debug.LogError($"Authentication Exception: {e.Message}");
-            Debug.LogError($"Stack trace: {e.StackTrace}");
-            ShowError(ErrorMenu.Action.OpenAuthMenu, "Username or password is wrong.", "OK");
-        }
-        catch (RequestFailedException e)
-        {
-            Debug.LogError($"Request Failed Exception: {e.Message}");
-            Debug.LogError($"Stack trace: {e.StackTrace}");
-            ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to connect to the network. - 3", "OK");
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Unexpected error: {e.Message}");
-            Debug.LogError($"Stack trace: {e.StackTrace}");
-            ShowError(ErrorMenu.Action.OpenAuthMenu, "An unexpected error occurred.", "OK");
-        }
     }
     
-    public async void SignUpWithUsernameAndPasswordAsync(string username, string password)
+    
+    try
     {
-        PanelManager.CloseAll();
-        PanelManager.Open("loading");
-        Debug.Log("5");
-        try
+        // Comprehensive authentication state reset
+        if (AuthenticationService.Instance.IsSignedIn)
         {
-            await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(username, password);
+            AuthenticationService.Instance.SignOut();
         }
-        catch (AuthenticationException)
+
+        // Validate input 
+        if (string.IsNullOrWhiteSpace(username) || username.Length < 3)
         {
-            ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to sign you up.", "OK");
+            ShowError(ErrorMenu.Action.OpenAuthMenu, "Username must be at least 3 characters long.", "OK");
+            return;
         }
-        catch (RequestFailedException)
+
+        if (password.Length < 6)
         {
-            ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to connect to the network. - 4", "OK");
+            ShowError(ErrorMenu.Action.OpenAuthMenu, "Password must be at least 6 characters long.", "OK");
+            return;
+        }
+
+        // Attempt signup
+        await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(username, password);
+        
+        // Immediately attempt to sign in
+        await SignInWithUsernameAndPasswordAsync(username, password);
+    }
+    catch (AuthenticationException e)
+    {
+        Debug.LogError($"Signup Authentication Exception: {e.Message}");
+        
+        if (e.Message.Contains("username is already in use"))
+        {
+            ShowError(ErrorMenu.Action.OpenAuthMenu, "Username is already taken. Please choose another username.", "OK");
+        }
+        else
+        {
+            ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to sign you up. " + e.Message, "OK");
         }
     }
+    catch (RequestFailedException e)
+    {
+        Debug.LogError($"Signup Request Failed Exception: {e.Message}");
+        ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to connect to the network. " + e.Message, "OK");
+    }
+    catch (Exception e)
+    {
+        Debug.LogError($"Unexpected signup error: {e.Message}");
+        ShowError(ErrorMenu.Action.OpenAuthMenu, "An unexpected error occurred during signup. " + e.Message, "OK");
+    }
+}
     
     public void SignOut()
     {
