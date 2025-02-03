@@ -229,8 +229,11 @@ public async Task StartClientService()
         {
             Debug.Log("SignedOut Event Triggered");
             gameManager.ClearLocalGameState();
-            PanelManager.CloseAll();
-            PanelManager.Open("auth");
+            if (!AuthenticationService.Instance.IsSignedIn && !PanelManager.IsOpen("loading"))
+            {
+                PanelManager.CloseAll();
+                PanelManager.Open("auth");
+            }
         };
         
         AuthenticationService.Instance.Expired += () =>
