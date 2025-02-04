@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class SnapController : MonoBehaviour
 {
+    [SerializeField] private List<Transform> snapPoints;
+    [SerializeField] private List<Dragable> draggableObjects;
 
-    [SerializeField] public List<Transform> snapPoints;
-    [SerializeField] public List<Dragable> draggableObjects;
+    [SerializeField] private RectTransform targetRectTransform;
 
-    [SerializeField] public float snapRange = 0.5f;
+    [SerializeField] private float snapRange = 0.5f;
 
     private void Start()
     {
@@ -17,24 +18,29 @@ public class SnapController : MonoBehaviour
             dragable.drangEndedCallback = OnDragEnded;
         }
     }
+
     private void OnDragEnded(Dragable draggable)
     {
-        float closesDistance = -1;
-        Transform closestSnapPoint = null;
-
-        foreach (Transform snapPoint in snapPoints)
+        // Check if targetRectTransform is active
+        if (targetRectTransform != null && targetRectTransform.gameObject.activeInHierarchy)
         {
-            float currentDistance = Vector2.Distance(draggable.transform.position, snapPoint.position);
-            if (closestSnapPoint == null || currentDistance < closesDistance)
+            float closestDistance = float.MaxValue;
+            Transform closestSnapPoint = null;
+
+            foreach (Transform snapPoint in snapPoints)
             {
-                closestSnapPoint = snapPoint;
-                closesDistance = currentDistance;
+                float currentDistance = Vector2.Distance(draggable.transform.position, snapPoint.position);
+                if (currentDistance < closestDistance)
+                {
+                    closestSnapPoint = snapPoint;
+                    closestDistance = currentDistance;
+                }
             }
-        }
 
-        if (closestSnapPoint != null && closesDistance <= snapRange)
-        {
-            draggable.transform.position = closestSnapPoint.position;
+            if (closestSnapPoint != null && closestDistance <= snapRange)
+            {
+                draggable.transform.position = closestSnapPoint.position;
+            }
         }
     }
 }
