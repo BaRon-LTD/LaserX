@@ -92,9 +92,14 @@ public class MenuManager : MonoBehaviour
                 SetupEvents();
             }
 
-            // Remove the automatic session restore attempt
-            // Show auth menu directly for fresh start
-            if (!AuthenticationService.Instance.IsSignedIn)
+            // Check if already signed in and handle appropriately
+            if (AuthenticationService.Instance.IsSignedIn)
+            {
+                Debug.Log("Already signed in, proceeding to OnAuthenticated");
+                OnAuthenticated();
+                return;
+            }
+            else
             {
                 Debug.Log("Not signed in, showing auth menu");
                 PanelManager.CloseAll();

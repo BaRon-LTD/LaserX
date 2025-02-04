@@ -37,13 +37,13 @@ public class AuthenticationMenu : Panel
         await MenuManager.Singleton.SignInAnonymouslyAsync();
     }
 
-    private void SignIn()
+    private async void SignIn()
     {
         string user = usernameInput.text.Trim();
         string pass = passwordInput.text.Trim();
         if (string.IsNullOrEmpty(user) == false && string.IsNullOrEmpty(pass) == false)
         {
-            MenuManager.Singleton.SignInWithUsernameAndPasswordAsync(user, pass);
+            await MenuManager.Singleton.SignInWithUsernameAndPasswordAsync(user, pass);
         }
     }
 
