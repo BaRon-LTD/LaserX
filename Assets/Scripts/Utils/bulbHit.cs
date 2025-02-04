@@ -14,7 +14,7 @@ public class bulbHit : LaserInteractable
 
     [SerializeField] private float durationHold = 1f;
 
-    [SerializeField] [Tooltip("Name of scene to move to when triggering the given tag")] string sceneName;
+    [SerializeField][Tooltip("Name of scene to move to when triggering the given tag")] string sceneName;
 
     private bool isGlow = false; // Ensure the bulb reacts only once
 

@@ -25,14 +25,14 @@ public class LaserController : MonoBehaviour
             return;
         }
 
-        
+
         // Initialize ray and line renderer
         Vector3 startPoint = laserStartPoint.position; // Use the child transform position
         ray = new Ray(startPoint, laserStartPoint.right); // Use the child transform's direction
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0, startPoint);
         float remainingLength = maxLength;
-        
+
         // Get current color from GameManager and convert to enum
         currentLaserColor = LaserColorUtility.GetLaserColorType(GameManager.Instance.GetCurrentLaserColorIndex());
         lineRenderer.startColor = LaserColorUtility.GetColor(currentLaserColor);
@@ -98,7 +98,7 @@ public class LaserController : MonoBehaviour
                 break;
             }
         }
-        
+
         // Update last hit object
         lastHitObject = currentHitObject;
 
@@ -109,7 +109,7 @@ public class LaserController : MonoBehaviour
             lastHitObject = null;
         }
     }
-        // Method to get the current hit object
+    // Method to get the current hit object
     public LaserInteractable GetCurrentHitObject()
     {
         return lastHitObject;

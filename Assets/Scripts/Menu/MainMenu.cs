@@ -19,24 +19,24 @@ public class MainMenu : Panel
         logoutButton.onClick.AddListener(SignOut);
         base.Initialize();
     }
-    
+
     public override void Open()
     {
         UpdatePlayerNameUI();
         base.Open();
     }
-    
+
     private void SignOut()
     {
         MenuManager.Singleton.SignOut();
     }
-    
+
     private void UpdatePlayerNameUI()
     {
         if (AuthenticationService.Instance.IsSignedIn)
         {
             string playerName = AuthenticationService.Instance.PlayerName;
-            
+
             // Remove #1234 part if it exists
             int hashIndex = playerName.IndexOf("#");
             if (hashIndex != -1)
@@ -54,5 +54,5 @@ public class MainMenu : Panel
 
 
 
-    
+
 }

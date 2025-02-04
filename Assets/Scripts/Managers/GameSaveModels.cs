@@ -16,7 +16,7 @@ public class GameLaserColorData
 
     public GameLaserColorData()
     {
-        ColorList = new List<int>() {0};
+        ColorList = new List<int>() { 0 };
         ColorIndex = 0;
     }
 }

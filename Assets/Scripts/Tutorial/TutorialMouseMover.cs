@@ -33,8 +33,9 @@ public class TutorialMouseMover : MonoBehaviour
     {
         // Check if the mirror is within the radius of the endPoint
         bool isWithinRadius = Vector3.Distance(mirror.transform.position, endPoint.position) <= radius;
-        
-        if(isWithinRadius){
+
+        if (isWithinRadius)
+        {
             UpdateHandVisibility(false); // Hide the tutorial hand when within the radius
         }
         if (Input.GetMouseButtonDown(0))

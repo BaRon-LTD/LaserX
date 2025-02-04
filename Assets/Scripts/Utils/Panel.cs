@@ -11,7 +11,7 @@ public class Panel : MonoBehaviour
     protected bool initialized = false; public bool IsInitialized { get { return initialized; } }
     protected bool isOpen = false; public bool IsOpen { get { return isOpen; } }
     private Canvas canvas = null; public Canvas Canvas { get { return canvas; } set { canvas = value; } }
-    
+
     public virtual void Awake()
     {
         Initialize();
@@ -43,5 +43,5 @@ public class Panel : MonoBehaviour
         container.gameObject.SetActive(false);
         isOpen = false;
     }
-    
+
 }
