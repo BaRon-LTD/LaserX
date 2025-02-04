@@ -44,7 +44,7 @@ public class Dragable : MonoBehaviour
     {
         isDragged = false;
         drangEndedCallback?.Invoke(this);
-        GameManager.Instance?.IncrementMoveCount();
+        // GameManager.Instance?.IncrementMoveCount();
     }
 
     private Vector3 ClampToScreenBounds(Vector3 position)

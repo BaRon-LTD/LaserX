@@ -359,6 +359,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1803343250}
     m_Modifications:
     - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: targetRectTransform
+      value: 
+      objectReference: {fileID: 1313759556}
+    - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
       propertyPath: 'snapPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 583517532}
@@ -4567,6 +4571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballons: {fileID: 0}
+  levelName: {fileID: 0}
   moves: {fileID: 0}
 --- !u!4 &1397032878
 Transform:

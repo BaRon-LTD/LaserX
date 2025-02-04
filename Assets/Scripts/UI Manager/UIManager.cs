@@ -6,7 +6,8 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
 
     [SerializeField] private TextMeshProUGUI ballons;
-    [SerializeField] private TextMeshProUGUI moves;
+    [SerializeField] private TextMeshProUGUI levelName;
+    // [SerializeField] private TextMeshProUGUI moves;
 
     private void Awake()
     {
@@ -21,7 +22,17 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         UpdateScoreUI();
-        UpdateMovesUI(0); // Initialize the moves display
+        UpdateLevelNumber();
+        // UpdateMovesUI(0); // Initialize the moves display
+
+    }
+
+    public void UpdateLevelNumber()
+    {
+        if (levelName != null)
+        {
+            levelName.text = GameManager.Instance.GetSceneName();
+        }
     }
 
     public void UpdateScoreUI()
@@ -33,12 +44,12 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void UpdateMovesUI(int moveCount)
-    {
-        if (moves != null)
-        {
-            moves.text = "Moves: " + moveCount;
-        }
+    // public void UpdateMovesUI(int moveCount)
+    // {
+    //     if (moves != null)
+    //     {
+    //         moves.text = "Moves: " + moveCount;
+    //     }
 
-    }
+    // }
 }

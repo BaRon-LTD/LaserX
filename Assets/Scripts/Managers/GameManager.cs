@@ -69,12 +69,12 @@ public class GameManager : MonoBehaviour
         return collectibleItem.GetScore();
     }
 
-    public void IncrementMoveCount()
-    {
-        moveCount++;
-        Debug.Log($"Moves made: {moveCount}");
-        UIManager.Instance?.UpdateMovesUI(moveCount);
-    }
+    // public void IncrementMoveCount()
+    // {
+    //     moveCount++;
+    //     Debug.Log($"Moves made: {moveCount}");
+    //     UIManager.Instance?.UpdateMovesUI(moveCount);
+    // }
 
     public void ResetMoveCount()
     {
@@ -93,6 +93,12 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Loading scene: {sceneName}");
         SceneManager.LoadScene(sceneName);
     }
+
+    public string GetSceneName()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
+
 
     public void RestartCurrentScene()
     {
@@ -116,7 +122,7 @@ public class GameManager : MonoBehaviour
         SaveManager.ClearSavedData();
         
         UIManager.Instance?.UpdateScoreUI();
-        UIManager.Instance?.UpdateMovesUI(moveCount);
+        // UIManager.Instance?.UpdateMovesUI(moveCount);
         
         Debug.Log("Local game state cleared");
     }

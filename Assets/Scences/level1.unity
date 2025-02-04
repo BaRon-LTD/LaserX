@@ -1359,6 +1359,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1655670179}
     m_Modifications:
     - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
+      propertyPath: targetRectTransform
+      value: 
+      objectReference: {fileID: 1251574381}
+    - target: {fileID: 2282672248342421241, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
       propertyPath: 'snapPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 1677054638}
@@ -7563,7 +7567,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballons: {fileID: 1714104896}
-  moves: {fileID: 1890002100}
+  levelName: {fileID: 1890002100}
+  moves: {fileID: 0}
 --- !u!4 &1336205420
 Transform:
   m_ObjectHideFlags: 0
@@ -10212,7 +10217,7 @@ GameObject:
   - component: {fileID: 1890002101}
   - component: {fileID: 1890002100}
   m_Layer: 5
-  m_Name: MovesCounter
+  m_Name: LevelName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10266,8 +10271,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4286232397
+  m_fontColor: {r: 0.3009968, g: 0.7169812, b: 0.4799663, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10284,8 +10289,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
