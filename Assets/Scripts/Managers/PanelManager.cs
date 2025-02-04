@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PanelManager : MonoBehaviour
 {
-    
+
     private Dictionary<string, Panel> panels = new Dictionary<string, Panel>();
     private bool initialized = false;
     private Canvas[] canvas = null;
     private static PanelManager singleton = null;
-    
+
     public static PanelManager Singleton
     {
         get
@@ -23,7 +23,7 @@ public class PanelManager : MonoBehaviour
                 }
                 singleton.Initialize();
             }
-            return singleton; 
+            return singleton;
         }
     }
 
@@ -53,7 +53,7 @@ public class PanelManager : MonoBehaviour
             }
         }
     }
-    
+
     private void OnDestroy()
     {
         if (singleton == this)
@@ -61,7 +61,7 @@ public class PanelManager : MonoBehaviour
             singleton = null;
         }
     }
-    
+
     public static Panel GetSingleton(string id)
     {
         if (Singleton.panels.ContainsKey(id))
@@ -70,7 +70,7 @@ public class PanelManager : MonoBehaviour
         }
         return null;
     }
-    
+
     public static void Open(string id)
     {
         var panel = GetSingleton(id);
@@ -79,7 +79,7 @@ public class PanelManager : MonoBehaviour
             panel.Open();
         }
     }
-    
+
     public static void Close(string id)
     {
         var panel = GetSingleton(id);
@@ -88,7 +88,7 @@ public class PanelManager : MonoBehaviour
             panel.Close();
         }
     }
-    
+
     public static bool IsOpen(string id)
     {
         if (Singleton.panels.ContainsKey(id))
@@ -97,7 +97,7 @@ public class PanelManager : MonoBehaviour
         }
         return false;
     }
-    
+
     public static void CloseAll()
     {
         foreach (var panel in Singleton.panels)
@@ -108,5 +108,5 @@ public class PanelManager : MonoBehaviour
             }
         }
     }
-    
+
 }

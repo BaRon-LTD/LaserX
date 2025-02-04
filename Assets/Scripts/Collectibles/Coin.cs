@@ -30,7 +30,7 @@ public class Coin : MonoBehaviour
             }
         }
     }
-    
+
     public void CollectCoin()
     {
         // Notify the GameManager about the coin collection

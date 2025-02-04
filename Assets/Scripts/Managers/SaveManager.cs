@@ -71,7 +71,7 @@ public class SaveManager : MonoBehaviour
     public async Task LoadCloudData()
     {
         if (isDataLoaded) return;
-        
+
         try
         {
             ClearSavedData();
@@ -154,7 +154,7 @@ public class SaveManager : MonoBehaviour
             if (wrapper != null)
             {
                 // Deserialize coins data
-                if(wrapper.Entries != null)
+                if (wrapper.Entries != null)
                 {
                     coinsCollectedData.Clear();
                     foreach (var entry in wrapper.Entries)
@@ -234,7 +234,7 @@ public class SaveManager : MonoBehaviour
         {
             coinsCollectedData.Clear();
         }
-        else 
+        else
         {
             coinsCollectedData = new Dictionary<string, GameSceneCoinData>();
         }
@@ -245,7 +245,7 @@ public class SaveManager : MonoBehaviour
 
     public async Task<int> GetTotalCoinsCollectedAsync()
     {
-        try 
+        try
         {
             if (!isDataLoaded)
             {
@@ -300,7 +300,7 @@ public class SaveManager : MonoBehaviour
 
         SaveAsync();
     }
-    
+
     public bool IsCoinAlreadyCollectedInScene(string sceneName, string coinID)
     {
         if (coinsCollectedData.ContainsKey(sceneName))
@@ -311,7 +311,7 @@ public class SaveManager : MonoBehaviour
         return false;
     }
 
-    
+
     // New methods for laser color management
     public void AddLaserColor(int colorIndex)
     {

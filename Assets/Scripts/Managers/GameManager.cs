@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
         collectibleItem = new CollectibleItem();
         SaveManager = gameObject.AddComponent<SaveManager>();
-        
+
         await SaveManager.InitializeAsync();
     }
 
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 
         // Update local score
         collectibleItem.AddCoin(amount);
-        
+
         // Update saved data
         SaveManager.AddCoinToScene(currentSceneName, amount, coinID);
 
@@ -109,21 +109,21 @@ public class GameManager : MonoBehaviour
     public void ClearLocalGameState()
     {
         moveCount = 0;
-        
+
         if (collectibleItem != null)
         {
             collectibleItem.ResetScore();
         }
-        else 
+        else
         {
             collectibleItem = new CollectibleItem();
         }
-        
+
         SaveManager.ClearSavedData();
-        
+
         UIManager.Instance?.UpdateScoreUI();
         // UIManager.Instance?.UpdateMovesUI(moveCount);
-        
+
         Debug.Log("Local game state cleared");
     }
 
@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
         return SaveManager.GetUnlockedLaserColors();
     }
 
-        public bool IsLaserColorUnlocked(int colorIndex)
+    public bool IsLaserColorUnlocked(int colorIndex)
     {
         return SaveManager.IsLaserColorUnlocked(colorIndex);
     }

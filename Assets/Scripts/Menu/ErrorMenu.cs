@@ -15,9 +15,9 @@ public class ErrorMenu : Panel
     {
         None = 0, StartService = 1, SignIn = 2, OpenAuthMenu = 3
     }
-    
+
     private Action action = Action.None;
-    
+
     public override void Initialize()
     {
         if (IsInitialized)
@@ -33,7 +33,7 @@ public class ErrorMenu : Panel
         action = Action.None;
         base.Open();
     }
-    
+
     public void Open(Action action, string error, string button)
     {
         Open();
@@ -47,7 +47,7 @@ public class ErrorMenu : Panel
             buttonText.text = button;
         }
     }
-    
+
     private async void ButtonAction()
     {
         Close();
@@ -65,5 +65,5 @@ public class ErrorMenu : Panel
                 break;
         }
     }
-    
+
 }
