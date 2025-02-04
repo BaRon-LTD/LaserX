@@ -140,10 +140,10 @@ TextureImporter:
       name: BULB (2)_0
       rect:
         serializedVersion: 2
-        x: 107
-        y: 1191
-        width: 496
-        height: 777
+        x: 33
+        y: 1187
+        width: 640
+        height: 850
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: BULB (2)_1
       rect:
         serializedVersion: 2
-        x: 677
-        y: 1151
-        width: 496
-        height: 777
+        x: 604
+        y: 1149
+        width: 640
+        height: 850
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +184,10 @@ TextureImporter:
       name: BULB (2)_3
       rect:
         serializedVersion: 2
-        x: 1286
-        y: 1162
-        width: 496
-        height: 777
+        x: 1214
+        y: 1161
+        width: 640
+        height: 850
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,10 +206,10 @@ TextureImporter:
       name: BULB (2)_7
       rect:
         serializedVersion: 2
-        x: 387
-        y: 259
-        width: 498
-        height: 777
+        x: 316
+        y: 254
+        width: 640
+        height: 850
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,10 +228,10 @@ TextureImporter:
       name: BULB (2)_8
       rect:
         serializedVersion: 2
-        x: 1016
-        y: 164
-        width: 737
-        height: 916
+        x: 1057
+        y: 167
+        width: 640
+        height: 850
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

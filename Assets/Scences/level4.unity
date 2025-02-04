@@ -5346,7 +5346,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 778069303092415425, guid: a3c97f912f2f3f14cb12defe8dd3adc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11093,7 +11093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3300fef8d9e19d4b8a174b14ba86e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickSound: {fileID: 8300000, guid: c1599bb1d3c66a444a30c02bd3e93d65, type: 3}
+  clickSound: {fileID: 8300000, guid: 32ede09b5fe2f2743ba29c34c150a2c0, type: 3}
 --- !u!1 &1879199990
 GameObject:
   m_ObjectHideFlags: 0

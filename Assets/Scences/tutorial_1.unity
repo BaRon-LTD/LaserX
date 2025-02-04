@@ -1366,8 +1366,8 @@ Transform:
   m_GameObject: {fileID: 508395038}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7933534, w: 0.6087614}
-  m_LocalPosition: {x: -528.1188, y: -313.6515, z: -0.02}
-  m_LocalScale: {x: 0.15363719, y: 0.14609095, z: 1}
+  m_LocalPosition: {x: -565.39996, y: -342.09772, z: -0.02}
+  m_LocalScale: {x: 0.15000005, y: 0.120000035, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 526859103}
@@ -1611,8 +1611,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -434, y: -230}
-  m_SizeDelta: {x: -1616.2001, y: -952.3901}
+  m_AnchoredPosition: {x: -396.4, y: -201.7}
+  m_SizeDelta: {x: -1616.2001, y: -839.7995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &526859104
 MonoBehaviour:
@@ -5286,8 +5286,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23.95, y: -19}
-  m_SizeDelta: {x: 303.8721, y: 114.5691}
+  m_AnchoredPosition: {x: 19, y: -12}
+  m_SizeDelta: {x: 303.8721, y: 186.7205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1750267881
 MonoBehaviour:
@@ -5309,7 +5309,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What does this bar do?
+  m_text: 'What does this bar do?
+
+
+    press on the blue arrow'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f0e06bfed95c5cc4c9d9c17505592f1e, type: 2}
   m_sharedMaterial: {fileID: -9112601259906606352, guid: f0e06bfed95c5cc4c9d9c17505592f1e, type: 2}

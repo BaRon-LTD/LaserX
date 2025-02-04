@@ -4978,7 +4978,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2096243820}
         m_TargetAssemblyTypeName: LaserShopMenu, Assembly-CSharp
         m_MethodName: UseLaserColor
         m_Mode: 1
@@ -5440,7 +5440,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1185944063}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2096243820}
+        m_TargetAssemblyTypeName: LaserShopMenu, Assembly-CSharp
+        m_MethodName: BuyLaserColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1185944065
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5461,7 +5473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3300fef8d9e19d4b8a174b14ba86e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickSound: {fileID: 8300000, guid: c1599bb1d3c66a444a30c02bd3e93d65, type: 3}
+  clickSound: {fileID: 8300000, guid: 32ede09b5fe2f2743ba29c34c150a2c0, type: 3}
 --- !u!1 &1193455756
 GameObject:
   m_ObjectHideFlags: 0
