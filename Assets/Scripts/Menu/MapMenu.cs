@@ -31,7 +31,7 @@ public class MapMenu : Panel
                 Transform rightCoin = level.Find("rightcoin");
 
                 // Get the number of coins collected for the current scene (level)
-                int coinsCollected = gameManager.GetCoinsCollectedInScene(levelName);
+                int coinsCollected = gameManager.GetUniqueCoinsInScene(levelName);
 
                 // Update visibility based on coins collected for the level
                 UpdateCoinVisibility(leftCoin, 1, coinsCollected);

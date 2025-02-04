@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserStartPoint: {fileID: 478946897957467923}
-  maxLength: 32
+  maxLength: 100
   maxReflections: 19
   lineRenderer: {fileID: 925332367477588464}
   mirrorsLayerMask:

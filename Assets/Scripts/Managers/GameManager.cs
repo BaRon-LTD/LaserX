@@ -147,6 +147,11 @@ public class GameManager : MonoBehaviour
         SaveManager.ReduceTotalCoins(amount);
     }
 
+    public int GetUniqueCoinsInScene(string sceneName)
+    {
+        return SaveManager.GetUniqueCoinsInScene(sceneName);
+    }
+
     public void AddLaserColor(int colorIndex)
     {
         SaveManager.AddLaserColor(colorIndex);

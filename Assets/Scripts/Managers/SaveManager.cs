@@ -301,6 +301,21 @@ public class SaveManager : MonoBehaviour
         SaveAsync();
     }
 
+    public int GetUniqueCoinsInScene(string sceneName)
+    {
+        if (coinsCollectedData.TryGetValue(sceneName, out GameSceneCoinData sceneData))
+        {
+            if (sceneData.CollectedCoinIDs != null)
+            {
+                // Using HashSet to ensure uniqueness, though CollectedCoinIDs should already be unique
+                HashSet<string> uniqueCoins = new HashSet<string>(sceneData.CollectedCoinIDs);
+                return uniqueCoins.Count;
+            }
+        }
+        
+        return 0;
+    }
+
     public bool IsCoinAlreadyCollectedInScene(string sceneName, string coinID)
     {
         if (coinsCollectedData.ContainsKey(sceneName))
