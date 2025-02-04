@@ -454,6 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: setting
   container: {fileID: 399809103}
+  menuOpenSound: {fileID: 8300000, guid: 32ede09b5fe2f2743ba29c34c150a2c0, type: 3}
 --- !u!224 &231748986
 RectTransform:
   m_ObjectHideFlags: 0

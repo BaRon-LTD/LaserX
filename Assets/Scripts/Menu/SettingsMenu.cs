@@ -2,21 +2,28 @@ using UnityEngine;
 
 public class SettingsMenu : Panel
 {
+    [SerializeField] private AudioClip menuOpenSound; // Sound to play
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        InitializeAudio(); // Call our custom initialization method
+    }
+
+    private void InitializeAudio()
+    {
+        // Get or add an AudioSource component
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+    }
+
     public override void Open()
     {
-        // if (PanelManager.IsOpen("loading"))
-        // {
-        //     PanelManager.Close("loading");
-
-        //     base.Open();
-        //     PanelManager.Open("loading");
-        // }
-        // PanelManager.Close("loading");
-        // PanelManager.Close("auth");
-        // PanelManager.Close("error");
-        // PanelManager.Close("main");
-
         base.Open();
+        PlaySound(); // Play sound when opening the menu
     }
 
     public override void Close()
@@ -24,4 +31,11 @@ public class SettingsMenu : Panel
         base.Close();
     }
 
+    private void PlaySound()
+    {
+        if (menuOpenSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(menuOpenSound);
+        }
+    }
 }

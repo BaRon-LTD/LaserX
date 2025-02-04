@@ -1,16 +1,44 @@
 using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 
 public class ShopMenu : Panel
 {
     [SerializeField] private TextMeshProUGUI coinsCounter;
-    // Update coins counter when opening the panel
+    [SerializeField] private AudioClip menuOpenSound; // Sound to play when opening
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        InitializeAudio(); // Set up the AudioSource
+    }
+
+    private void InitializeAudio()
+    {
+        // Get or add an AudioSource component
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+    }
+
+    // Update coins counter and play sound when opening the panel
     public override void Open()
     {
-        coinsCounter.text = "     X " + GameManager.Instance.GetTotalCoinsCollected();
+        if (coinsCounter != null)
+        {
+            coinsCounter.text = "     X " + GameManager.Instance.GetTotalCoinsCollected();
+        }
+
+        PlaySound(); // Play sound when opening the menu
         base.Open();
     }
-}      
+
+    private void PlaySound()
+    {
+        if (menuOpenSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(menuOpenSound);
+        }
+    }
+}

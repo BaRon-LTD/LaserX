@@ -1886,6 +1886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: setting
   container: {fileID: 472721659}
+  menuOpenSound: {fileID: 8300000, guid: 32ede09b5fe2f2743ba29c34c150a2c0, type: 3}
 --- !u!224 &582642115
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4572,7 +4573,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballons: {fileID: 0}
   levelName: {fileID: 0}
-  moves: {fileID: 0}
 --- !u!4 &1397032878
 Transform:
   m_ObjectHideFlags: 0

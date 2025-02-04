@@ -66,3 +66,4 @@ public class MapMenu : Panel
         Debug.Log("MapMenu closed!");
     }
 }
+
