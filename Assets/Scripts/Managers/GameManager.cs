@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        collectibleItem = new CollectibleItem();
+        collectibleItem = new CollectibleItem() ?? new CollectibleItem(); // Ensure it's initialized
         SaveManager = gameObject.AddComponent<SaveManager>();
 
         await SaveManager.InitializeAsync();
@@ -88,11 +88,18 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        if (collectibleItem == null)
+        {
+            Debug.LogError("collectibleItem is null! Reinitializing...");
+            collectibleItem = new CollectibleItem();
+        }
+
         collectibleItem.ResetScore();
         ResetMoveCount();
         Debug.Log($"Loading scene: {sceneName}");
         SceneManager.LoadScene(sceneName);
     }
+
 
     public string GetSceneName()
     {
