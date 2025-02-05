@@ -315,7 +315,7 @@ public class MenuManager : MonoBehaviour
 
             await gameManager.InitializeAfterAuthentication();
 
-            int totalCoins = await gameManager.GetTotalCoinsCollectedAsync();
+            int totalCoins = await gameManager.GetTotalUniqueCoinsAsync();
 
             PanelManager.CloseAll();
             if (totalCoins > 0)
@@ -354,7 +354,7 @@ public class MenuManager : MonoBehaviour
             }
 
             await gameManager.InitializeAfterAuthentication();
-            int totalCoins = await gameManager.GetTotalCoinsCollectedAsync();
+            int totalCoins = await gameManager.GetTotalUniqueCoinsAsync();
             Debug.Log($"Total coins loaded: {totalCoins}");
 
             PanelManager.CloseAll();

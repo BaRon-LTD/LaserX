@@ -316,6 +316,36 @@ public class SaveManager : MonoBehaviour
         return 0;
     }
 
+    public async Task<int> GetTotalUniqueCoinsAsync()
+    {
+        try
+        {
+            if (!isDataLoaded)
+            {
+                await LoadCloudData();
+            }
+
+            HashSet<string> uniqueCoins = new HashSet<string>();
+
+            foreach (var sceneData in coinsCollectedData.Values)
+            {
+                foreach (var coinID in sceneData.CollectedCoinIDs)
+                {
+                    uniqueCoins.Add(coinID);
+                }
+            }
+
+            return uniqueCoins.Count;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error calculating total unique coins: {e.Message}");
+            return 0;
+        }
+    }
+
+
+
     public bool IsCoinAlreadyCollectedInScene(string sceneName, string coinID)
     {
         if (coinsCollectedData.ContainsKey(sceneName))
