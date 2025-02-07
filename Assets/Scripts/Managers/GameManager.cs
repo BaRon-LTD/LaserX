@@ -15,6 +15,22 @@ public class GameManager : MonoBehaviour
 
     public SaveManager SaveManager { get; private set; }
 
+    [SerializeField] private string mainMenuSceneName = "MainMenu";
+    private bool isFirstLoad = true;
+
+    private void Start()
+    {
+        if (isFirstLoad)
+        {
+            isFirstLoad = false;
+            // Load MainMenu through LoadingManager if we're starting from UIScene
+            if (SceneManager.GetActiveScene().name == "UIScene")
+            {
+                LoadScene(mainMenuSceneName);
+            }
+        }
+    }
+
     private async void Awake()
     {
         if (Instance != null && Instance != this)
@@ -104,7 +120,17 @@ public class GameManager : MonoBehaviour
             collectibleItem.ResetScore();
             ResetMoveCount();
             Debug.Log($"Loading scene: {sceneName}");
-            SceneManager.LoadScene(sceneName);
+            // Check if LoadingManager exists
+            if (LoadingManager.Instance != null)
+            {
+                LoadingManager.Instance.LoadScene(sceneName);
+            }
+            else
+            {
+                Debug.LogError("LoadingManager instance not found!");
+                // Fallback to direct scene loading
+                SceneManager.LoadScene(sceneName);
+            }
         }
         catch (Exception e)
         {
