@@ -2,12 +2,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     private CollectibleItem collectibleItem;
     private int moveCount = 0;
+    private bool isInitialized = false;
+
+    private bool isLoadingScene = false;
 
     public SaveManager SaveManager { get; private set; }
 
@@ -24,6 +28,7 @@ public class GameManager : MonoBehaviour
         SaveManager = gameObject.AddComponent<SaveManager>();
 
         await SaveManager.InitializeAsync();
+        isInitialized = true;
     }
 
     public async Task InitializeAfterAuthentication()
@@ -88,16 +93,85 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        if (collectibleItem == null)
+        try
         {
-            Debug.LogError("collectibleItem is null! Reinitializing...");
-            collectibleItem = new CollectibleItem();
+            if (collectibleItem == null)
+            {
+                Debug.LogWarning("collectibleItem is null! Reinitializing...");
+                collectibleItem = new CollectibleItem();
+            }
+
+            collectibleItem.ResetScore();
+            ResetMoveCount();
+            Debug.Log($"Loading scene: {sceneName}");
+            SceneManager.LoadScene(sceneName);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error loading scene {sceneName}: {e.Message}");
+        }
+    }
+
+    public async void LoadSceneMap(string sceneName)
+    {
+        if (isLoadingScene)
+        {
+            Debug.Log("Scene load already in progress, ignoring request");
+            return;
         }
 
-        collectibleItem.ResetScore();
-        ResetMoveCount();
-        Debug.Log($"Loading scene: {sceneName}");
-        SceneManager.LoadScene(sceneName);
+        isLoadingScene = true;
+
+        try
+        {
+            if (!await IsReadyToLoad())
+            {
+                Debug.LogError("GameManager not ready to load scenes");
+                return;
+            }
+
+            // Safely check coins - default to 0 if SaveManager is somehow null
+            int coins = SaveManager?.GetCoinsCollectedInScene(sceneName) ?? 0;
+            if (coins == 0)
+            {
+                Debug.Log($"No coins collected in scene {sceneName}, skipping load");
+                return;
+            }
+
+            LoadScene(sceneName);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error loading scene map: {e.Message}");
+        }
+        finally
+        {
+            isLoadingScene = false;
+        }
+    }
+
+    public async Task<bool> IsReadyToLoad()
+    {
+        if (!isInitialized || SaveManager == null)
+        {
+            Debug.LogWarning("GameManager not fully initialized. Attempting initialization...");
+            try
+            {
+                if (SaveManager == null)
+                {
+                    SaveManager = gameObject.AddComponent<SaveManager>();
+                }
+                await SaveManager.InitializeAsync();
+                isInitialized = true;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Failed to initialize GameManager: {e.Message}");
+                return false;
+            }
+        }
+        return true;
     }
 
 
@@ -144,8 +218,13 @@ public class GameManager : MonoBehaviour
         return SaveManager.GetTotalCoinsCollected();
     }
 
-    public int GetCoinsCollectedInScene(string sceneName)
+   public int GetCoinsCollectedInScene(string sceneName)
     {
+        if (SaveManager == null)
+        {
+            Debug.LogWarning("SaveManager is null when getting coins");
+            return 0;
+        }
         return SaveManager.GetCoinsCollectedInScene(sceneName);
     }
 
