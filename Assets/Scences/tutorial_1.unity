@@ -440,10 +440,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4834549570114202511, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1313759556}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2937898148810878788, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 283140311}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
 --- !u!4 &78372534 stripped
 Transform:
@@ -1059,14 +1056,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d47b80ec5313ac4090eb5026dc7786a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetCamera: {fileID: 1832207069}
-  containerAnchor: 7
-  containerOffsetPercent: {x: 0, y: 0}
-  zDistance: 10
-  useOriginalLocalPosition: 1
-  maintainScaling: 1
-  keepAspectRatio: 1
-  baseScale: 1
 --- !u!1 &220762709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,31 +1268,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277248608}
   m_CullTransparentMesh: 1
---- !u!1 &283140304 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2937898148810878788, guid: dbb41fd4316a69d4d955ad57d8475b8d, type: 3}
-  m_PrefabInstance: {fileID: 78372533}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &283140311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283140304}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d47b80ec5313ac4090eb5026dc7786a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetCamera: {fileID: 1832207069}
-  containerAnchor: 7
-  containerOffsetPercent: {x: 0, y: 0}
-  zDistance: 10
-  useOriginalLocalPosition: 1
-  maintainScaling: 1
-  keepAspectRatio: 1
-  baseScale: 1
 --- !u!1 &381149413
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,10 +1853,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8118824290362850406, guid: dc6c09791b24c3c45906f0566814dd3f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 562981459}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc6c09791b24c3c45906f0566814dd3f, type: 3}
 --- !u!114 &562981451 stripped
 MonoBehaviour:
@@ -1915,26 +1876,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6784313741281954064, guid: dc6c09791b24c3c45906f0566814dd3f, type: 3}
   m_PrefabInstance: {fileID: 562981450}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &562981459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 562981452}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d47b80ec5313ac4090eb5026dc7786a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetCamera: {fileID: 1832207069}
-  containerAnchor: 7
-  containerOffsetPercent: {x: 0, y: 0}
-  zDistance: 10
-  useOriginalLocalPosition: 1
-  maintainScaling: 1
-  keepAspectRatio: 1
-  baseScale: 1
 --- !u!1 &582642113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,7 +1938,6 @@ GameObject:
   m_Component:
   - component: {fileID: 583517532}
   - component: {fileID: 583517533}
-  - component: {fileID: 583517534}
   m_Layer: 5
   m_Name: Triangle-Shadow
   m_TagString: Untagged
@@ -2075,26 +2015,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &583517534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583517531}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d47b80ec5313ac4090eb5026dc7786a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetCamera: {fileID: 1832207069}
-  containerAnchor: 7
-  containerOffsetPercent: {x: 0, y: 0}
-  zDistance: 10
-  useOriginalLocalPosition: 1
-  maintainScaling: 1
-  keepAspectRatio: 1
-  baseScale: 1
 --- !u!1001 &592715299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2162,10 +2082,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1265559530202203466, guid: 8184391e5ad21ae4e9aa154676a84e0f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 592715311}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8184391e5ad21ae4e9aa154676a84e0f, type: 3}
 --- !u!114 &592715300 stripped
 MonoBehaviour:
@@ -2188,26 +2105,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2514026503438478239, guid: 8184391e5ad21ae4e9aa154676a84e0f, type: 3}
   m_PrefabInstance: {fileID: 592715299}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &592715311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 592715301}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d47b80ec5313ac4090eb5026dc7786a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetCamera: {fileID: 1832207069}
-  containerAnchor: 7
-  containerOffsetPercent: {x: 0, y: 0}
-  zDistance: 10
-  useOriginalLocalPosition: 1
-  maintainScaling: 1
-  keepAspectRatio: 1
-  baseScale: 1
 --- !u!1 &615727957
 GameObject:
   m_ObjectHideFlags: 0
@@ -2442,7 +2339,6 @@ GameObject:
   m_Component:
   - component: {fileID: 718078394}
   - component: {fileID: 718078395}
-  - component: {fileID: 718078396}
   m_Layer: 5
   m_Name: hexatragon-Shadow
   m_TagString: Untagged
@@ -2520,26 +2416,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &718078396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 718078393}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d47b80ec5313ac4090eb5026dc7786a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetCamera: {fileID: 1832207069}
-  containerAnchor: 7
-  containerOffsetPercent: {x: 0, y: 0}
-  zDistance: 10
-  useOriginalLocalPosition: 1
-  maintainScaling: 1
-  keepAspectRatio: 1
-  baseScale: 1
 --- !u!1 &738289322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2891,9 +2767,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3121955055464335501, guid: f0c57483bfcd1254f84f6acc381a2b02, type: 3}
       insertIndex: -1
       addedObject: {fileID: 853795280}
-    - targetCorrespondingSourceObject: {fileID: 3121955055464335501, guid: f0c57483bfcd1254f84f6acc381a2b02, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 853795282}
   m_SourcePrefab: {fileID: 100100000, guid: f0c57483bfcd1254f84f6acc381a2b02, type: 3}
 --- !u!114 &853795277 stripped
 MonoBehaviour:
@@ -2977,26 +2850,6 @@ PolygonCollider2D:
       - {x: 2.48, y: -2.48}
       - {x: 2.58, y: -2.3799999}
   m_UseDelaunayMesh: 0
---- !u!114 &853795282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 853795278}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d47b80ec5313ac4090eb5026dc7786a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetCamera: {fileID: 1832207069}
-  containerAnchor: 7
-  containerOffsetPercent: {x: 0, y: 0}
-  zDistance: 10
-  useOriginalLocalPosition: 1
-  maintainScaling: 1
-  keepAspectRatio: 1
-  baseScale: 1
 --- !u!1 &882904523
 GameObject:
   m_ObjectHideFlags: 0
@@ -6602,7 +6455,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2017718929}
   - component: {fileID: 2017718930}
-  - component: {fileID: 2017718931}
   m_Layer: 5
   m_Name: Square-Shadow
   m_TagString: Untagged
@@ -6680,26 +6532,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2017718931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2017718928}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d47b80ec5313ac4090eb5026dc7786a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetCamera: {fileID: 1832207069}
-  containerAnchor: 7
-  containerOffsetPercent: {x: 0, y: 0}
-  zDistance: 10
-  useOriginalLocalPosition: 1
-  maintainScaling: 1
-  keepAspectRatio: 1
-  baseScale: 1
 --- !u!1 &2029532377
 GameObject:
   m_ObjectHideFlags: 0
