@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingPanel: {fileID: 291511196}
-  transitionSpeed: 1
+  transitionSpeed: 1.5
   transitionType: 0
 --- !u!4 &354909678
 Transform:
