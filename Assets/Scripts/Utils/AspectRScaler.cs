@@ -1,13 +1,17 @@
 using UnityEngine;
 
-[ExecuteAlways]
 public class ResolutionScaler : MonoBehaviour
 {
+
     [SerializeField] private float referenceAspect = 16f / 9f;
     [SerializeField] private bool adjustScale = true;
     [SerializeField] private bool adjustPosition = true;
     [SerializeField] private bool preserveDepth = true;
     [SerializeField] private bool executeInUpdate = false;
+
+    private int lastScreenWidth = -1;
+    private int lastScreenHeight = -1;
+
 
     private Camera cam;
     private Vector3 originalScale;
@@ -39,11 +43,23 @@ public class ResolutionScaler : MonoBehaviour
 
     private void Update()
     {
-        if (executeInUpdate)
+        if (executeInUpdate || ScreenSizeChanged())
         {
             ApplyScalingAndPosition();
         }
     }
+
+    private bool ScreenSizeChanged()
+    {
+        if (Screen.width != lastScreenWidth || Screen.height != lastScreenHeight)
+        {
+            lastScreenWidth = Screen.width;
+            lastScreenHeight = Screen.height;
+            return true;
+        }
+        return false;
+    }
+
 
     private void CacheReferenceMargin()
     {
