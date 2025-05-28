@@ -13040,11 +13040,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8690326556071852634, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
       propertyPath: margin.x
-      value: -20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8690326556071852634, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
       propertyPath: margin.y
-      value: -100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8690326556071852634, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
       propertyPath: mainCamera

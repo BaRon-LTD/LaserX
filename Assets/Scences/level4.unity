@@ -559,8 +559,8 @@ Transform:
   m_GameObject: {fileID: 107254826}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07683698, y: 0.3788873, z: 0}
-  m_LocalScale: {x: 1, y: 0.39999998, z: 1}
+  m_LocalPosition: {x: 0.21, y: 0.37, z: 0}
+  m_LocalScale: {x: 1.0028598, y: 0.40114388, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 851671254}
@@ -3245,8 +3245,16 @@ PrefabInstance:
       value: Laser (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5186989409836874105, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5003571
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186989409836874105, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6004285
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186989409836874105, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.94
+      value: 7.933652
       objectReference: {fileID: 0}
     - target: {fileID: 5186989409836874105, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3283,6 +3291,14 @@ PrefabInstance:
     - target: {fileID: 5186989409836874105, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 161.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690326556071852634, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
+      propertyPath: margin.x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690326556071852634, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8690326556071852634, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
       propertyPath: mainCamera
@@ -5578,8 +5594,8 @@ Transform:
   m_GameObject: {fileID: 851671252}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.42261827, w: 0.9063079}
-  m_LocalPosition: {x: -7.53, y: -4.1, z: 0}
-  m_LocalScale: {x: 0.4, y: 1, z: 1}
+  m_LocalPosition: {x: -7.76, y: -4.25, z: 0}
+  m_LocalScale: {x: 0.51655483, y: 1.2913872, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 107254828}
@@ -5597,13 +5613,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b9932dfa5aaf34386751754b17b79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 1832207069}
-  referenceResolution: {x: 1920, y: 1080}
-  referenceScreenPosition: {x: 0, y: 0}
-  respectSafeArea: 1
-  calculateOnStart: 1
-  recalculateOnScreenChange: 1
-  zPosition: 0
+  referenceAspect: 1.7777778
+  adjustScale: 1
+  adjustPosition: 1
+  preserveDepth: 1
+  executeInUpdate: 0
 --- !u!1 &885430290
 GameObject:
   m_ObjectHideFlags: 0
@@ -6660,7 +6674,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 395.8, y: 419.8}
+  m_AnchoredPosition: {x: 400, y: 400}
   m_SizeDelta: {x: 580.9286, y: 160.17651}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1114491778
@@ -13401,8 +13415,16 @@ PrefabInstance:
       value: Laser
       objectReference: {fileID: 0}
     - target: {fileID: 5186989409836874105, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5003571
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186989409836874105, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6004285
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186989409836874105, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8
+      value: -8.006349
       objectReference: {fileID: 0}
     - target: {fileID: 5186989409836874105, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13441,6 +13463,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8690326556071852634, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
+      propertyPath: margin.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690326556071852634, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690326556071852634, guid: f3ee87b03e219724f8024a78beb89b1f, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1832207069}
@@ -13462,5 +13492,5 @@ SceneRoots:
   - {fileID: 1531700046}
   - {fileID: 302733585}
   - {fileID: 4744701079538272765}
-  - {fileID: 851671254}
   - {fileID: 797066211}
+  - {fileID: 851671254}
